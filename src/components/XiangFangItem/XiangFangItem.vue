@@ -1,10 +1,23 @@
 <template>
     <view class="container">
         <view class="top">
-            <text class="title">见您公主压箱</text>
+            <uv-text 
+                :text="xiangFangName" 
+                :customStyle="topTitleProp"
+                bold
+                align="center"
+                :lineHeight="1.5"
+            ></uv-text>
         </view>
         <view class="mid">
-            <text>你好我好大家好</text>
+            <uv-text 
+                text="香方描述：这是一款具有悠久历史的传统香方，选用优质天然香料精心调配而成，香气醇厚持久，具有安神静心的功效。适合在冥想、阅读或休息时使用，能够营造出宁静祥和的氛围。"
+                :lines="2"
+                color="#666666"
+                size="28rpx"
+                :lineHeight="1.6"
+                wordWrap="break-word"
+            ></uv-text>
         </view>
         <view class="bottom">
             <view class="bot-left">
@@ -19,6 +32,15 @@
 
 
 <script setup lang="ts">
+    import { ref } from "vue";
+    let xiangFangName = ref("")
+    xiangFangName.value = "宣和内府降真香"
+
+    let topTitleProp = ref({
+        "color": "#6f5453",
+        "size": "50rpx",
+        "align": "center"
+    })
 </script>
 
 <style scoped>
@@ -26,7 +48,7 @@
         width: 700rpx;
         height: 300rpx;
         /* border: 1px solid red; */
-        border-radius: 20rpx;
+        border-radius: 25rpx;
         /* 添加Flex布局确保垂直排列 */
         display: flex;
         flex-direction: column;
@@ -35,17 +57,7 @@
         box-shadow: 2px 3px 5px 5px rgba(0, 0, 0, 0.5);
     }
 
-    .title {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 100%;
-        box-sizing: border-box;
-        color: red;
-        font-size: 32rpx;
-        font-weight: bold;
-    }
+
 
     .top {
         width: 100%;
@@ -60,6 +72,20 @@
         /* 使用Flex布局 */
         display: flex;
         box-sizing: border-box;
+        border-radius: 25rpx 25rpx 0 0;
+
+        .title {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            color: #6f5453;
+            font-size: 50rpx;
+            letter-spacing: 5rpx;
+            font-weight: bold;
+        }
     }
 
     .mid {
@@ -70,6 +96,8 @@
         display: block;
         box-sizing: border-box;
         background-color: #f5e6d3;
+        padding: 10rpx;
+
     }
 
     .bottom {
@@ -85,5 +113,6 @@
         display: block;
         box-sizing: border-box;
         background-color: #f5e6d3;
+        border-radius: 0 0 25rpx 25rpx;
     }
 </style>
