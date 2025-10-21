@@ -3,19 +3,21 @@
         <view class="top">
             <uv-text 
                 :text="xiangFangName" 
-                :customStyle="topTitleProp"
                 bold
                 align="center"
-                :lineHeight="1.5"
+                color="#6f5453"
+                :lineHeight="2"
+                size="50rpx"
+                :customStyle="{letterSpacing: '5rpx'}"
             ></uv-text>
         </view>
         <view class="mid">
             <uv-text 
-                text="香方描述：这是一款具有悠久历史的传统香方，选用优质天然香料精心调配而成，香气醇厚持久，具有安神静心的功效。适合在冥想、阅读或休息时使用，能够营造出宁静祥和的氛围。"
+                text="xiangFangDesc"
                 :lines="2"
                 color="#666666"
-                size="28rpx"
-                :lineHeight="1.6"
+                size="40rpx"
+                :lineHeight="2"
                 wordWrap="break-word"
             ></uv-text>
         </view>
@@ -35,12 +37,8 @@
     import { ref } from "vue";
     let xiangFangName = ref("")
     xiangFangName.value = "宣和内府降真香"
-
-    let topTitleProp = ref({
-        "color": "#6f5453",
-        "size": "50rpx",
-        "align": "center"
-    })
+    let xiangFangDesc = ref("")
+    xiangFangDesc.value = "这是一款具有悠久历史的传统香方，选用优质天然香料精心调配而成，香气醇厚持久，具有安神静心的功效。适合在冥想、阅读或休息时使用，能够营造出宁静祥和的氛围。"
 </script>
 
 <style scoped>
@@ -69,23 +67,12 @@
         border-style: solid;
         border-color: #aaa;
         background-color: #d1b68e;
-        /* 使用Flex布局 */
+        /* 使用Flex布局确保内容居中 */
         display: flex;
+        justify-content: center;
+        align-items: center;
         box-sizing: border-box;
         border-radius: 25rpx 25rpx 0 0;
-
-        .title {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-            box-sizing: border-box;
-            color: #6f5453;
-            font-size: 50rpx;
-            letter-spacing: 5rpx;
-            font-weight: bold;
-        }
     }
 
     .mid {
@@ -97,7 +84,6 @@
         box-sizing: border-box;
         background-color: #f5e6d3;
         padding: 10rpx;
-
     }
 
     .bottom {
