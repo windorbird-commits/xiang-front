@@ -1,8 +1,11 @@
 <template>
-    <view>
-        你好
+    <view class="container">
 
         <text>列表</text>
+        <view v-for="i in 10">
+            <XiangFangItem class="xiangFangItem"></XiangFangItem>
+        </view>
+
     </view>
 </template>
 
@@ -10,6 +13,19 @@
 
 </script>
 
-<style>
+<style scoped>
+    .container {
+        box-sizing: border-box;
+    }
 
+    .xiangFangItem {
+        margin: 20rpx;
+        display: -webkit-flex;
+        /* H5兼容性前缀 */
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        /* 统一盒模型 */
+
+    }
 </style>
