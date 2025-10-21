@@ -21,16 +21,18 @@
             ></uv-text>
         </view>
         <view class="bottom">
-            <view class="bot-left">
-                aaa
+            <!-- 占位符 -->
+            <!-- <view class="bot-left">
+            
             </view>
-                       <view class="bot-mid"> bbb </view>
+                       <view class="bot-mid">  </view> -->
         
-                           <view class="bot-right">
-                            <uv-icon name="star" size="40rpx"></uv-icon>
-                            <uv-text size="35rpx" text="收藏" margin="0 10rpx">
-
-                            </uv-text></view>
+            <view class="bot-right">
+                <view class="collect-container">
+                    <uv-icon name="star" size="40rpx"></uv-icon>
+                    <uv-text size="35rpx" text="收藏" margin="0 10rpx"></uv-text>
+                </view>
+            </view>
         </view>
 
     </view>
@@ -135,5 +137,11 @@
         align-items: center;
         padding-right: 10rpx;
         box-sizing: border-box;
+    }
+    
+    .collect-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 </style>
