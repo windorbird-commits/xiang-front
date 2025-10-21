@@ -12,21 +12,25 @@
             ></uv-text>
         </view>
         <view class="mid">
-            <uv-text 
-                text="xiangFangDesc"
-                :lines="2"
-                color="#666666"
-                size="40rpx"
-                :lineHeight="2"
-                wordWrap="break-word"
+            <uv-text :text="xiangFangDesc"
+            size="40rpx"
+            :customStyle="{letterSpacing: '4rpx'}"
+            :lines="2"
+            lineHeight="60rpx"
+            wordWrap="anywhere"
             ></uv-text>
         </view>
         <view class="bottom">
             <view class="bot-left">
-                <text>
-                    aaa
-                </text>
+                aaa
             </view>
+                       <view class="bot-mid"> bbb </view>
+        
+                           <view class="bot-right">
+                            <uv-icon name="star" size="40rpx"></uv-icon>
+                            <uv-text size="35rpx" text="收藏" margin="0 10rpx">
+
+                            </uv-text></view>
         </view>
 
     </view>
@@ -79,11 +83,11 @@
         width: 100%;
         height: 50%;
         /* border: 2px solid blue; */
-        /* 确保块级显示 */
-        display: block;
+        /* 使用Flex布局确保内容铺满 */
+        display: flex;
         box-sizing: border-box;
         background-color: #f5e6d3;
-        padding: 10rpx;
+        padding: 15rpx;
     }
 
     .bottom {
@@ -95,10 +99,41 @@
         border-bottom: 0;
         border-style: solid;
         border-color: #aaa;
-        /* 确保块级显示 */
-        display: block;
+        /* 使用Flex布局 */
+        display: flex;
         box-sizing: border-box;
         background-color: #f5e6d3;
         border-radius: 0 0 25rpx 25rpx;
+    }
+    
+    .bot-left {
+        flex: 1;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 10rpx;
+        box-sizing: border-box;
+    }
+    
+    .bot-mid {
+        flex: 1;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-left: 1rpx solid #aaa;
+        border-right: 1rpx solid #aaa;
+        box-sizing: border-box;
+    }
+    
+    .bot-right {
+        flex: 1;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-right: 10rpx;
+        box-sizing: border-box;
     }
 </style>
