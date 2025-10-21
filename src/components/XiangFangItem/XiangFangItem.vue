@@ -1,32 +1,20 @@
 <template>
     <view class="container">
         <view class="top">
-            <uv-text 
-                :text="xiangFangName" 
-                bold
-                align="center"
-                color="#6f5453"
-                :lineHeight="2"
-                size="50rpx"
-                :customStyle="{letterSpacing: '5rpx'}"
-            ></uv-text>
+            <uv-text :text="xiangFangName" bold align="center" color="#6f5453" :lineHeight="2" size="50rpx"
+                :customStyle="{letterSpacing: '5rpx'}"></uv-text>
         </view>
         <view class="mid">
-            <uv-text :text="xiangFangDesc"
-            size="40rpx"
-            :customStyle="{letterSpacing: '4rpx'}"
-            :lines="2"
-            lineHeight="60rpx"
-            wordWrap="anywhere"
-            ></uv-text>
+            <uv-text :text="xiangFangDesc" size="40rpx" :customStyle="{letterSpacing: '4rpx'}" :lines="2"
+                lineHeight="60rpx" wordWrap="anywhere"></uv-text>
         </view>
         <view class="bottom">
             <!-- 占位符 -->
             <!-- <view class="bot-left">
             
             </view>
-                       <view class="bot-mid">  </view> -->
-        
+            <view class="bot-mid">  </view> -->
+
             <view class="bot-right">
                 <view class="collect-container">
                     <uv-icon name="star" size="40rpx"></uv-icon>
@@ -107,7 +95,7 @@
         background-color: #f5e6d3;
         border-radius: 0 0 25rpx 25rpx;
     }
-    
+
     .bot-left {
         flex: 1;
         height: 100%;
@@ -117,7 +105,7 @@
         padding-left: 10rpx;
         box-sizing: border-box;
     }
-    
+
     .bot-mid {
         flex: 1;
         height: 100%;
@@ -128,7 +116,7 @@
         border-right: 1rpx solid #aaa;
         box-sizing: border-box;
     }
-    
+
     .bot-right {
         flex: 1;
         height: 100%;
@@ -138,7 +126,7 @@
         padding-right: 10rpx;
         box-sizing: border-box;
     }
-    
+
     .collect-container {
         display: flex;
         justify-content: center;
