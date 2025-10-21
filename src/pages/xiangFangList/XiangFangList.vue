@@ -19,7 +19,7 @@
     }
 
     .xiangFangItem {
-        margin: 20rpx;
+        margin: 50rpx 20rpx;
         display: -webkit-flex;
         /* H5兼容性前缀 */
         justify-content: center;
