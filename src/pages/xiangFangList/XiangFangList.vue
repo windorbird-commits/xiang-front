@@ -1,7 +1,5 @@
 <template>
     <view class="container">
-
-        <text>列表</text>
         <view v-for="i in 10">
             <XiangFangItem class="xiangFangItem"></XiangFangItem>
         </view>

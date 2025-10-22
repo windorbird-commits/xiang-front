@@ -1,7 +1,7 @@
 <template>
     <view class="container">
         <view class="top">
-            <uv-text :text="xiangFangName" bold align="center" color="#6f5453" :lineHeight="2" size="50rpx"
+            <uv-text :text="xiangFangName" bold align="center" color="white" :lineHeight="2" size="50rpx"
                 :customStyle="{letterSpacing: '5rpx'}"></uv-text>
         </view>
         <view class="mid">
@@ -60,7 +60,7 @@
         border-bottom: 2rpx;
         border-style: solid;
         border-color: #aaa;
-        background-color: #d1b68e;
+        background-color: #b5723b;
         /* 使用Flex布局确保内容居中 */
         display: flex;
         justify-content: center;
