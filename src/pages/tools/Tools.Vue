@@ -1,6 +1,6 @@
 <template>
     <view class="container">
-        <navigator url="/pages/calculateNianFen/calculateNianFen">
+        <navigator url="/pages/calculateNianFen/calculateNianFen" hover-class="navigator-hover">
             <ToolComponent class="tool">
                 <template v-slot:image>
                     <view class="image">
@@ -13,7 +13,7 @@
                 </template>
             </ToolComponent>
         </navigator>
-        <navigator url="/pages/checkNianFen/checkNianFen">
+        <navigator url="/pages/checkNianFen/checkNianFen" hover-class="navigator-hover">
             <ToolComponent class="tool">
                 <template v-slot:image>
                     <view class="image">
