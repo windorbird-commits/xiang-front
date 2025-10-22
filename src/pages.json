@@ -5,8 +5,7 @@
             "^uv-(.*)": "@climblee/uv-ui/components/uv-$1/uv-$1.vue"
         }
     },
-    "pages": [
-        {
+    "pages": [{
             "path": "pages/tools/Tools",
             "style": {
                 "navigationBarTitleText": "工具"
@@ -37,8 +36,7 @@
         "borderStyle": "black",
         "backgroundColor": "#ffffff",
         "height": "50px",
-        "list": [
-            {
+        "list": [{
                 "pagePath": "pages/xiangFangList/XiangFangList",
                 "iconPath": "static/icons/list.png",
                 "selectedIconPath": "static/icons/list-s.png",
