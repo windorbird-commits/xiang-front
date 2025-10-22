@@ -35,7 +35,7 @@
     xiangFangDesc.value = "这是一款具有悠久历史的传统香方，选用优质天然香料精心调配而成，香气醇厚持久，具有安神静心的功效。适合在冥想、阅读或休息时使用，能够营造出宁静祥和的氛围。"
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
     .container {
         width: 700rpx;
         height: 300rpx;
@@ -46,7 +46,7 @@
         flex-direction: column;
         box-sizing: border-box;
         /*增加阴影效果*/
-        box-shadow: 2px 3px 5px 5px rgba(0, 0, 0, 0.5);
+        box-shadow: 2px 3px 5px 5px rgba(0, 0, 0, 0.1);
     }
 
 
