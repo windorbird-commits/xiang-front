@@ -39,8 +39,8 @@
     .container {
         width: 700rpx;
         height: 300rpx;
-        /* border: 1px solid red; */
-        border-radius: 25rpx;
+        // border: 1px solid red;
+        border-radius: 20rpx;
         /* 添加Flex布局确保垂直排列 */
         display: flex;
         flex-direction: column;
@@ -56,15 +56,15 @@
         border-top: 0;
         border-left: 0;
         border-right: 0;
-        border-bottom: 2rpx;
+        border-bottom: 1rpx;
         border-style: solid;
         border-color: #aaa;
-        background-color: #b5723b;
+        background-color: #b36b00;
         /* 使用Flex布局确保内容居中 */
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: 25rpx 25rpx 0 0;
+        border-radius: 20rpx 20rpx 0 0;
     }
 
     .mid {
@@ -118,11 +118,11 @@
         justify-content: center;
         align-items: center;
         padding-right: 10rpx;
-    }
 
-    .collect-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        .collect-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     }
 </style>
