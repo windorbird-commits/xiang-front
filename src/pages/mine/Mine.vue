@@ -10,7 +10,7 @@
             <view class="list">
                 <view class="row">
                     <view class="left">
-                        <uv-icon name="star-fill" size="25" color="#b5723b"></uv-icon>
+                        <uv-icon name="folder" size="25" color="#b36b00"></uv-icon>
                         <view class="text">
                             我的香方
                         </view>
@@ -25,7 +25,7 @@
                 </view>
                 <view class="row">
                     <view class="left">
-                        <uv-icon name="star-fill" size="25" color="#b5723b"></uv-icon>
+                        <uv-icon name="star-fill" size="25" color="#b36b00"></uv-icon>
                         <view class="text">
                             我的收藏
                         </view>
@@ -63,7 +63,8 @@
                 height: 260rpx;
                 border-radius: 50%;
                 overflow: hidden;
-                border: 1rpx solid #666;
+                // border: 1rpx solid #666;
+                box-shadow: 2px 3px 5px 5px rgba(0, 0, 0, 0.2);
             }
 
             .nickName {
@@ -75,7 +76,7 @@
         }
 
         .section {
-            width: 690rpx;
+            width: 700rpx;
             margin: 50rpx auto;
             border: 1px solid #eee;
             border-radius: 20rpx;
