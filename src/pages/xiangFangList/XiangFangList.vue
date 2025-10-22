@@ -11,13 +11,14 @@
 
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
     .container {
         box-sizing: border-box;
     }
 
     .xiangFangItem {
-        margin: 50rpx 20rpx;
+        width: 690rpx;
+        margin: 50rpx auto;
         display: -webkit-flex;
         /* H5兼容性前缀 */
         justify-content: center;
