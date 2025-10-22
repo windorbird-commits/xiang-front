@@ -10,9 +10,17 @@
         console.log("App Hide");
     });
 </script>
+
 <style>
-    /* 统一设置所有平台的页面背景色 */
+    /* 统一设置所有平台的页面背景色和盒模型 */
     page {
         background-color: #f7f1e3;
+    }
+
+    /* 全局设置盒模型为border-box，包括所有元素 */
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
     }
 </style>

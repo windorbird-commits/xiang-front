@@ -44,7 +44,6 @@
         /* 添加Flex布局确保垂直排列 */
         display: flex;
         flex-direction: column;
-        box-sizing: border-box;
         /*增加阴影效果*/
         box-shadow: 2px 3px 5px 5px rgba(0, 0, 0, 0.1);
     }
@@ -65,7 +64,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        box-sizing: border-box;
         border-radius: 25rpx 25rpx 0 0;
     }
 
@@ -75,7 +73,6 @@
         /* border: 2px solid blue; */
         /* 使用Flex布局确保内容铺满 */
         display: flex;
-        box-sizing: border-box;
         background-color: #f5e6d3;
         padding: 15rpx;
     }
@@ -91,7 +88,6 @@
         border-color: #aaa;
         /* 使用Flex布局 */
         display: flex;
-        box-sizing: border-box;
         background-color: #f5e6d3;
         border-radius: 0 0 25rpx 25rpx;
     }
@@ -103,7 +99,6 @@
         justify-content: center;
         align-items: center;
         padding-left: 10rpx;
-        box-sizing: border-box;
     }
 
     .bot-mid {
@@ -114,7 +109,6 @@
         align-items: center;
         border-left: 1rpx solid #aaa;
         border-right: 1rpx solid #aaa;
-        box-sizing: border-box;
     }
 
     .bot-right {
@@ -124,7 +118,6 @@
         justify-content: center;
         align-items: center;
         padding-right: 10rpx;
-        box-sizing: border-box;
     }
 
     .collect-container {
