@@ -1,8 +1,9 @@
 <template>
     <view class="container">
-        <view v-for="item in 10" class="tool">
-            <tool-component></tool-component>
+        <view v-for="(item,index) in 10" class="tool">
+            <tool-component>{{index}}</tool-component>
         </view>
+
     </view>
 </template>
 <script setup lang="ts">
@@ -17,6 +18,6 @@
     }
 
     .tool {
-        margin: 20rpx;
+        margin: 30rpx 15rpx;
     }
 </style>

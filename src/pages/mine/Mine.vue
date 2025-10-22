@@ -62,7 +62,7 @@
                 width: 260rpx;
                 height: 260rpx;
                 border-radius: 50%;
-                overflow: hidden;
+                // overflow: hidden;
                 // border: 1rpx solid #666;
                 box-shadow: 2px 3px 5px 5px rgba(0, 0, 0, 0.2);
             }
