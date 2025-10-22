@@ -1,7 +1,7 @@
 <template>
     <view class="container">
-        <view v-for="i in 10">
-            <XiangFangItem class="xiangFangItem"></XiangFangItem>
+        <view v-for="i in 10" class="xiangFangItem">
+            <XiangFangItem></XiangFangItem>
         </view>
 
     </view>
@@ -12,11 +12,13 @@
 </script>
 
 <style lang="scss" scoped>
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+
     .xiangFangItem {
-        width: 690rpx;
-        margin: 50rpx auto;
-        display: -webkit-flex;
-        /* H5兼容性前缀 */
+        margin: 30rpx auto;
         justify-content: center;
         align-items: center;
     }

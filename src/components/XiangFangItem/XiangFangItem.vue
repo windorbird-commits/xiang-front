@@ -1,7 +1,7 @@
 <template>
     <view class="container">
         <view class="top">
-            <uv-text :text="xiangFangName" bold align="center" color="white" :lineHeight="2" size="50rpx"
+            <uv-text :text="xiangFangName" bold align="center" color="#b36b00" :lineHeight="2" size="50rpx"
                 :customStyle="{letterSpacing: '5rpx'}"></uv-text>
         </view>
         <view class="mid">
@@ -53,13 +53,10 @@
     .top {
         width: 100%;
         height: 30%;
-        border-top: 0;
-        border-left: 0;
-        border-right: 0;
-        border-bottom: 1rpx;
+        border-width: 0 0 1rpx 0;
         border-style: solid;
         border-color: #aaa;
-        background-color: #b36b00;
+        background-color: #f5e6d3;
         /* 使用Flex布局确保内容居中 */
         display: flex;
         justify-content: center;
@@ -73,22 +70,18 @@
         /* border: 2px solid blue; */
         /* 使用Flex布局确保内容铺满 */
         display: flex;
-        background-color: #f5e6d3;
         padding: 15rpx;
     }
 
     .bottom {
         width: 100%;
         height: 20%;
-        border-top: 1rpx;
-        border-left: 0;
-        border-right: 0;
-        border-bottom: 0;
+        border-width: 1rpx 0 0 0;
         border-style: solid;
         border-color: #aaa;
         /* 使用Flex布局 */
         display: flex;
-        background-color: #f5e6d3;
+        // background-color: #f5e6d3;
         border-radius: 0 0 25rpx 25rpx;
     }
 
@@ -107,8 +100,9 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        border-left: 1rpx solid #aaa;
-        border-right: 1rpx solid #aaa;
+        border-width: 0 1rpx;
+        border-style: solid;
+        border-color: #aaa;
     }
 
     .bot-right {

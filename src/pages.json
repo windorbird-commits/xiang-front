@@ -12,7 +12,7 @@
             }
         },
         {
-            "path": "pages/xiangFangList/XiangFangList",
+            "path": "pages/xiangFangIndex/XiangFangIndex",
             "style": {
                 "navigationBarTitleText": "香方",
                 "enablePullDownRefresh": true
@@ -22,6 +22,18 @@
             "path": "pages/mine/Mine",
             "style": {
                 "navigationBarTitleText": "我的"
+            }
+        },
+        {
+            "path": "pages/myCreatedXiangFang/MyCreatedXiangFang",
+            "style": {
+                "navigationBarTitleText": "我的香方"
+            }
+        },
+        {
+            "path": "pages/myCollectedXiangFang/MyCollectedXiangFang",
+            "style": {
+                "navigationBarTitleText": "我的收藏"
             }
         }
     ],
@@ -37,7 +49,7 @@
         "backgroundColor": "#ffffff",
         "height": "50px",
         "list": [{
-                "pagePath": "pages/xiangFangList/XiangFangList",
+                "pagePath": "pages/xiangFangIndex/XiangFangIndex",
                 "iconPath": "static/icons/list.png",
                 "selectedIconPath": "static/icons/list-s.png",
                 "text": "香方"
