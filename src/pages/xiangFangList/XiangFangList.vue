@@ -13,7 +13,6 @@
 
 <style lang="scss" scoped>
     .xiangFangItem {
-        width: 690rpx;
         margin: 50rpx auto;
         display: -webkit-flex;
         /* H5兼容性前缀 */

@@ -11,8 +11,8 @@
 
 <style lang="scss">
     .container {
-        width: 300rpx;
-        height: 300rpx;
+        width: 330rpx;
+        height: 250rpx;
         border: 1px solid red;
     }
 </style>

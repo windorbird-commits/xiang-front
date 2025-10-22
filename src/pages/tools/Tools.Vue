@@ -11,16 +11,12 @@
 <style lang="scss" scoped>
     .container {
         display: flex;
-        justify-content: flex-start;
+        justify-content: center;
         align-items: center;
-        flex-wrap: wrap
+        flex-wrap: wrap;
     }
 
-    // .tool {
-    //     margin: 20rpx auto;
-    // }
-
-    // tool-component {
-    //     margin: 20rpx;
-    // }
+    .tool {
+        margin: 20rpx;
+    }
 </style>
