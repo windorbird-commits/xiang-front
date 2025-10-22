@@ -1,10 +1,9 @@
 <template>
     <view class="container">
-        <view class="image">
-            <image src="/src/static/avatar-default.png" mode=""></image>
-        </view>
-        <view class="slot">
-            <slot></slot>
+        <slot name="image"></slot>
+
+        <view class="slot-container">
+            <slot name="text"></slot>
         </view>
 
     </view>
@@ -23,18 +22,17 @@
         box-shadow: 2px 3px 5px 5px rgba(0, 0, 0, 0.1);
 
 
-        .image {
+        .slot-container {
             width: 100%;
-            padding: 0 10rpx;
-            height: 190rpx;
-            // border: 2px solid blue;
-            overflow: hidden;
-        }
-
-        .slot {
-            width: 100%;
-            height: 60rpx;
+            height: 80rpx;
             // border: 2rpx, solid pink;
+            border-width: 1rpx 0 0 0;
+            border-style: solid;
+            border-color: #aaa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f5e6d3;
         }
     }
 </style>

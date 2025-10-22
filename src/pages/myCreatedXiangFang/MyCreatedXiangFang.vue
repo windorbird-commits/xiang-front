@@ -1,0 +1,3 @@
+<template>
+    <XiangFangList></XiangFangList>
+</template>
