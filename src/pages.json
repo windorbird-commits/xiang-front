@@ -5,30 +5,31 @@
             "^uv-(.*)": "@climblee/uv-ui/components/uv-$1/uv-$1.vue"
         }
     },
-    "pages": [{
+    "pages": [
+        {
             "path": "pages/tools/Tools",
             "style": {
-                "navigationBarTitleText": "uni-app"
+                "navigationBarTitleText": "工具"
             }
         },
         {
             "path": "pages/xiangFangList/XiangFangList",
             "style": {
-                "navigationBarTitleText": "uni-app"
+                "navigationBarTitleText": "香方",
+                "enablePullDownRefresh": true
             }
         },
         {
             "path": "pages/mine/Mine",
             "style": {
-                "navigationBarTitleText": "uni-app"
+                "navigationBarTitleText": "我的"
             }
         }
     ],
     "globalStyle": {
         "navigationBarTextStyle": "black",
         "navigationBarTitleText": "uni-app",
-        "navigationBarBackgroundColor": "#b39ba4",
-        "backgroundColor": "#f7f1e3"
+        "navigationBarBackgroundColor": "#b39ba4"
     },
     "tabBar": {
         "color": "#7A7E83",
@@ -36,7 +37,8 @@
         "borderStyle": "black",
         "backgroundColor": "#ffffff",
         "height": "50px",
-        "list": [{
+        "list": [
+            {
                 "pagePath": "pages/xiangFangList/XiangFangList",
                 "iconPath": "static/icons/list.png",
                 "selectedIconPath": "static/icons/list-s.png",

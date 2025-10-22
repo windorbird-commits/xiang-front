@@ -10,4 +10,11 @@ onHide(() => {
   console.log("App Hide");
 });
 </script>
-<style></style>
+<style>
+/* 统一设置所有平台的页面背景色 */
+page{
+    background-color: #f7f1e3;
+}
+
+
+</style>
