@@ -1,0 +1,135 @@
+<template>
+    <view class="container">
+        <view class="top">
+            <uv-text :text="xiangFangName" bold align="center" color="white" :lineHeight="2" size="50rpx"
+                :customStyle="{letterSpacing: '5rpx'}"></uv-text>
+        </view>
+        <view class="mid">
+            <uv-text :text="xiangFangDesc" size="40rpx" :customStyle="{letterSpacing: '4rpx'}" :lines="2"
+                lineHeight="60rpx" wordWrap="anywhere"></uv-text>
+        </view>
+        <view class="bottom">
+            <!-- 占位符 -->
+            <!-- <view class="bot-left">
+            
+            </view>
+            <view class="bot-mid">  </view> -->
+
+            <view class="bot-right">
+                <view class="collect-container">
+                    <uv-icon name="star" size="40rpx"></uv-icon>
+                    <uv-text size="35rpx" text="收藏" margin="0 10rpx"></uv-text>
+                </view>
+            </view>
+        </view>
+
+    </view>
+</template>
+
+
+<script setup lang="ts">
+    import { ref } from "vue";
+    let xiangFangName = ref("")
+    xiangFangName.value = "宣和内府降真香"
+    let xiangFangDesc = ref("")
+    xiangFangDesc.value = "这是一款具有悠久历史的传统香方，选用优质天然香料精心调配而成，香气醇厚持久，具有安神静心的功效。适合在冥想、阅读或休息时使用，能够营造出宁静祥和的氛围。"
+</script>
+
+<style scoped>
+    .container {
+        width: 700rpx;
+        height: 300rpx;
+        /* border: 1px solid red; */
+        border-radius: 25rpx;
+        /* 添加Flex布局确保垂直排列 */
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+        /*增加阴影效果*/
+        box-shadow: 2px 3px 5px 5px rgba(0, 0, 0, 0.5);
+    }
+
+
+
+    .top {
+        width: 100%;
+        height: 30%;
+        border-top: 0;
+        border-left: 0;
+        border-right: 0;
+        border-bottom: 2rpx;
+        border-style: solid;
+        border-color: #aaa;
+        background-color: #b5723b;
+        /* 使用Flex布局确保内容居中 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        border-radius: 25rpx 25rpx 0 0;
+    }
+
+    .mid {
+        width: 100%;
+        height: 50%;
+        /* border: 2px solid blue; */
+        /* 使用Flex布局确保内容铺满 */
+        display: flex;
+        box-sizing: border-box;
+        background-color: #f5e6d3;
+        padding: 15rpx;
+    }
+
+    .bottom {
+        width: 100%;
+        height: 20%;
+        border-top: 1rpx;
+        border-left: 0;
+        border-right: 0;
+        border-bottom: 0;
+        border-style: solid;
+        border-color: #aaa;
+        /* 使用Flex布局 */
+        display: flex;
+        box-sizing: border-box;
+        background-color: #f5e6d3;
+        border-radius: 0 0 25rpx 25rpx;
+    }
+
+    .bot-left {
+        flex: 1;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 10rpx;
+        box-sizing: border-box;
+    }
+
+    .bot-mid {
+        flex: 1;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-left: 1rpx solid #aaa;
+        border-right: 1rpx solid #aaa;
+        box-sizing: border-box;
+    }
+
+    .bot-right {
+        flex: 1;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-right: 10rpx;
+        box-sizing: border-box;
+    }
+
+    .collect-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
