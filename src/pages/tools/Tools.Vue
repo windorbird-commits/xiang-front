@@ -21,7 +21,7 @@
                     </view>
                 </template>
                 <template #text>
-                    <uv-text text="粘粉比例对吗" align="center" color="#b36b00" size="40rpx" margin="15rpx auto"
+                    <uv-text text="粘粉占比多少" align="center" color="#b36b00" size="40rpx" margin="15rpx auto"
                         :customStyle="{letterSpacing: '1rpx'}"></uv-text>
                 </template>
             </ToolComponent>

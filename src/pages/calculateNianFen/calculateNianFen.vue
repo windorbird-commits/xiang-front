@@ -9,7 +9,7 @@
                     粘粉比例
                 </view>
                 <view class="percent">
-                    <uv-input border="bottom" placeholder="请输入粘粉百分比" fontSize="40rpx"
+                    <uv-input border="bottom" placeholder="请输入粘粉百分比" fontSize="40rpx" customStyle="height:100rpx"
                         placeholderStyle="font-size:30rpx"></uv-input>
                 </view>
                 <view class="iconPercent">
@@ -17,24 +17,56 @@
                 </view>
             </view>
             <view class="confirmButton">
-                确定
+                <text>确&emsp;&emsp;定</text>
             </view>
         </view>
 
         <view class="actions">
-            <view class="reset">
-                重置
+            <view>
+                <button class="reset" @click="open">清&emsp;空</button>
             </view>
-            <view class="save">
-                保存为我的香方
+            <view>
+                <button class="save" @click="open">保存为我的香方</button>
             </view>
         </view>
-
+    </view>
+    <view>
+        <uv-popup ref="popup" mode="center" @change="change" round="20rpx" bgColor="#f7f1e3">
+            <view class="popInner">
+                <view class="popText">
+                    <text class='popTextInner'>给香方起一个好听名字吧</text>
+                </view>
+                <view class="popInput">
+                    <uv-input border="bottom" placeholderStyle="font-size:30rpx" fontSize="40rpx" placeholder="请输入香方名"
+                        maxlength="10" customStyle="height:100rpx"></uv-input>
+                </view>
+                <view class="popButton">
+                    <view>
+                        <button class="popBackBtn">返&emsp;回</button>
+                    </view>
+                    <view>
+                        <button class="confirmBtn">确&emsp;定</button>
+                    </view>
+                </view>
+            </view>
+        </uv-popup>
     </view>
 </template>
 
 <script setup lang="ts">
+    import {
+        ref
+    } from 'vue';
 
+    let popup = ref(null);
+
+    function open() {
+        popup.value.open();
+    }
+
+    function change(e) {
+        console.log('弹窗状态改变：', e);
+    }
 </script>
 
 <style lang="scss" scoped>
@@ -69,7 +101,6 @@
             height: 80rpx;
             background-color: #f5e6d3;
             border-radius: 0 0 20rpx 20rpx;
-            letter-spacing: 50rpx;
         }
     }
 
@@ -93,7 +124,6 @@
 
         .percent {
             /* border: 1rpx solid blue; */
-            height: 80rxp;
             width: 300rpx;
             display: flex;
             align-items: center;
@@ -121,8 +151,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: burlywood;
-            letter-spacing: 20rpx;
+            background-color: #f48e4b;
             border-radius: 20rpx;
             box-shadow: 2px 3px 5px 5px rgba(0, 0, 0, 0.2);
             color: white;
@@ -142,6 +171,59 @@
             box-shadow: 2px 3px 5px 5px rgba(0, 0, 0, 0.2);
             color: white;
             font-size: 30rpx;
+        }
+    }
+
+    .popInner {
+        // border: 1rpx solid blue;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 700rpx;
+
+
+        .popText {
+            margin: 50rpx;
+            font-size: 40rpx;
+
+            text {
+                color: #b36b00;
+            }
+        }
+
+        .popInput {
+            // border: 1px solid red;
+            height: 80rpx;
+            width: 500rpx;
+        }
+
+        .popButton {
+            width: 500rpx;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            // border: 1rpx solid blue;
+            margin: 40rpx;
+
+            .popInput {
+                // border: 1rpx solid red;
+                height: 80rpx;
+            }
+
+            .popBackBtn {
+                width: 200rpx;
+                height: 80rpx;
+                background-color: #f48e4b;
+                color: white
+            }
+
+            .confirmBtn {
+                width: 200rpx;
+                height: 80rpx;
+                background-color: #3cc51f;
+                color: white;
+            }
         }
     }
 </style>

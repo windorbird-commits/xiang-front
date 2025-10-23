@@ -2,13 +2,13 @@
     <view class="topLayout">
         <view class="title">
             <view class="name">
-                <text>材料名</text>
+                <text>材&ensp;料&ensp;名</text>
             </view>
             <view class="weight">
-                <text>重量</text>
+                <text>重&emsp;量</text>
             </view>
             <view class="remove">
-                <text>删除</text>
+                <text>删&emsp;除</text>
             </view>
         </view>
         <view class="items">
@@ -54,6 +54,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            color: #663d00;
 
             text {
                 font-size: 40rpx;
@@ -70,6 +71,7 @@
             border-width: 0 1rpx;
             border-style: solid;
             border-color: #aaa;
+            color: #663d00;
 
             text {
                 font-size: 40rpx;
@@ -82,6 +84,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            color: #663d00;
 
             text {
                 font-size: 40rpx;
