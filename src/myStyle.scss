@@ -1,2 +1,7 @@
-
+// SCSS变量
 $shenZongSeZi: #b36b00;
+
+// 定义CSS变量，供Vue模板使用
+:root {
+  --shen-zong-se-zi: #{$shenZongSeZi};
+}
