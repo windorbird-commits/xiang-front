@@ -188,7 +188,7 @@
             font-size: 40rpx;
 
             text {
-                color: #b36b00;
+                color: $shenZongSeZi;
             }
         }
 

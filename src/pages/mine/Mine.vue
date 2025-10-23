@@ -11,7 +11,7 @@
                 <navigator url="/pages/myCreatedXiangFang/MyCreatedXiangFang" hover-class="navigator-hover">
                 <view class="row">
                     <view class="left">
-                        <uv-icon name="folder" size="25" color="#b36b00"></uv-icon>
+                        <uv-icon name="folder" size="25" color="'var(--shen-zong-se-zi)'"></uv-icon>
                         <view class="text">
                             我的香方
                         </view>
@@ -28,7 +28,7 @@
                 <navigator url="/pages/myCollectedXiangFang/MyCollectedXiangFang" hover-class="navigator-hover">
                 <view class="row">
                     <view class="left">
-                        <uv-icon name="star-fill" size="25" color="#b36b00"></uv-icon>
+                        <uv-icon name="star-fill" size="25" color="'var(--shen-zong-se-zi)'"></uv-icon>
                         <view class="text">
                             我的收藏
                         </view>
