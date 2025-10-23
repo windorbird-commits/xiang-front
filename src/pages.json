@@ -47,6 +47,13 @@
             "style": {
                 "navigationBarTitleText": "粘粉比例对吗"
             }
+        },
+        {
+            "path" : "pages/showXiangFangDetail/showXiangFangDetail",
+            "style" : 
+            {
+                "navigationBarTitleText" : ""
+            }
         }
     ],
     "globalStyle": {

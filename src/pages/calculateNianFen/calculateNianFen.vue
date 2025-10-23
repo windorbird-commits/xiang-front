@@ -1,45 +1,7 @@
 <template>
     <view class="container">
-        <view class="topLayout">
-            <view class="title">
-                <view class="name">
-                    <text>材料名</text>
-                </view>
-                <view class="weight">
-                    <text>重量</text>
-                </view>
-                <view class="remove">
-                    <text>删除</text>
-                </view>
-            </view>
-            <view class="items">
-                <view class="itemss" v-for="(item) in 3">
-                    <view class="itemName">
-                        檀香
-                    </view>
-                    <view class="itemWeight">
-                        10
-                    </view>
-                    <view class="removeAction">
-                        <uv-icon name="close" color="red" size="30"></uv-icon>
-                    </view>
-                </view>
-            </view>
-        </view>
-
-        <view class="addNianFen">
-            <view class="input">
-                <view class="left">
-                    <uv-input placeholder="请输入材料名" prefixIconStyle="font-size: 22px;color: #909399"></uv-input>
-                </view>
-                <view class="right">
-                    <uv-input placeholder="请输入重量" prefixIconStyle="font-size: 22px;color: #909399"></uv-input>
-                </view>
-            </view>
-            <view class="addButton">
-                点击添加
-            </view>
-        </view>
+        <xiangFangDetail class="xiangFangDetail"></xiangFangDetail>
+        <addXiangFen class="addXiangFen"></addXiangFen>
 
         <view class='nianfenGroup'>
             <view class="nianfenInput">
@@ -47,175 +9,86 @@
                     粘粉比例
                 </view>
                 <view class="percent">
-                    <uv-input placeholder="请输入粘粉百分比" prefixIconStyle="font-size: 22px;color: #909399"></uv-input>
+                    <uv-input border="bottom" placeholder="请输入粘粉百分比" fontSize="40rpx" customStyle="height:100rpx"
+                        placeholderStyle="font-size:30rpx"></uv-input>
                 </view>
                 <view class="iconPercent">
                     <text>%</text>
                 </view>
             </view>
             <view class="confirmButton">
-                确定
+                <text>确&emsp;&emsp;定</text>
             </view>
         </view>
 
         <view class="actions">
-            <view class="reset">
-                重置
+            <view>
+                <button class="reset" @click="open">清&emsp;空</button>
             </view>
-            <view class="save">
-                保存为我的香方
+            <view>
+                <button class="save" @click="open">保存为我的香方</button>
             </view>
         </view>
-
+    </view>
+    <view>
+        <uv-popup ref="popup" mode="center" @change="change" round="20rpx" bgColor="#f7f1e3">
+            <view class="popInner">
+                <view class="popText">
+                    <text class='popTextInner'>给香方起一个好听名字吧</text>
+                </view>
+                <view class="popInput">
+                    <uv-input border="bottom" placeholderStyle="font-size:30rpx" fontSize="40rpx" placeholder="请输入香方名"
+                        maxlength="10" customStyle="height:100rpx"></uv-input>
+                </view>
+                <view class="popButton">
+                    <view>
+                        <button class="popBackBtn">返&emsp;回</button>
+                    </view>
+                    <view>
+                        <button class="confirmBtn">确&emsp;定</button>
+                    </view>
+                </view>
+            </view>
+        </uv-popup>
     </view>
 </template>
 
 <script setup lang="ts">
+    import {
+        ref
+    } from 'vue';
 
+    let popup = ref(null);
+
+    function open() {
+        popup.value.open();
+    }
+
+    function change(e) {
+        console.log('弹窗状态改变：', e);
+    }
 </script>
 
-<style>
+<style lang="scss" scoped>
     .container {
         width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
-
     }
 
-    .topLayout {
-        box-shadow: 2px 3px 5px 5px rgba(0, 0, 0, 0.2);
-        margin: 70rpx 0 0 0;
-        border-radius: 20rpx;
+    .xiangFangDetail {
+        width: 700rpx
     }
 
-    .title {
-        /* border: 1rpx solid red; */
-        height: 100rpx;
-        display: flex;
+    .addXiangFen {
         width: 700rpx;
-        background-color: #f5e6d3;
-        border-width: 0 0 1rpx;
-        border-style: solid;
-        border-color: #aaa;
-
-        .name {
-            /* border: 1rpx solid pink; */
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            text {
-                font-size: 40rpx;
-                letter-spacing: 5rpx;
-            }
-        }
-
-        .weight {
-            /* border: 1rpx solid purple; */
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-width: 0 1rpx;
-            border-style: solid;
-            border-color: #aaa;
-
-            text {
-                font-size: 40rpx;
-                letter-spacing: 5rpx;
-            }
-        }
-
-        .remove {
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            text {
-                font-size: 40rpx;
-                letter-spacing: 5rpx;
-            }
-        }
-    }
-
-    .itemss {
-        /* border: 1rpx solid green; */
-        height: 80rpx;
-        display: flex;
-        width: 700rpx;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        .itemName {
-            width: 200rpx;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40rpx;
-        }
-
-        .itemWeight {
-            width: 200rpx;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40rpx;
-        }
-
-        .removeAction {
-            width: 200rpx;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-    }
-
-    .addNianFen {
-        box-shadow: 2px 3px 5px 5px rgba(0, 0, 0, 0.2);
-        margin: 70rpx 0;
-        border-radius: 20rpx;
-    }
-
-    .input {
-        width: 700rpx;
-        /* border: 1rpx solid black; */
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin: 30rpx 0 0 0;
-
-        .left {
-            width: 300rpx;
-            margin: 0 0 0 20rpx;
-        }
-
-        .right {
-            width: 300rpx;
-            margin: 0 20rpx 0 0;
-        }
-    }
-
-    .addButton {
-        width: 700rpx;
-        height: 80rpx;
-        /* border: 1rpx solid #343; */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 30rpx 0 0 0;
-        background-color: green;
-        border-radius: 0 0 20rpx 20rpx;
-        letter-spacing: 30rpx;
     }
 
     .nianfenGroup {
         /* margin: 70rpx 0; */
-        box-shadow: 2px 3px 5px 5px rgba(0, 0, 0, 0.2);
+        box-shadow: 2px 3px 5px 5px $biaoZhunYinYing;
         border-radius: 20rpx;
 
 
@@ -226,9 +99,8 @@
             /* border: 1rpx solid red; */
             width: 100%;
             height: 80rpx;
-            background-color: aquamarine;
+            background-color: $qianHeSeBeiJing;
             border-radius: 0 0 20rpx 20rpx;
-            letter-spacing: 50rpx;
         }
     }
 
@@ -252,7 +124,6 @@
 
         .percent {
             /* border: 1rpx solid blue; */
-            height: 80rxp;
             width: 300rpx;
             display: flex;
             align-items: center;
@@ -263,6 +134,7 @@
             font-size: 40rpx;
             font-weight: bold;
             margin: 0 20rpx;
+            color: $chengSeAnNiu;
         }
     }
 
@@ -280,23 +152,79 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: burlywood;
-            letter-spacing: 20rpx;
+            background-color: $chengSeAnNiu;
             border-radius: 20rpx;
-            box-shadow: 2px 3px 5px 5px rgba(0, 0, 0, 0.2);
+            box-shadow: 2px 3px 5px 5px $biaoZhunYinYing;
+            color: $baiSeWenBen;
+            font-size: 40rpx;
         }
 
         .save {
             width: 300rpx;
-            height: 90rpx;
+            height: 80rpx;
             /* border: 1rpx solid blue; */
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: lawngreen;
+            background-color: $lvSeAnNiu;
             letter-spacing: 3rpx;
             border-radius: 20rpx;
-            box-shadow: 2px 3px 5px 5px rgba(0, 0, 0, 0.2);
+            box-shadow: 2px 3px 5px 5px $biaoZhunYinYing;
+            color: $baiSeWenBen;
+            font-size: 30rpx;
+        }
+    }
+
+    .popInner {
+        // border: 1rpx solid blue;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 700rpx;
+
+
+        .popText {
+            margin: 50rpx;
+            font-size: 40rpx;
+
+            text {
+                color: $shenZongSeWenBen;
+            }
+        }
+
+        .popInput {
+            // border: 1px solid red;
+            height: 80rpx;
+            width: 500rpx;
+        }
+
+        .popButton {
+            width: 500rpx;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            // border: 1rpx solid blue;
+            margin: 40rpx;
+
+            .popInput {
+                // border: 1rpx solid red;
+                height: 80rpx;
+            }
+
+            .popBackBtn {
+                width: 200rpx;
+                height: 80rpx;
+                background-color: $chengSeAnNiu;
+                color: $baiSeWenBen
+            }
+
+            .confirmBtn {
+                width: 200rpx;
+                height: 80rpx;
+                background-color: $lvSeAnNiu;
+                color: $baiSeWenBen;
+            }
         }
     }
 </style>
