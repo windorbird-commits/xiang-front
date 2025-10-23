@@ -45,7 +45,7 @@
         display: flex;
         flex-direction: column;
         /*增加阴影效果*/
-        box-shadow: 2px 3px 5px 5px rgba(0, 0, 0, 0.1);
+        box-shadow: 2px 3px 5px 5px $qingYinYing;
     }
 
 
@@ -55,8 +55,8 @@
         height: 30%;
         border-width: 0 0 1rpx 0;
         border-style: solid;
-        border-color: #aaa;
-        background-color: #f5e6d3;
+        border-color: $qianHuiSeBianKuang;
+        background-color: $qianHeSeBeiJing;
         /* 使用Flex布局确保内容居中 */
         display: flex;
         justify-content: center;
@@ -78,10 +78,10 @@
         height: 20%;
         border-width: 1rpx 0 0 0;
         border-style: solid;
-        border-color: #aaa;
+        border-color: $qianHuiSeBianKuang;
         /* 使用Flex布局 */
         display: flex;
-        // background-color: #f5e6d3;
+        // background-color: $qianHeSeBeiJing;
         border-radius: 0 0 25rpx 25rpx;
     }
 
@@ -102,7 +102,7 @@
         align-items: center;
         border-width: 0 1rpx;
         border-style: solid;
-        border-color: #aaa;
+        border-color: $qianHuiSeBianKuang;
     }
 
     .bot-right {

@@ -22,7 +22,7 @@
 
 <style lang="scss" scoped>
     .addXiangFen {
-        box-shadow: 2px 3px 5px 5px rgba(0, 0, 0, 0.2);
+        box-shadow: 2px 3px 5px 5px $biaoZhunYinYing;
         margin: 70rpx 0;
         border-radius: 20rpx;
     }
@@ -53,7 +53,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: #f5e6d3;
+        background-color: $qianHeSeBeiJing;
         border-radius: 0 0 20rpx 20rpx;
     }
 </style>

@@ -88,7 +88,7 @@
 
     .nianfenGroup {
         /* margin: 70rpx 0; */
-        box-shadow: 2px 3px 5px 5px rgba(0, 0, 0, 0.2);
+        box-shadow: 2px 3px 5px 5px $biaoZhunYinYing;
         border-radius: 20rpx;
 
 
@@ -99,7 +99,7 @@
             /* border: 1rpx solid red; */
             width: 100%;
             height: 80rpx;
-            background-color: #f5e6d3;
+            background-color: $qianHeSeBeiJing;
             border-radius: 0 0 20rpx 20rpx;
         }
     }
@@ -151,10 +151,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #f48e4b;
+            background-color: $chengSeAnNiu;
             border-radius: 20rpx;
-            box-shadow: 2px 3px 5px 5px rgba(0, 0, 0, 0.2);
-            color: white;
+            box-shadow: 2px 3px 5px 5px $biaoZhunYinYing;
+            color: $baiSeWenBen;
             font-size: 40rpx;
         }
 
@@ -165,11 +165,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #3cc51f;
+            background-color: $lvSeAnNiu;
             letter-spacing: 3rpx;
             border-radius: 20rpx;
-            box-shadow: 2px 3px 5px 5px rgba(0, 0, 0, 0.2);
-            color: white;
+            box-shadow: 2px 3px 5px 5px $biaoZhunYinYing;
+            color: $baiSeWenBen;
             font-size: 30rpx;
         }
     }
@@ -214,15 +214,15 @@
             .popBackBtn {
                 width: 200rpx;
                 height: 80rpx;
-                background-color: #f48e4b;
-                color: white
+                background-color: $chengSeAnNiu;
+                color: $baiSeWenBen
             }
 
             .confirmBtn {
                 width: 200rpx;
                 height: 80rpx;
-                background-color: #3cc51f;
-                color: white;
+                background-color: $lvSeAnNiu;
+                color: $baiSeWenBen;
             }
         }
     }

@@ -1,7 +1,45 @@
 // SCSS变量
 $shenZongSeZi: #b36b00;
+// 背景色
+$qianHeSeBeiJing: #f5e6d3;
+$danYaSeBeiJing: #f7f1e3;
+
+// 边框色
+$qianHuiSeBianKuang: #aaa;
+$gengQianHuiSeBianKuang: #eee;
+
+// 文本色
+$shenZongSeWenBen: #663d00;
+$shenHuiSeWenBen: #666;
+$qianHuiSeWenBen: #aaa;
+
+// 按钮色
+$lvSeAnNiu: #3cc51f;
+$chengSeAnNiu: #f48e4b;
+
+// 阴影
+$biaoZhunYinYing: rgba(0, 0, 0, 0.2);
+$qingYinYing: rgba(0, 0, 0, 0.1);
+
+// 基础颜色
+$baiSeWenBen: white;
+$heiSeWenBen: black;
+
 
 // 定义CSS变量，供Vue模板使用
 :root {
   --shen-zong-se-zi: #{$shenZongSeZi};
+  --qian-he-se-bei-jing: #{$qianHeSeBeiJing};
+  --dan-ya-se-bei-jing: #{$danYaSeBeiJing};
+  --qian-hui-se-bian-kuang: #{$qianHuiSeBianKuang};
+  --geng-qian-hui-se-bian-kuang: #{$gengQianHuiSeBianKuang};
+  --shen-zong-se-wen-ben: #{$shenZongSeWenBen};
+  --shen-hui-se-wen-ben: #{$shenHuiSeWenBen};
+  --qian-hui-se-wen-ben: #{$qianHuiSeWenBen};
+  --lv-se-an-niu: #{$lvSeAnNiu};
+  --cheng-se-an-niu: #{$chengSeAnNiu};
+  --bai-se-wen-ben: #{$baiSeWenBen};
+  --hei-se-wen-ben: #{$heiSeWenBen};
+  --biao-zhun-yin-ying: #{$biaoZhunYinYing};
+  --qing-yin-ying: #{$qingYinYing};
 }

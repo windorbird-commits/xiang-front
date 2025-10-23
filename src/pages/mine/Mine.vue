@@ -20,7 +20,7 @@
                         <view class="text">
                             33
                         </view>
-                        <uv-icon name="arrow-right" size="20" color="#aaa"></uv-icon>
+                        <uv-icon name="arrow-right" size="20" color="'var(--qian-hui-se-bian-kuang)'"></uv-icon>
                     </view>
                 </view>
 
@@ -38,7 +38,7 @@
                         <view class="text">
                             33
                         </view>
-                        <uv-icon name="arrow-right" size="20" color="#aaa"></uv-icon>
+                        <uv-icon name="arrow-right" size="20" color="'var(--qian-hui-se-bian-kuang)'"></uv-icon>
                     </view>
                 </view>
                 </navigator>
@@ -67,12 +67,12 @@
                 border-radius: 50%;
                 // overflow: hidden;
                 // border: 1rpx solid #666;
-                box-shadow: 2px 3px 5px 5px rgba(0, 0, 0, 0.2);
+                box-shadow: 2px 3px 5px 5px $biaoZhunYinYing;
             }
 
             .nickName {
                 font-size: 50rpx;
-                color: black;
+                color: $heiSeWenBen;
                 margin-top: 20rpx;
 
             }
@@ -81,10 +81,10 @@
         .section {
             width: 700rpx;
             margin: 50rpx auto;
-            border: 1px solid #eee;
+            border: 1px solid $gengQianHuiSeBianKuang;
             border-radius: 20rpx;
-            box-shadow: 2px 3px 5px 5px rgba(0, 0, 0, 0.1);
-            // background-color: #f5e6d3;
+            box-shadow: 2px 3px 5px 5px $qingYinYing;
+            // background-color: $qianHeSeBeiJing;
 
             .list {
                 .row {
@@ -93,7 +93,7 @@
                     align-items: center;
                     padding: 0 30rpx;
                     height: 100rpx;
-                    border-bottom: 1px solid #aaa;
+                    border-bottom: 1px solid $qianHuiSeBianKuang;
 
                     &:last-child {
                         border-bottom: 0;
@@ -107,7 +107,7 @@
 
                         .text {
                             margin-left: 10rpx;
-                            color: #666;
+                            color: $shenHuiSeWenBen;
                         }
 
                     }
@@ -118,7 +118,7 @@
 
                         .text {
                             font-size: 28rpx;
-                            color: #aaa;
+                            color: $qianHuiSeWenBen;
                         }
                     }
                 }

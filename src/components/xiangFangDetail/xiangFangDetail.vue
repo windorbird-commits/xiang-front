@@ -33,7 +33,7 @@
 
 <style lang="scss" scoped>
     .topLayout {
-        box-shadow: 2px 3px 5px 5px rgba(0, 0, 0, 0.2);
+        box-shadow: 2px 3px 5px 5px $biaoZhunYinYing;
         margin: 70rpx 0 0 0;
         border-radius: 20rpx;
     }
@@ -42,10 +42,10 @@
         /* border: 1rpx solid red; */
         height: 100rpx;
         display: flex;
-        background-color: #f5e6d3;
+        background-color: $qianHeSeBeiJing;
         border-width: 0 0 1rpx;
         border-style: solid;
-        border-color: #aaa;
+        border-color: $qianHuiSeBianKuang;
         border-radius: 20rpx 20rpx 0 0;
 
         .name {
@@ -54,7 +54,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #663d00;
+            color: $shenZongSeWenBen;
 
             text {
                 font-size: 40rpx;
@@ -70,8 +70,8 @@
             align-items: center;
             border-width: 0 1rpx;
             border-style: solid;
-            border-color: #aaa;
-            color: #663d00;
+            border-color: $qianHuiSeBianKuang;
+            color: $shenZongSeWenBen;
 
             text {
                 font-size: 40rpx;
@@ -84,7 +84,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #663d00;
+            color: $shenZongSeWenBen;
 
             text {
                 font-size: 40rpx;

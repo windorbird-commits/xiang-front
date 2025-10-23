@@ -19,7 +19,7 @@
         height: 250rpx;
         // border: 1px solid red;
         border-radius: 20rpx;
-        box-shadow: 2px 3px 5px 5px rgba(0, 0, 0, 0.1);
+        box-shadow: 2px 3px 5px 5px $qingYinYing;
 
 
         .slot-container {
@@ -28,11 +28,11 @@
             // border: 2rpx, solid pink;
             border-width: 1rpx 0 0 0;
             border-style: solid;
-            border-color: #aaa;
+            border-color: $qianHuiSeBianKuang;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #f5e6d3;
+            background-color: $qianHeSeBeiJing;
         }
     }
 </style>
