@@ -9,38 +9,38 @@
         <view class="section">
             <view class="list">
                 <navigator url="/pages/myCreatedXiangFang/MyCreatedXiangFang" hover-class="navigator-hover">
-                <view class="row">
-                    <view class="left">
-                        <uv-icon name="folder" size="25" color="'var(--shen-zong-se-zi)'"></uv-icon>
-                        <view class="text">
-                            我的香方
+                    <view class="row">
+                        <view class="left">
+                            <uv-icon name="folder" size="25" color="'var(--shen-zong-se-zi)'"></uv-icon>
+                            <view class="text">
+                                我的香方
+                            </view>
+                        </view>
+                        <view class="right">
+                            <view class="text">
+                                33
+                            </view>
+                            <uv-icon name="arrow-right" size="20" color="'var(--qian-hui-se-bian-kuang)'"></uv-icon>
                         </view>
                     </view>
-                    <view class="right">
-                        <view class="text">
-                            33
-                        </view>
-                        <uv-icon name="arrow-right" size="20" color="'var(--qian-hui-se-bian-kuang)'"></uv-icon>
-                    </view>
-                </view>
 
                 </navigator>
                 <navigator url="/pages/myCollectedXiangFang/MyCollectedXiangFang" hover-class="navigator-hover">
-                <view class="row">
-                    <view class="left">
-                        <uv-icon name="star-fill" size="25" color="'var(--shen-zong-se-zi)'"></uv-icon>
-                        <view class="text">
-                            我的收藏
-                        </view>
+                    <view class="row">
+                        <view class="left">
+                            <uv-icon name="star-fill" size="25" color="'var(--shen-zong-se-zi)'"></uv-icon>
+                            <view class="text">
+                                我的收藏
+                            </view>
 
-                    </view>
-                    <view class="right">
-                        <view class="text">
-                            33
                         </view>
-                        <uv-icon name="arrow-right" size="20" color="'var(--qian-hui-se-bian-kuang)'"></uv-icon>
+                        <view class="right">
+                            <view class="text">
+                                33
+                            </view>
+                            <uv-icon name="arrow-right" size="20" color="'var(--qian-hui-se-bian-kuang)'"></uv-icon>
+                        </view>
                     </view>
-                </view>
                 </navigator>
             </view>
         </view>

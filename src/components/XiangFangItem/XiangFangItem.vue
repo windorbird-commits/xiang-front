@@ -1,8 +1,8 @@
 <template>
     <view class="container">
         <view class="top">
-            <uv-text :text="xiangFangName" bold align="center" :color="'var(--shen-zong-se-zi)'" :lineHeight="2" size="50rpx"
-                :customStyle="{letterSpacing: '5rpx'}"></uv-text>
+            <uv-text :text="xiangFangName" bold align="center" color="'var(--shen-zong-se-zi)'" :lineHeight="2"
+                size="50rpx" :customStyle="{letterSpacing: '5rpx'}"></uv-text>
         </view>
         <view class="mid">
             <uv-text :text="xiangFangDesc" size="40rpx" :customStyle="{letterSpacing: '4rpx'}" :lines="2"
