@@ -8,8 +8,9 @@
                     </view>
                 </template>
                 <template #text>
-                    <uv-text text="粘粉加多少" align="center" color="'var(--shen-zong-se-zi)'" size="40rpx"
-                        margin="15rpx auto" :customStyle="{letterSpacing: '1rpx'}"></uv-text>
+
+                    <uv-text text="粘粉加多少" align="center" color="#663d00" size="40rpx" margin="15rpx auto"
+                        :customStyle="{letterSpacing: '1rpx'}"></uv-text>
                 </template>
             </ToolComponent>
         </navigator>
@@ -21,8 +22,8 @@
                     </view>
                 </template>
                 <template #text>
-                    <uv-text text="粘粉占比多少" align="center" color="'var(--shen-zong-se-zi)'" size="40rpx"
-                        margin="15rpx auto" :customStyle="{letterSpacing: '1rpx'}"></uv-text>
+                    <uv-text text="粘粉占比多少" align="center" color="#663d00" size="40rpx" margin="15rpx auto"
+                        :customStyle="{letterSpacing: '1rpx'}"></uv-text>
                 </template>
             </ToolComponent>
         </navigator>

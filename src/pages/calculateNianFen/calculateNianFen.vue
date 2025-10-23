@@ -134,6 +134,7 @@
             font-size: 40rpx;
             font-weight: bold;
             margin: 0 20rpx;
+            color: $chengSeAnNiu;
         }
     }
 
@@ -160,7 +161,7 @@
 
         .save {
             width: 300rpx;
-            height: 90rpx;
+            height: 80rpx;
             /* border: 1rpx solid blue; */
             display: flex;
             align-items: center;
@@ -188,7 +189,7 @@
             font-size: 40rpx;
 
             text {
-                color: $shenZongSeZi;
+                color: $shenZongSeWenBen;
             }
         }
 

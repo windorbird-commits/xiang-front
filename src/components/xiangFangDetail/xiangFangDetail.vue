@@ -20,7 +20,7 @@
                     10
                 </view>
                 <view class="removeAction">
-                    <uv-icon name="close" color="red" size="30"></uv-icon>
+                    <uv-icon name="close" color="#f48e4b" size="30"></uv-icon>
                 </view>
             </view>
         </view>

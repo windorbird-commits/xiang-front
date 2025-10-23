@@ -19,8 +19,7 @@
         height: 250rpx;
         // border: 1px solid red;
         border-radius: 20rpx;
-        box-shadow: 2px 3px 5px 5px $qingYinYing;
-
+        box-shadow: 2px 3px 5px 5px $biaoZhunYinYing;
 
         .slot-container {
             width: 100%;

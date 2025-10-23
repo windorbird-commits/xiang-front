@@ -2,11 +2,11 @@
     <view class="addXiangFen">
         <view class="input">
             <view class="left">
-                <uv-input border="none" placeholderStyle="font-size:30rpx" fontSize="40rpx" placeholder="请输入材料名"
+                <uv-input border="none" placeholderStyle="font-size:30rpx" fontSize="40rpx" placeholder="请输入香粉名"
                     customStyle="height:100rpx" maxlength="10"></uv-input>
             </view>
             <view class="right">
-                <uv-input border="none" placeholderStyle="font-size:30rpx" fontSize="40rpx" placeholder="请输入重量"
+                <uv-input border="none" placeholderStyle="font-size:30rpx" fontSize="40rpx" placeholder="请输入香粉重量"
                     customStyle="height:100rpx" maxlength="10"></uv-input>
             </view>
         </view>
@@ -33,7 +33,6 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin: 20rpx 0 0 0;
 
         .left {
             width: 300rpx;

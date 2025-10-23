@@ -11,7 +11,7 @@
                 <navigator url="/pages/myCreatedXiangFang/MyCreatedXiangFang" hover-class="navigator-hover">
                     <view class="row">
                         <view class="left">
-                            <uv-icon name="folder" size="25" color="'var(--shen-zong-se-zi)'"></uv-icon>
+                            <uv-icon name="folder" size="25" color="#f48e4b"></uv-icon>
                             <view class="text">
                                 我的香方
                             </view>
@@ -20,7 +20,7 @@
                             <view class="text">
                                 33
                             </view>
-                            <uv-icon name="arrow-right" size="20" color="'var(--qian-hui-se-bian-kuang)'"></uv-icon>
+                            <uv-icon name="arrow-right" size="16" color="#666"></uv-icon>
                         </view>
                     </view>
 
@@ -28,7 +28,7 @@
                 <navigator url="/pages/myCollectedXiangFang/MyCollectedXiangFang" hover-class="navigator-hover">
                     <view class="row">
                         <view class="left">
-                            <uv-icon name="star-fill" size="25" color="'var(--shen-zong-se-zi)'"></uv-icon>
+                            <uv-icon name="star-fill" size="25" color="#f48e4b"></uv-icon>
                             <view class="text">
                                 我的收藏
                             </view>
@@ -38,7 +38,7 @@
                             <view class="text">
                                 33
                             </view>
-                            <uv-icon name="arrow-right" size="20" color="'var(--qian-hui-se-bian-kuang)'"></uv-icon>
+                            <uv-icon name="arrow-right" size="16" color="#666"></uv-icon>
                         </view>
                     </view>
                 </navigator>
@@ -83,7 +83,7 @@
             margin: 50rpx auto;
             border: 1px solid $gengQianHuiSeBianKuang;
             border-radius: 20rpx;
-            box-shadow: 2px 3px 5px 5px $qingYinYing;
+            box-shadow: 2px 3px 5px 5px $biaoZhunYinYing;
             // background-color: $qianHeSeBeiJing;
 
             .list {
