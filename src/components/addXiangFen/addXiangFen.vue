@@ -27,9 +27,12 @@
     </view>
 </template>
 
-<script setup>
+<script setup> 
+    import { ref } from 'vue'
+
+    let popup = ref(null);
     function open() {
-        this.$refs.popup.open();
+        popup.value.open();
     }
 
     function change(e) {
