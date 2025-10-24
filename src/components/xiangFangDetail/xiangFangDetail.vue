@@ -56,17 +56,34 @@
 </script>
 
 <style lang="scss" scoped>
+    // 公共样式
+    %center-flex {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    %title-text {
+        font-size: 40rpx;
+        letter-spacing: 5rpx;
+        color: $shenZongSeWenBen;
+    }
+
+    %item-cell {
+        width: 200rpx;
+        @extend %center-flex;
+        font-size: 40rpx;
+    }
+
     .table {
         box-shadow: 2px 3px 5px 5px $biaoZhunYinYing;
-        // border: 1rpx solid red;
         margin: 30rpx 0 0 0;
         border-radius: 20rpx;
         width: 700rpx;
     }
 
     .title {
-        // border: 1rpx solid blue;
-        display: flex;
+        @extend %center-flex;
         background-color: $qianHeSeBeiJing;
         border-width: 0 0 1rpx;
         border-style: solid;
@@ -74,106 +91,54 @@
         border-radius: 20rpx 20rpx 0 0;
         height: 80rpx;
 
-        .name {
-            /* border: 1rpx solid pink; */
+        .name,
+        .weight,
+        .percent,
+        .remove {
             flex-grow: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: $shenZongSeWenBen;
+            @extend %center-flex;
 
             text {
-                font-size: 40rpx;
-                letter-spacing: 5rpx;
+                @extend %title-text;
             }
         }
 
         .weight {
-            /* border: 1rpx solid purple; */
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             border-width: 0 1rpx;
             border-style: solid;
             border-color: $qianHuiSeBianKuang;
-            color: $shenZongSeWenBen;
-
-            text {
-                font-size: 40rpx;
-                letter-spacing: 5rpx;
-            }
         }
-
-        .percent {
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: $shenZongSeWenBen;
-
-            text {
-                font-size: 40rpx;
-                letter-spacing: 5rpx;
-            }
-        }
-
-        .remove {
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: $shenZongSeWenBen;
-
-            text {
-                font-size: 40rpx;
-                letter-spacing: 5rpx;
-            }
-        }
-    }
-
-    .items {
-        // border: 1rpx solid green;
     }
 
     .item {
-        // border: 1rpx solid green;
+        padding: 10rpx 0;
 
-        display: flex;
-        display: flex;
-        align-items: center;
+        @extend %center-flex;
         justify-content: space-between;
 
-        .itemName {
-            width: 200rpx;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40rpx;
+        // 添加hover效果
+        &:hover {
+            background-color: rgba($qianHeSeBeiJing, 0.3);
         }
 
+        .itemName,
         .itemWeight {
-            width: 200rpx;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40rpx;
+            @extend %item-cell;
         }
 
         .itemPercent {
-            width: 200rpx;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40rpx;
-            color: #f48e4b;
+            @extend %item-cell;
+            color: $chengSeAnNiu;
         }
 
         .removeAction {
-            width: 200rpx;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            @extend %item-cell;
+            cursor: pointer;
+
+            // 添加点击效果
+            &:active {
+                transform: scale(0.9);
+            }
         }
     }
 
@@ -182,35 +147,31 @@
         box-shadow: 2px 3px 5px 5px $biaoZhunYinYing;
         margin: 70rpx 0;
         border-radius: 20rpx;
-        // border: 1rpx solid greenyellow;
     }
 
     .input {
         width: 700rpx;
-        /* border: 1rpx solid black; */
-        display: flex;
-        align-items: center;
+        @extend %center-flex;
         justify-content: space-between;
 
-        .left {
-            width: 300rpx;
-            // border: 1rpx solid red;
-        }
-
+        .left,
         .right {
             width: 300rpx;
-            // border: 1rpx solid blue;
         }
     }
 
     .addButton {
-        // width: 700rpx;
         height: 80rpx;
-        // /* border: 1rpx solid #343; */s
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        @extend %center-flex;
         background-color: $qianHeSeBeiJing;
         border-radius: 0 0 20rpx 20rpx;
+        color: $shenZongSeWenBen;
+        font-size: 36rpx;
+        letter-spacing: 5rpx;
+
+        // 添加按钮交互效果
+        &:active {
+            background-color: darken($qianHeSeBeiJing, 10%);
+        }
     }
 </style>
