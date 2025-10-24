@@ -1,7 +1,6 @@
 <template>
     <view class="container">
         <XiangFangDetail class="xiangFangDetail"></XiangFangDetail>
-        <AddXiangFen class="addXiangFen"></AddXiangFen>
 
         <view class='nianfenGroup'>
             <view class="nianfenInput">
@@ -16,8 +15,8 @@
                     <text>%</text>
                 </view>
             </view>
-            <view class="confirmButton">
-                <text>确&emsp;&emsp;定</text>
+            <view>
+                <button class="confirmButton">确&emsp;&emsp;定</button>
             </view>
         </view>
         <SaveXiangFang></SaveXiangFang>
