@@ -1,8 +1,11 @@
 <template>
     <view>
         <view class="actions">
-            <view>
+            <view v-if="false">
                 <button class="reset" @click="open">清&emsp;空</button>
+            </view>
+            <view v-else>
+                <button class="reset">收&emsp;藏</button>
             </view>
             <view>
                 <button class="save" @click="open">保存为我的香方</button>
@@ -14,6 +17,7 @@
                 <view class="popInner">
                     <view class="popText">
                         <text class='popTextInner'>给香方起一个好听名字吧</text>
+                        <text class='popTextInner'>（不输入，默认使用原名）</text>
                     </view>
                     <view class="popInput">
                         <uv-input border="bottom" placeholderStyle="font-size:30rpx" fontSize="40rpx"
@@ -98,6 +102,10 @@
         .popText {
             margin: 50rpx;
             font-size: 40rpx;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
 
             text {
                 color: $shenZongSeWenBen;

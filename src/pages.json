@@ -53,6 +53,12 @@
             "style": {
                 "navigationBarTitleText": "香方详情"
             }
+        },
+        {
+            "path": "pages/xiangFangExtend/XiangFangExtend",
+            "style": {
+                "navigationBarTitleText": "香方放大器"
+            }
         }
     ],
     "globalStyle": {

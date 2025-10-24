@@ -32,7 +32,7 @@
                 </view>
             </view>
         </view>
-        <view class="addXiangFen">
+        <view class="addXiangFen" v-if="false">
             <view class="input">
                 <view class="left">
                     <uv-input border="none" placeholderStyle="font-size:30rpx" fontSize="40rpx" placeholder="请输入材料名"

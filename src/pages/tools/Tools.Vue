@@ -9,7 +9,7 @@
                 </template>
                 <template #text>
 
-                    <uv-text text="粘粉加多少" align="center" color="#663d00" size="40rpx" margin="15rpx auto"
+                    <uv-text class="text" text="粘粉加多少" align="center" color="#663d00" size="40rpx" margin="15rpx auto"
                         :customStyle="{letterSpacing: '1rpx'}"></uv-text>
                 </template>
             </ToolComponent>
@@ -22,7 +22,20 @@
                     </view>
                 </template>
                 <template #text>
-                    <uv-text text="各香粉占比" align="center" color="#663d00" size="40rpx" margin="15rpx auto"
+                    <uv-text class="text" text="各香粉占比" align="center" color="#663d00" size="40rpx" margin="15rpx auto"
+                        :customStyle="{letterSpacing: '1rpx'}"></uv-text>
+                </template>
+            </ToolComponent>
+        </navigator>
+        <navigator url="/pages/xiangFangExtend/XiangFangExtend" hover-class="navigator-hover">
+            <ToolComponent class="tool">
+                <template v-slot:image>
+                    <view class="image">
+                        <image src="/src/common/tool-pics/mei-gui.jpg" mode="aspectFill"></image>
+                    </view>
+                </template>
+                <template #text>
+                    <uv-text class="text" text="香方放大器" align="center" color="#663d00" size="40rpx" margin="15rpx auto"
                         :customStyle="{letterSpacing: '1rpx'}"></uv-text>
                 </template>
             </ToolComponent>
@@ -35,12 +48,25 @@
 <style lang="scss" scoped>
     .container {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
+        border-radius: 20rpx;
 
-        navigator {
-            margin: 30rpx 15rpx;
+        .navigator {
+            border-radius: 20rpx;
+            margin: 30rpx 20rpx;
+
+        }
+
+        .tool {
+            border-radius: 20rpx;
+            box-shadow: 2px 3px 5px 5px $biaoZhunYinYing;
+        }
+
+        &:last-child {
+            justify-content: left;
+            border-radius: 20rpx;
         }
     }
 
@@ -48,9 +74,13 @@
 
     .image {
         width: 100%;
-        padding: 0 10rpx;
         height: 170rpx;
         // border: 2px solid blue;
         overflow: hidden;
+        border-radius: 20rpx 20rpx 0 0;
+    }
+
+    .text {
+        border-radius: 0 0 20rpx 20rpx;
     }
 </style>
