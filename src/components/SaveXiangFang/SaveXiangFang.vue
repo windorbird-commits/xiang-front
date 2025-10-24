@@ -63,7 +63,7 @@
         .reset {
             width: 300rpx;
             /* border: 1rpx solid red; */
-            height: 80rpx;
+            height: 100rpx;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -76,7 +76,7 @@
 
         .save {
             width: 300rpx;
-            height: 80rpx;
+            height: 100rpx;
             /* border: 1rpx solid blue; */
             display: flex;
             align-items: center;

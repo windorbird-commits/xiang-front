@@ -1,5 +1,6 @@
 <template>
     <view>
+        <view class="xiangFangName">香方名</view>
         <view class="table">
             <view class="title">
                 <view class="name">
@@ -32,15 +33,15 @@
                 </view>
             </view>
         </view>
-        <view class="addXiangFen" v-if="false">
+        <view class="addXiangFen" v-if="true">
             <view class="input">
                 <view class="left">
                     <uv-input border="none" placeholderStyle="font-size:30rpx" fontSize="40rpx" placeholder="请输入材料名"
-                        customStyle="height:100rpx" maxlength="10"></uv-input>
+                        customStyle="height:100rpx;padding-left:30rpx" inputAlign="center" maxlength="10"></uv-input>
                 </view>
                 <view class="right">
-                    <uv-input border="none" placeholderStyle="font-size:30rpx" fontSize="40rpx" placeholder="请输入香粉重量"
-                        customStyle="height:100rpx" maxlength="10"></uv-input>
+                    <uv-input border="none" inputAlign="center" placeholderStyle="font-size:30rpx" fontSize="40rpx"
+                        placeholder="请输入香粉重量" customStyle="height:100rpx" maxlength="10"></uv-input>
                 </view>
             </view>
             <button class="addButton">
@@ -75,9 +76,25 @@
         font-size: 40rpx;
     }
 
+    .xiangFangName {
+        margin: 30rpx 0;
+        width: 700rpx;
+        // border: 1rpx solid red;
+        height: 100rpx;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        letter-spacing: 2rpx;
+        font-size: 50rpx;
+        font-weight: bold;
+        border-radius: 20rpx;
+        box-shadow: 2px 3px 5px 5px $biaoZhunYinYing;
+        color: $shenZongSeWenBen;
+    }
+
     .table {
         box-shadow: 2px 3px 5px 5px $biaoZhunYinYing;
-        margin: 30rpx 0 0 0;
+        margin: 50rpx 0 0 0;
         border-radius: 20rpx;
         width: 700rpx;
     }
@@ -89,7 +106,7 @@
         border-style: solid;
         border-color: $qianHuiSeBianKuang;
         border-radius: 20rpx 20rpx 0 0;
-        height: 80rpx;
+        height: 100rpx;
 
         .name,
         .weight,

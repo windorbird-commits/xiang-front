@@ -6,8 +6,8 @@
                     :customStyle="{letterSpacing: '5rpx'}"></uv-text>
             </view>
             <view class="mid">
-                <uv-text :text="xiangFangDesc" size="40rpx" :customStyle="{letterSpacing: '4rpx'}" :lines="2"
-                    lineHeight="60rpx" wordWrap="anywhere"></uv-text>
+                <uv-text :text="xiangFangDesc" size="40rpx" :customStyle="{letterSpacing: '4rpx',padding:'0 30rpx'}"
+                    :lines="2" lineHeight="60rpx" wordWrap="anywhere"></uv-text>
             </view>
         </navigator>
         <view class="bottom">

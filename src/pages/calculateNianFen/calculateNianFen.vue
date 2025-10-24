@@ -8,8 +8,8 @@
                     粘粉比例
                 </view>
                 <view class="percent">
-                    <uv-input border="bottom" placeholder="请输入粘粉百分比" fontSize="40rpx" customStyle="height:100rpx"
-                        placeholderStyle="font-size:30rpx"></uv-input>
+                    <uv-input inputAlign="center" border="bottom" placeholder="请输入粘粉百分比" fontSize="40rpx"
+                        customStyle="height:100rpx" placeholderStyle="font-size:30rpx"></uv-input>
                 </view>
                 <view class="iconPercent">
                     <text>%</text>
