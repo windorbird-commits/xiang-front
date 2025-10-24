@@ -1,6 +1,6 @@
 <template>
     <view>
-        <view class="topLayout">
+        <view class="table">
             <view class="title">
                 <view class="name">
                     <text>材&ensp;料&ensp;名</text>
@@ -56,7 +56,7 @@
 </script>
 
 <style lang="scss" scoped>
-    .topLayout {
+    .table {
         box-shadow: 2px 3px 5px 5px $biaoZhunYinYing;
         // border: 1rpx solid red;
         margin: 30rpx 0 0 0;
