@@ -1,19 +1,19 @@
 <template>
-    <view>
-        展示香方细节
+    <view class="container">
+        <XiangFangDetail class="XiangFangDetail"></XiangFangDetail>
+        <SaveXiangFang class="SaveXiangFang"></SaveXiangFang>
     </view>
 </template>
 
-<script>
-    export default {
-        data() {
-            return {
-
-            };
-        }
-    }
+<script setup lang="ts">
 </script>
 
-<style lang="scss">
-
+<style lang="scss" scoped>
+    .container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
 </style>

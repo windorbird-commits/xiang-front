@@ -1,13 +1,15 @@
 <template>
     <view class="container">
-        <view class="top">
-            <uv-text :text="xiangFangName" bold align="center" color="#663d00" :lineHeight="2" size="50rpx"
-                :customStyle="{letterSpacing: '5rpx'}"></uv-text>
-        </view>
-        <view class="mid">
-            <uv-text :text="xiangFangDesc" size="40rpx" :customStyle="{letterSpacing: '4rpx'}" :lines="2"
-                lineHeight="60rpx" wordWrap="anywhere"></uv-text>
-        </view>
+        <navigator url="/pages/showXiangFangDetail/ShowXiangFangDetail" hover-class="navigator-hover" class="navigator">
+            <view class="top">
+                <uv-text :text="xiangFangName" bold align="center" color="#663d00" :lineHeight="3" size="50rpx"
+                    :customStyle="{letterSpacing: '5rpx'}"></uv-text>
+            </view>
+            <view class="mid">
+                <uv-text :text="xiangFangDesc" size="40rpx" :customStyle="{letterSpacing: '4rpx',padding:'0 30rpx'}"
+                    :lines="2" lineHeight="60rpx" wordWrap="anywhere"></uv-text>
+            </view>
+        </navigator>
         <view class="bottom">
             <!-- 占位符 -->
             <!-- <view class="bot-left">
@@ -46,12 +48,16 @@
         flex-direction: column;
         /*增加阴影效果*/
         box-shadow: 2px 3px 5px 5px $biaoZhunYinYing;
+
     }
 
-
+    .navigator {
+        height: 80%;
+        // background-color: yellow;
+    }
 
     .top {
-        width: 100%;
+        // width: 100%;
         height: 30%;
         border-width: 0 0 1rpx 0;
         border-style: solid;
@@ -62,20 +68,23 @@
         justify-content: center;
         align-items: center;
         border-radius: 20rpx 20rpx 0 0;
+        // border: 1rpx solid red;
     }
 
     .mid {
         width: 100%;
-        height: 50%;
-        /* border: 2px solid blue; */
+        height: 70%;
+        // border: 2px solid blue;
         /* 使用Flex布局确保内容铺满 */
         display: flex;
-        padding: 15rpx;
+        // padding: 15rpx;
     }
 
     .bottom {
         width: 100%;
         height: 20%;
+        border: 1rpx solid greenyellow;
+        padding: 10rpx;
         border-width: 1rpx 0 0 0;
         border-style: solid;
         border-color: $qianHuiSeBianKuang;
@@ -87,7 +96,6 @@
 
     .bot-left {
         flex: 1;
-        height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -96,7 +104,6 @@
 
     .bot-mid {
         flex: 1;
-        height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -107,11 +114,11 @@
 
     .bot-right {
         flex: 1;
-        height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
         padding-right: 10rpx;
+        // border: 1rpx solid red;
 
         .collect-container {
             display: flex;
