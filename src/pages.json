@@ -37,22 +37,21 @@
             }
         },
         {
-            "path": "pages/calculateNianFen/calculateNianFen",
+            "path": "pages/calculateNianFen/CalculateNianFen",
             "style": {
                 "navigationBarTitleText": "粘粉加多少"
             }
         },
         {
-            "path": "pages/checkNianFen/checkNianFen",
+            "path": "pages/xiangFenPercentShow/XiangFenPercentShow",
             "style": {
-                "navigationBarTitleText": "粘粉比例对吗"
+                "navigationBarTitleText": "各香粉占比"
             }
         },
         {
-            "path" : "pages/showXiangFangDetail/showXiangFangDetail",
-            "style" : 
-            {
-                "navigationBarTitleText" : ""
+            "path": "pages/showXiangFangDetail/ShowXiangFangDetail",
+            "style": {
+                "navigationBarTitleText": "香方详情"
             }
         }
     ],
