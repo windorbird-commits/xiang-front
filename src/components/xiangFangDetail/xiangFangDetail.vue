@@ -5,9 +5,12 @@
                 <text>材&ensp;料&ensp;名</text>
             </view>
             <view class="weight">
-                <text>重&emsp;量</text>
+                <text>重&ensp;量&ensp;(克)</text>
             </view>
-            <view class="remove">
+            <view class="percent" v-if="showPercent">
+                <text>占&emsp;比</text>
+            </view>
+            <view class="remove" v-else>
                 <text>删&emsp;除</text>
             </view>
         </view>
@@ -19,7 +22,10 @@
                 <view class="itemWeight">
                     10
                 </view>
-                <view class="removeAction">
+                <view class="itemPercent" v-if="showPercent">
+                    30%
+                </view>
+                <view class="removeAction" v-else>
                     <uv-icon name="close" color="#f48e4b" size="30"></uv-icon>
                 </view>
             </view>
@@ -27,15 +33,16 @@
     </view>
 </template>
 
-<script>
-
+<script lang="ts" setup>
+    let showPercent = true;
 </script>
 
 <style lang="scss" scoped>
     .topLayout {
         box-shadow: 2px 3px 5px 5px $biaoZhunYinYing;
-        margin: 70rpx 0 0 0;
+        margin: 30rpx 0 0 0;
         border-radius: 20rpx;
+        width: 700rpx;
     }
 
     .title {
@@ -71,6 +78,19 @@
             border-width: 0 1rpx;
             border-style: solid;
             border-color: $qianHuiSeBianKuang;
+            color: $shenZongSeWenBen;
+
+            text {
+                font-size: 40rpx;
+                letter-spacing: 5rpx;
+            }
+        }
+
+        .percent {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             color: $shenZongSeWenBen;
 
             text {
@@ -115,6 +135,15 @@
             align-items: center;
             justify-content: center;
             font-size: 40rpx;
+        }
+
+        .itemPercent {
+            width: 200rpx;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40rpx;
+            color: #f48e4b;
         }
 
         .removeAction {

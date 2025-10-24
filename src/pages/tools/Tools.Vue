@@ -1,6 +1,6 @@
 <template>
     <view class="container">
-        <navigator url="/pages/calculateNianFen/calculateNianFen" hover-class="navigator-hover">
+        <navigator url="/pages/calculateNianFen/CalculateNianFen" hover-class="navigator-hover">
             <ToolComponent class="tool">
                 <template v-slot:image>
                     <view class="image">
@@ -14,7 +14,7 @@
                 </template>
             </ToolComponent>
         </navigator>
-        <navigator url="/pages/checkNianFen/checkNianFen" hover-class="navigator-hover">
+        <navigator url="/pages/xiangFenPercentShow/XiangFenPercentShow" hover-class="navigator-hover">
             <ToolComponent class="tool">
                 <template v-slot:image>
                     <view class="image">
@@ -22,7 +22,7 @@
                     </view>
                 </template>
                 <template #text>
-                    <uv-text text="粘粉占比多少" align="center" color="#663d00" size="40rpx" margin="15rpx auto"
+                    <uv-text text="各香粉占比" align="center" color="#663d00" size="40rpx" margin="15rpx auto"
                         :customStyle="{letterSpacing: '1rpx'}"></uv-text>
                 </template>
             </ToolComponent>
