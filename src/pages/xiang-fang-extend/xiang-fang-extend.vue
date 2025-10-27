@@ -9,8 +9,9 @@
                 <view class="extend">
                     <text class="fangda">放&emsp;大</text>
                     <view class="input">
-                        <uv-input inputAlign="center" border="bottom" placeholder="请输入倍数" fontSize="40rpx"
-                            customStyle="height:100rpx" placeholderStyle="font-size:30rpx"></uv-input>
+                        <uv-input color="red" type="digit" inputAlign="center" border="bottom" placeholder="请输入倍数"
+                            maxlength="4" fontSize="40rpx" customStyle="height:100rpx"
+                            placeholderStyle="font-size:30rpx"></uv-input>
                     </view>
                     <text class="bei">倍</text>
                 </view>

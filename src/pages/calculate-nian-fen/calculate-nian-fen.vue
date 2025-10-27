@@ -8,8 +8,8 @@
                     粘粉比例
                 </view>
                 <view class="percent">
-                    <uv-input inputAlign="center" border="none" placeholder="请输入粘粉百分比" fontSize="40rpx"
-                        customStyle="height:100rpx" placeholderStyle="font-size:30rpx"></uv-input>
+                    <uv-input color="red" type="digit" inputAlign="center" border="none" placeholder="请输入粘粉百分比"
+                        fontSize="40rpx" customStyle="height:100rpx" placeholderStyle="font-size:30rpx"></uv-input>
                 </view>
                 <view class="iconPercent">
                     <text>%</text>
@@ -19,7 +19,7 @@
                 <button class="confirmButton">确&emsp;&emsp;定</button>
             </view>
         </view>
-        <save-xiang-fang></save-xiang-fang>>
+        <save-xiang-fang></save-xiang-fang>
     </view>
 </template>
 
