@@ -13,15 +13,22 @@
         </view>
 
         <view>
-            <uv-popup ref="popup" mode="center" @change="change" round="20rpx" bgColor="#f7f1e3">
+            <uv-popup ref="popup" mode="center" @change="change" overlayOpacity="0.85" round="20rpx" bgColor="#f7f1e3"
+                :customStyle="{ transform: 'translateY(-270rpx)' }">
                 <view class="popInner">
                     <view class="popText">
                         <text class='popTextInner'>给香方起一个好听名字吧</text>
-                        <text class='popTextInner'>（不输入，默认使用原名）</text>
+                        <text class='popTextInnerNote'>（不输入，默认使用原名）</text>
                     </view>
                     <view class="popInput">
-                        <uv-input border="bottom" placeholderStyle="font-size:30rpx" fontSize="40rpx"
-                            placeholder="请输入香方名" maxlength="10" customStyle="height:100rpx"></uv-input>
+                        <uv-input inputAlign="center" border="bottom" placeholderStyle="font-size:30rpx"
+                            fontSize="40rpx" placeholder="请输入香方名" maxlength="10" customStyle="height:100rpx"></uv-input>
+                    </view>
+                    <view class="popSelect">
+                        <view>线香</view>
+                        <view>线香</view>
+                        <view>线香</view>
+                        <view>线香</view>
                     </view>
                     <view class="popButton">
                         <view>
@@ -97,10 +104,11 @@
         justify-content: center;
         flex-direction: column;
         width: 700rpx;
+        margin-top: 20rpx;
 
 
-        .popText {
-            margin: 50rpx;
+        .popTextInner {
+            // margin: 10rpx;
             font-size: 40rpx;
             display: flex;
             align-items: center;
@@ -112,10 +120,37 @@
             }
         }
 
+        .popTextInnerNote {
+            margin: 10rpx 0 20rpx 0;
+            font-size: 40rpx;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-size: 25rpx;
+
+            text {
+                color: $shenZongSeWenBen;
+            }
+        }
+
+
         .popInput {
             // border: 1px solid red;
             height: 80rpx;
             width: 500rpx;
+        }
+
+        .popSelect {
+            // width: 80%;
+            height: 80rpx;
+            // border: 1px solid blue;
+            display: flex;
+            margin-top: 30rpx;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+
         }
 
         .popButton {
@@ -124,12 +159,7 @@
             align-items: center;
             justify-content: space-between;
             // border: 1rpx solid blue;
-            margin: 40rpx;
-
-            .popInput {
-                // border: 1rpx solid red;
-                height: 80rpx;
-            }
+            margin: 20rpx 0 -20rpx 0;
 
             .popBackBtn {
                 width: 200rpx;

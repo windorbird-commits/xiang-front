@@ -45,13 +45,14 @@
         <view class="addXiangFen" v-if="true">
             <view class="input">
                 <view class="left">
-                    <uv-input border="none" v-model="materialName" placeholderStyle="font-size:30rpx" fontSize="40rpx"
-                        placeholder="请输入材料名" customStyle="height:100rpx;padding-left:30rpx" inputAlign="center"
-                        maxlength="10"></uv-input>
+                    <uv-input color="red " border="none" v-model="materialName" placeholderStyle="font-size:30rpx"
+                        fontSize="40rpx" placeholder="请输入材料名" customStyle="height:100rpx;padding-left:30rpx"
+                        inputAlign="center" maxlength="10"></uv-input>
                 </view>
                 <view class="right">
-                    <uv-input border="none" inputAlign="center" placeholderStyle="font-size:30rpx" fontSize="40rpx"
-                        placeholder="请输入材料重量" type="digit" customStyle="height:100rpx" maxlength="10"></uv-input>
+                    <uv-input color="red" border="none" inputAlign="center" placeholderStyle="font-size:30rpx"
+                        fontSize="40rpx" placeholder="请输入材料重量" type="digit" customStyle="height:100rpx"
+                        maxlength="6"></uv-input>
                 </view>
             </view>
             <button class="addButton">
