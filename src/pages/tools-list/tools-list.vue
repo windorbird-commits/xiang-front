@@ -3,7 +3,7 @@
         <navigator class="navigator" url="/pages/calculate-nian-fen/calculate-nian-fen" hover-class="navigator-hover">
 
             <view class="image">
-                <image src="/static/common/tool-pics/dingxiang.png" mode="aspectFill"></image>
+                <image src="/src/common/tool-pics/dingxiang.png" mode="aspectFill"></image>
             </view>
 
             <text class="text">粘粉加多少</text>
@@ -14,7 +14,7 @@
             hover-class="navigator-hover">
 
             <view class="image">
-                <image src="/static/common/tool-pics/gouqi.png" mode="aspectFill"></image>
+                <image src="/src/common/tool-pics/gouqi.png" mode="aspectFill"></image>
             </view>
 
             <text class="text">各香粉占比</text>
@@ -24,7 +24,7 @@
         <navigator class="navigator" url="/pages/xiang-fang-extend/xiang-fang-extend" hover-class="navigator-hover">
 
             <view class="image">
-                <image src="/static/common/tool-pics/mei-gui.jpg" mode="aspectFill"></image>
+                <image src="/src/common/tool-pics/mei-gui.jpg" mode="aspectFill"></image>
             </view>
 
             <text class="text">香方放大器</text>
