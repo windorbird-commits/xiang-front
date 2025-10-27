@@ -13,7 +13,7 @@
             }
         },
         {
-            "path": "pages/xiang-tools/xiang-tools",
+            "path": "pages/tools/tools",
             "style": {
                 "navigationBarTitleText": "工具"
             }
@@ -80,7 +80,7 @@
                 "text": "香方"
             },
             {
-                "pagePath": "pages/xiang-tools/xiang-tools",
+                "pagePath": "pages/tools/tools",
                 "iconPath": "static/icons/tools.png",
                 "selectedIconPath": "static/icons/tools-s.png",
                 "text": "工具"
