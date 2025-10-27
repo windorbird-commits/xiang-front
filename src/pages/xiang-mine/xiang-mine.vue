@@ -8,7 +8,7 @@
         </view>
         <view class="section">
             <view class="list">
-                <navigator url="/pages/myCreatedXiangFang/MyCreatedXiangFang" hover-class="navigator-hover">
+                <navigator url="/pages/my-created-xiang-fang/my-created-xiang-fang" hover-class="navigator-hover">
                     <view class="row">
                         <view class="left">
                             <uv-icon name="folder" size="25" color="#f48e4b"></uv-icon>
@@ -25,7 +25,7 @@
                     </view>
 
                 </navigator>
-                <navigator url="/pages/myCollectedXiangFang/MyCollectedXiangFang" hover-class="navigator-hover">
+                <navigator url="/pages/my-collected-xiang-fang/my-collected-xiang-fang" hover-class="navigator-hover">
                     <view class="row">
                         <view class="left">
                             <uv-icon name="star-fill" size="25" color="#f48e4b"></uv-icon>

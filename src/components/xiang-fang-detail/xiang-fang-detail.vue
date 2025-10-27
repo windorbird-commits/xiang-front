@@ -67,9 +67,9 @@
     //     watch
     // } from 'fs';
 
-    // let showPercent = true;
+    let showPercent = true;
 
-    // let materialName = ""
+    let materialName = ""
 
     // watch(materialName, (materialNameNew) => {
     //     console.log("old-materialName:", materialName)

@@ -1,6 +1,6 @@
 <template>
     <view class="container">
-        <XiangFangDetail class="xiangFangDetail"></XiangFangDetail>
+        <xiang-fang-detail class="xiangFangDetail"></xiang-fang-detail>
 
         <view class='nianfenGroup'>
             <view class="nianfenInput">
@@ -19,7 +19,7 @@
                 <button class="confirmButton">确&emsp;&emsp;定</button>
             </view>
         </view>
-        <SaveXiangFang></SaveXiangFang>
+        <save-xiang-fang></save-xiang-fang>>
     </view>
 </template>
 

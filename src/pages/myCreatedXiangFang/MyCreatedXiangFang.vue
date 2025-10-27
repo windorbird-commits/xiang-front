@@ -1,3 +1,0 @@
-<template>
-    <XiangFangList></XiangFangList>
-</template>

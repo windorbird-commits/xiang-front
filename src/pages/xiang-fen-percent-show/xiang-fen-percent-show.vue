@@ -1,11 +1,11 @@
 <template>
     <view class="container">
-        <XiangFangDetail class="XiangFangDetail"></XiangFangDetail>
-        <SaveXiangFang class="SaveXiangFang"></SaveXiangFang>
+        <xiang-fang-detail class="XiangFangDetail"></xiang-fang-detail>
+        <save-xiang-fang class="SaveXiangFang"></save-xiang-fang>
     </view>
 </template>
 
-<script setup lang="ts">
+<script setup>
 </script>
 
 <style lang="scss" scoped>

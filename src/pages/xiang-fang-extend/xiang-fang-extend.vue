@@ -1,7 +1,7 @@
 <template>
     <view class="container">
         <view>
-            <XiangFangDetail class="XiangFangDetail"></XiangFangDetail>
+            <xiang-fang-detail class="XiangFangDetail"></xiang-fang-detail>
         </view>
 
         <view class="bottom">

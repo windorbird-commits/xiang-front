@@ -1,25 +1,19 @@
 <template>
     <view class="container">
-        <view v-for="i in 10" class="xiangFangItem">
-            <XiangFangItem></XiangFangItem>
-        </view>
-
+        <xiang-fang-detail class="XiangFangDetail"></xiang-fang-detail>
+        <save-xiang-fang class="SaveXiangFang"></save-xiang-fang>
     </view>
 </template>
 
-<script setup>
-
+<script setup lang="ts">
 </script>
 
 <style lang="scss" scoped>
     .container {
+        width: 100%;
         display: flex;
-        flex-direction: column;
-    }
-
-    .xiangFangItem {
-        margin: 30rpx auto;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
     }
 </style>
