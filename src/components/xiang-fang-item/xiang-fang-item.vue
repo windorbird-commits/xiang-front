@@ -1,6 +1,7 @@
 <template>
     <view class="container">
-        <navigator url="/pages/showXiangFangDetail/ShowXiangFangDetail" hover-class="navigator-hover" class="navigator">
+        <navigator url="/pages/show-xiang-fang-detail/show-xiang-fang-detail" hover-class="navigator-hover"
+            class="navigator">
             <view class="top">
                 <uv-text :text="xiangFangName" bold align="center" color="#663d00" :lineHeight="3" size="50rpx"
                     :customStyle="{letterSpacing: '5rpx'}"></uv-text>
@@ -30,7 +31,9 @@
 
 
 <script lang="ts" setup>
-    import { ref } from "vue";
+    import {
+        ref
+    } from "vue";
     let xiangFangName = ref("")
     xiangFangName.value = "宣和内府降真香"
     let xiangFangDesc = ref("")

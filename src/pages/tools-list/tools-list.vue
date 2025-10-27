@@ -1,6 +1,6 @@
 <template>
     <view class="container">
-        <navigator class="navigator" url="/pages/calculateNianFen/CalculateNianFen" hover-class="navigator-hover">
+        <navigator class="navigator" url="/pages/calculate-nian-fen/calculate-nian-fen" hover-class="navigator-hover">
 
             <view class="image">
                 <image src="/src/common/tool-pics/dingxiang.png" mode="aspectFill"></image>
@@ -10,7 +10,8 @@
 
         </navigator>
 
-        <navigator class="navigator" url="/pages/xiangFenPercentShow/XiangFenPercentShow" hover-class="navigator-hover">
+        <navigator class="navigator" url="/pages/xiang-fen-percent-show/xiang-fen-percent-show"
+            hover-class="navigator-hover">
 
             <view class="image">
                 <image src="/src/common/tool-pics/gouqi.png" mode="aspectFill"></image>
@@ -20,7 +21,7 @@
 
         </navigator>
 
-        <navigator class="navigator" url="/pages/xiangFangExtend/XiangFangExtend" hover-class="navigator-hover">
+        <navigator class="navigator" url="/pages/xiang-fang-extend/xiang-fang-extend" hover-class="navigator-hover">
 
             <view class="image">
                 <image src="/src/common/tool-pics/mei-gui.jpg" mode="aspectFill"></image>
