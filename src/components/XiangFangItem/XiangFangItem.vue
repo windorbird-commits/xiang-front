@@ -29,8 +29,10 @@
 </template>
 
 
-<script lang="ts" setup>
-    import { ref } from "vue";
+<script setup>
+    import {
+        ref
+    } from "vue";
     let xiangFangName = ref("")
     xiangFangName.value = "宣和内府降真香"
     let xiangFangDesc = ref("")

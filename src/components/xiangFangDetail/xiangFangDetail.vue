@@ -1,6 +1,15 @@
 <template>
     <view>
-        <view class="xiangFangName">香方名</view>
+        <view class="xiangFangName">
+            <text class="name">鹅梨帐中香</text>
+            <view class="type">
+                <text>线香&emsp;</text>
+                <text>合香珠&emsp;</text>
+                <text>香篆</text>
+            </view>
+
+        </view>
+
         <view class="table">
             <view class="title">
                 <view class="name">
@@ -24,7 +33,7 @@
                     <view class="itemWeight">
                         10
                     </view>
-                    <view class="itemPercent" v-if="showPercent">
+                    <view class="itemPercent" v-if="true">
                         30%
                     </view>
                     <view class="removeAction" v-else>
@@ -36,12 +45,13 @@
         <view class="addXiangFen" v-if="true">
             <view class="input">
                 <view class="left">
-                    <uv-input border="none" placeholderStyle="font-size:30rpx" fontSize="40rpx" placeholder="请输入材料名"
-                        customStyle="height:100rpx;padding-left:30rpx" inputAlign="center" maxlength="10"></uv-input>
+                    <uv-input border="none" v-model="materialName" placeholderStyle="font-size:30rpx" fontSize="40rpx"
+                        placeholder="请输入材料名" customStyle="height:100rpx;padding-left:30rpx" inputAlign="center"
+                        maxlength="10"></uv-input>
                 </view>
                 <view class="right">
                     <uv-input border="none" inputAlign="center" placeholderStyle="font-size:30rpx" fontSize="40rpx"
-                        placeholder="请输入香粉重量" customStyle="height:100rpx" maxlength="10"></uv-input>
+                        placeholder="请输入材料重量" type="digit" customStyle="height:100rpx" maxlength="10"></uv-input>
                 </view>
             </view>
             <button class="addButton">
@@ -52,8 +62,19 @@
 
 </template>
 
-<script lang="ts" setup>
-    let showPercent = true;
+<script setup>
+    // import {
+    //     watch
+    // } from 'fs';
+
+    // let showPercent = true;
+
+    // let materialName = ""
+
+    // watch(materialName, (materialNameNew) => {
+    //     console.log("old-materialName:", materialName)
+    //     console.log("new-materialName:", materialNameNew)
+    // })
 </script>
 
 <style lang="scss" scoped>
@@ -80,16 +101,38 @@
         margin: 30rpx 0;
         width: 700rpx;
         // border: 1rpx solid red;
-        height: 100rpx;
+        // height: 100rpx;
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-direction: column;
         letter-spacing: 2rpx;
         font-size: 50rpx;
         font-weight: bold;
         border-radius: 20rpx;
         box-shadow: 2px 3px 5px 5px $biaoZhunYinYing;
         color: $shenZongSeWenBen;
+
+        .name {
+            height: 120rpx;
+            width: 100%;
+            // border: 1rpx solid red;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            letter-spacing: 3rpx;
+        }
+
+        .type {
+            height: 80rpx;
+            width: 100%;
+            // border: 1rpx solid blue;
+            font-size: 25rpx;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
     }
 
     .table {
