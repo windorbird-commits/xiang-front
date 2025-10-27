@@ -62,7 +62,7 @@
 
 </template>
 
-<script setup>
+<script lang="ts" setup>
     // import {
     //     watch
     // } from 'fs';
