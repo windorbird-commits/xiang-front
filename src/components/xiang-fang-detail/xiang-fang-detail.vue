@@ -1,42 +1,41 @@
 <template>
     <view>
-        <view class="xiangFangName">
-            <text class="name">鹅梨帐中香</text>
+        <view class="xiangFangName" v-if="1">
+            <text class="name">eli</text>
             <view class="type">
                 <text>线香&emsp;</text>
                 <text>合香珠&emsp;</text>
                 <text>香篆</text>
             </view>
-
         </view>
 
         <view class="table">
             <view class="title">
                 <view class="name">
-                    <text>材&ensp;料&ensp;名</text>
+                    <text>材料名</text>
                 </view>
                 <view class="weight">
-                    <text>重&ensp;量&ensp;(克)</text>
+                    <text>重量(克)</text>
                 </view>
-                <view class="percent" v-if="showPercent">
-                    <text>占&emsp;比</text>
+                <view class="percent">
+                    <text>占比</text>
                 </view>
-                <view class="remove" v-else>
-                    <text>删&emsp;除</text>
+                <view class="remove">
+                    <text>删除</text>
                 </view>
             </view>
             <view class="items">
-                <view class="item" v-for="(item) in 3">
+                <view class="item" v-for=" (item) in 3">
                     <view class="itemName">
-                        檀香
+
                     </view>
                     <view class="itemWeight">
-                        10
+
                     </view>
-                    <view class="itemPercent" v-if="true">
-                        30%
+                    <view class="itemPercent">
+                        100
                     </view>
-                    <view class="removeAction" v-else>
+                    <view class="removeAction">
                         <uv-icon name="close" color="#f48e4b" size="30"></uv-icon>
                     </view>
                 </view>
@@ -63,10 +62,55 @@
 
 </template>
 
-<script lang="ts" setup>
-    // import {
-    //     watch
-    // } from 'fs';
+<script setup>
+    // let demo = {
+    //     "name": "鹅梨帐中香",
+    //     "compose": [
+    //         {
+    //             "name": "檀香",
+    //             "weight": 10
+    //         },
+    //         {
+    //             "name": "花蕊石",
+    //             "weight": 20
+    //         },
+    //         {
+    //             "name": "沉香",
+    //             "weight": 30
+    //         }
+    //     ]
+    // }
+    import {
+        computed,
+        ref,
+        watch
+    } from 'vue'
+    const props = defineProps(["xiangFang"])
+    console.log("props:", props)
+    console.log("xiang-fang:", props.xiangFang)
+
+    let xiangFang = props.xiangFang
+    console.log(xiangFang.name)
+    console.log(xiangFang["name"])
+
+
+
+    let totalWeight = ref(0)
+    // todo: xiangFang为空的安全性代码
+    console.log("xiangFang.compose:", xiangFang.compose)
+
+    totalWeight.value = computed(() => {
+        xiangFang.compose.reduce((prev, curr) => {
+            console.log("prev:", prev);
+            console.log("curr:", curr)
+            prev += curr.weight
+            return prev
+        }, 0)
+    })
+    console.log("totalWeight:", totalWeight.value)
+
+
+
 
     let showPercent = true;
 
@@ -164,7 +208,8 @@
             }
         }
 
-        .weight {
+        .weight,
+        .percent {
             border-width: 0 1rpx;
             border-style: solid;
             border-color: $qianHuiSeBianKuang;

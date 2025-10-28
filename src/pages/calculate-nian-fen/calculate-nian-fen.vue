@@ -1,6 +1,6 @@
 <template>
     <view class="container">
-        <xiang-fang-detail class="xiangFangDetail"></xiang-fang-detail>
+        <xiang-fang-detail class="xiangFangDetail" v-bind:xiangFang="demo"></xiang-fang-detail>
 
         <view class='nianfenGroup'>
             <view class="nianfenInput">
@@ -24,6 +24,23 @@
 </template>
 
 <script setup lang="ts">
+    let demo = {
+        "name": "鹅梨帐中香",
+        "compose": [
+            {
+                "name": "檀香",
+                "weight": 10
+            },
+            {
+                "name": "花蕊石",
+                "weight": 20
+            },
+            {
+                "name": "沉香",
+                "weight": 30
+            }
+        ]
+    }
 </script>
 
 <style lang="scss" scoped>
