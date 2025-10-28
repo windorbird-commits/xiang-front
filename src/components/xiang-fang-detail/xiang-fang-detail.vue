@@ -95,22 +95,26 @@
 
 
 
-    let totalWeight = ref(0)
+
     // todo: xiangFang为空的安全性代码
     console.log("xiangFang.compose:", xiangFang.compose)
 
-    totalWeight.value = computed(() => {
-        xiangFang.compose.reduce((prev, curr) => {
+    const totalWeight = computed(() => {
+        return xiangFang.compose.reduce((prev, curr) => {
             console.log("prev:", prev);
             console.log("curr:", curr)
-            prev += curr.weight
-            return prev
+            return prev + curr.weight
         }, 0)
     })
     console.log("totalWeight:", totalWeight.value)
+    console.log("totalWeight:", totalWeight)
 
-
-
+    xiangFang.compose.push({
+        "name": "xiangmao",
+        "weight": 40
+    })
+    console.log("xiangFang.compose", xiangFang.compose)
+    console.log("totalWeight:", totalWeight.value)
 
     let showPercent = true;
 
