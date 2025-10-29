@@ -24,23 +24,34 @@
 </template>
 
 <script setup lang="ts">
-    let demo = {
+    import { reactive } from 'vue';
+
+    let demo = reactive({
         "name": "鹅梨帐中香",
+        "useFor": ['线香', '塔香', '合香珠'],
         "compose": [
             {
                 "name": "檀香",
-                "weight": 10
+                "weight": "10"
             },
             {
                 "name": "花蕊石",
-                "weight": 20
+                "weight": "20"
             },
             {
                 "name": "沉香",
-                "weight": 30
+                "weight": "30"
+            },
+            {
+                "name": "埃塞俄比亚乳粉",
+                "weight": "50"
+            },
+            {
+                "name": "松塔",
+                "weight": "50"
             }
         ]
-    }
+    })
 </script>
 
 <style lang="scss" scoped>

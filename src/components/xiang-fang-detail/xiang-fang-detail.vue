@@ -1,11 +1,11 @@
 <template>
     <view>
-        <view class="xiangFangName" v-if="1">
-            <text class="name">eli</text>
+        <view class="xiangFangName" v-if="xiangFangNameLength>0">
+            <text class="name">{{xiangFangName}}</text>
             <view class="type">
-                <text>线香&emsp;</text>
-                <text>合香珠&emsp;</text>
-                <text>香篆</text>
+                <template v-for="(item) in xiangFangUseFor">
+                    <text> {{item}}&emsp; </text>
+                </template>
             </view>
         </view>
 
@@ -18,25 +18,41 @@
                     <text>重量(克)</text>
                 </view>
                 <view class="percent">
-                    <text>占比</text>
+                    <text>占&emsp;比</text>
                 </view>
                 <view class="remove">
-                    <text>删除</text>
+                    <text>删&emsp;除</text>
                 </view>
             </view>
             <view class="items">
-                <view class="item" v-for=" (item) in 3">
-                    <view class="itemName">
+                <view class="item" v-for="(item, index) in xiangFangCompose" :key="`${item.name}-${item.weight}`">
 
+                    <view :class="item.name.length<=3?itemName:itemNameLong">
+                        {{item.name}}
                     </view>
                     <view class="itemWeight">
-
+                        {{item.weight}}
                     </view>
                     <view class="itemPercent">
-                        100
+                        {{toPercentage(item.weight, totalWeight)}}
                     </view>
                     <view class="removeAction">
-                        <uv-icon name="close" color="#f48e4b" size="30"></uv-icon>
+                        <uv-icon name="close" color="#f48e4b" size="30" @click="removeItem(index)"></uv-icon>
+                    </view>
+                </view>
+                <view class="item">
+                    <view class="itemName">
+                        合计
+                    </view>
+                    <view class="itemWeight">
+                        {{totalWeight}}
+                    </view>
+                    <view class="itemPercent">
+                        100%
+                    </view>
+                    <view class="removeAction">
+                        <uv-icon v-show="disable" name="close" color="#f48e4b" size="30"
+                            @click="removeItem(index)"></uv-icon>
                     </view>
                 </view>
             </view>
@@ -44,17 +60,17 @@
         <view class="addXiangFen" v-if="true">
             <view class="input">
                 <view class="left">
-                    <uv-input color="red " border="none" v-model="materialName" placeholderStyle="font-size:30rpx"
-                        fontSize="40rpx" placeholder="请输入材料名" customStyle="height:100rpx;padding-left:30rpx"
-                        inputAlign="center" maxlength="10"></uv-input>
+                    <uv-input color="red " border="none" v-model="waitAddXiangFenName"
+                        placeholderStyle="font-size:30rpx" fontSize="40rpx" placeholder="请输入材料名"
+                        customStyle="height:100rpx;padding-left:30rpx" inputAlign="center" maxlength="10"></uv-input>
                 </view>
                 <view class="right">
-                    <uv-input color="red" border="none" inputAlign="center" placeholderStyle="font-size:30rpx"
-                        fontSize="40rpx" placeholder="请输入材料重量" type="digit" customStyle="height:100rpx"
-                        maxlength="6"></uv-input>
+                    <uv-input color="red" border="none" v-model="waitAddXiangFenWeight" inputAlign="center"
+                        placeholderStyle="font-size:30rpx" fontSize="40rpx" placeholder="请输入材料重量" type="digit"
+                        customStyle="height:100rpx" maxlength="6"></uv-input>
                 </view>
             </view>
-            <button class="addButton">
+            <button class="addButton" @click="addItem">
                 点&emsp;击&emsp;添&emsp;加
             </button>
         </view>
@@ -63,67 +79,96 @@
 </template>
 
 <script setup>
-    // let demo = {
-    //     "name": "鹅梨帐中香",
-    //     "compose": [
-    //         {
-    //             "name": "檀香",
-    //             "weight": 10
-    //         },
-    //         {
-    //             "name": "花蕊石",
-    //             "weight": 20
-    //         },
-    //         {
-    //             "name": "沉香",
-    //             "weight": 30
-    //         }
-    //     ]
-    // }
     import {
+        isRef,
+        isReactive,
+        reactive,
         computed,
         ref,
-        watch
+        watch,
+        toRefs
     } from 'vue'
     const props = defineProps(["xiangFang"])
-    console.log("props:", props)
-    console.log("xiang-fang:", props.xiangFang)
 
     let xiangFang = props.xiangFang
-    console.log(xiangFang.name)
-    console.log(xiangFang["name"])
+    let xiangFangName = ref(xiangFang.name.trim())
+    let xiangFangNameLength = ref(xiangFangName.value.length)
+
+    let xiangFangUseFor = xiangFang.useFor
+
+    let xiangFangCompose = xiangFang.compose
+
+    let waitAddXiangFenName = ref("")
+    let waitAddXiangFenWeight = ref(null)
 
 
-
-
-    // todo: xiangFang为空的安全性代码
-    console.log("xiangFang.compose:", xiangFang.compose)
-
-    const totalWeight = computed(() => {
-        return xiangFang.compose.reduce((prev, curr) => {
-            console.log("prev:", prev);
-            console.log("curr:", curr)
-            return prev + curr.weight
-        }, 0)
-    })
+    // 香方当前总重量
+    const totalWeight = computed(
+        () => {
+            if (!xiangFang.compose || xiangFang.compose.length == 0) {
+                return 0
+            }
+            return xiangFang.compose.reduce(
+                (prev, curr) => {
+                    return prev + Number(curr.weight);
+                }, 0
+            )
+        }
+    )
     console.log("totalWeight:", totalWeight.value)
-    console.log("totalWeight:", totalWeight)
 
-    xiangFang.compose.push({
-        "name": "xiangmao",
-        "weight": 40
-    })
-    console.log("xiangFang.compose", xiangFang.compose)
-    console.log("totalWeight:", totalWeight.value)
+    function removeItem(index) {
+        xiangFangCompose.splice(index, 1)
+    }
 
-    let showPercent = true;
+    function addItem() {
+        if (waitAddXiangFenName.value.trim() == 0 || waitAddXiangFenWeight.value == 0) {
+            return
+        }
+        let com = {
+            "name": waitAddXiangFenName.value,
+            "weight": waitAddXiangFenWeight.value
+        }
 
-    let materialName = ""
+        xiangFangCompose.push(com)
+        waitAddXiangFenName.value = ""
+        waitAddXiangFenWeight.value = null
+        return
+    }
 
-    // watch(materialName, (materialNameNew) => {
-    //     console.log("old-materialName:", materialName)
-    //     console.log("new-materialName:", materialNameNew)
-    // })
+    function toPercentage(numeratorStr, denominatorStr, decimalPlaces = 1) {
+        let numerator;
+        let denominator;
+        if (typeof denominatorStr !== 'number') {
+            numerator = Number(numeratorStr)
+        } else {
+            numerator = numeratorStr
+        }
+        if (typeof denominatorStr !== 'number') {
+            denominator = Number(denominatorStr)
+        } else {
+            denominator = denominatorStr
+        }
+
+
+
+        // 参数验证
+        if (denominator === 0) {
+            throw new Error("分母不能为零");
+        }
+
+        // if (typeof numerator !== 'number' || typeof denominator !== 'number') {
+        //     throw new Error("分子和分母必须是数字");
+        // }
+
+        // 计算百分比
+        const percentage = (numerator / denominator) * 100;
+
+        // 格式化为指定小数位数
+        const formattedPercentage = percentage.toFixed(decimalPlaces);
+
+        return `${formattedPercentage}%`;
+    }
 </script>
 
 <style lang="scss" scoped>
@@ -144,6 +189,8 @@
         width: 200rpx;
         @extend %center-flex;
         font-size: 40rpx;
+        padding: 5rpx 15rpx;
+        // border: 1rpx solid red;
     }
 
     .xiangFangName {
@@ -234,6 +281,11 @@
         .itemName,
         .itemWeight {
             @extend %item-cell;
+        }
+
+        .itemNameLong {
+            @extend %item-cell;
+            font-size: 20rpx;
         }
 
         .itemPercent {

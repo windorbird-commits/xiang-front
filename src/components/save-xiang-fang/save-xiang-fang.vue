@@ -1,7 +1,7 @@
 <template>
     <view>
         <view class="actions">
-            <view v-if="false">
+            <view v-if="true">
                 <button class="reset" @click="open">清&emsp;空</button>
             </view>
             <view v-else>
@@ -159,7 +159,7 @@
             align-items: center;
             justify-content: space-between;
             // border: 1rpx solid blue;
-            margin: 20rpx 0 -20rpx 0;
+            margin: 20rpx;
 
             .popBackBtn {
                 width: 200rpx;
