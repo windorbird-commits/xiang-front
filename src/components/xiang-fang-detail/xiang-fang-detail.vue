@@ -89,7 +89,6 @@
         toRefs
     } from 'vue'
     const props = defineProps(["xiangFang"])
-
     const itemNameLongClass = ref('itemNameLong') //
     const itemNameClass = ref('itemName')
 
@@ -98,7 +97,7 @@
     if (xiangFang.name !== undefined) {
         xiangFangName.value = xiangFang.name.trim()
     }
-
+    console.log("detail compose:", xiangFang.compose)
     let xiangFangNameLength = ref(xiangFangName.value.length)
     let xiangFangUseFor = xiangFang.useFor
     let xiangFangCompose = xiangFang.compose
@@ -136,6 +135,7 @@
             0) {
             return
         }
+
         let com = {
             "name": waitAddXiangFenName.value,
             "weight": waitAddXiangFenWeight.value
