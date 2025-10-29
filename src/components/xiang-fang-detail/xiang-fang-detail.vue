@@ -105,7 +105,6 @@
     let waitAddXiangFenWeight = ref(null)
 
 
-
     // 香方当前总重量
     const totalWeight = computed(
         () => {
@@ -124,6 +123,8 @@
     function removeItem(index) {
         xiangFangCompose.splice(index, 1)
     }
+
+
 
     function addItem() {
         if (waitAddXiangFenName.value.trim() == 0 || waitAddXiangFenWeight.value == null || waitAddXiangFenWeight
@@ -174,10 +175,6 @@
         const formattedPercentage = percentage.toFixed(decimalPlaces);
 
         return `${formattedPercentage}%`;
-    }
-
-    function parseFloat(b) {
-        return parseFloat(parseFloat(b).toFixed(2))
     }
 </script>
 
