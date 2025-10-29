@@ -27,7 +27,7 @@
             <view class="items">
                 <view class="item" v-for="(item, index) in xiangFangCompose" :key="`${item.name}-${item.weight}`">
 
-                    <view :class="item.name.length<=3?itemName:itemNameLong">
+                    <view :class="item.name.length<=3?itemNameClass:itemNameLongClass">
                         {{item.name}}
                     </view>
                     <view class="itemWeight">
@@ -40,7 +40,7 @@
                         <uv-icon name="close" color="#f48e4b" size="30" @click="removeItem(index)"></uv-icon>
                     </view>
                 </view>
-                <view class="item">
+                <view class="item" v-if="totalWeight > 0">
                     <view class="itemName">
                         合计
                     </view>
@@ -51,7 +51,7 @@
                         100%
                     </view>
                     <view class="removeAction">
-                        <uv-icon v-show="disable" name="close" color="#f48e4b" size="30"
+                        <uv-icon v-show="false" name="close" color="#f48e4b" size="30"
                             @click="removeItem(index)"></uv-icon>
                     </view>
                 </view>
@@ -90,6 +90,9 @@
     } from 'vue'
     const props = defineProps(["xiangFang"])
 
+    const itemNameLongClass = ref('itemNameLong') //
+    const itemNameClass = ref('itemName')
+
     let xiangFang = props.xiangFang
     let xiangFangName = ref(xiangFang.name.trim())
     let xiangFangNameLength = ref(xiangFangName.value.length)
@@ -100,6 +103,7 @@
 
     let waitAddXiangFenName = ref("")
     let waitAddXiangFenWeight = ref(null)
+
 
 
     // 香方当前总重量
@@ -122,7 +126,9 @@
     }
 
     function addItem() {
-        if (waitAddXiangFenName.value.trim() == 0 || waitAddXiangFenWeight.value == 0) {
+        if (waitAddXiangFenName.value.trim() == 0 || waitAddXiangFenWeight.value == null || waitAddXiangFenWeight
+            .value ==
+            0) {
             return
         }
         let com = {
@@ -168,6 +174,10 @@
         const formattedPercentage = percentage.toFixed(decimalPlaces);
 
         return `${formattedPercentage}%`;
+    }
+
+    function parseFloat(b) {
+        return parseFloat(parseFloat(b).toFixed(2))
     }
 </script>
 
@@ -285,7 +295,8 @@
 
         .itemNameLong {
             @extend %item-cell;
-            font-size: 20rpx;
+            font-size: 25rpx;
+
         }
 
         .itemPercent {
