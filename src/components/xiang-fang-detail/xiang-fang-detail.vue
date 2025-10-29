@@ -2,7 +2,7 @@
     <view>
         <view class="xiangFangName" v-if="xiangFangNameLength>0">
             <text class="name">{{xiangFangName}}</text>
-            <view class="type">
+            <view class="useFor" v-if="xiangFangUseFor !== undefined">
                 <template v-for="(item) in xiangFangUseFor">
                     <text> {{item}}&emsp; </text>
                 </template>
@@ -60,12 +60,12 @@
         <view class="addXiangFen" v-if="true">
             <view class="input">
                 <view class="left">
-                    <uv-input color="red " border="none" v-model="waitAddXiangFenName"
+                    <uv-input color="#1e90ff " border="none" v-model="waitAddXiangFenName"
                         placeholderStyle="font-size:30rpx" fontSize="40rpx" placeholder="请输入材料名"
                         customStyle="height:100rpx;padding-left:30rpx" inputAlign="center" maxlength="10"></uv-input>
                 </view>
                 <view class="right">
-                    <uv-input color="red" border="none" v-model="waitAddXiangFenWeight" inputAlign="center"
+                    <uv-input color="#1e90ff" border="none" v-model="waitAddXiangFenWeight" inputAlign="center"
                         placeholderStyle="font-size:30rpx" fontSize="40rpx" placeholder="请输入材料重量" type="digit"
                         customStyle="height:100rpx" maxlength="6"></uv-input>
                 </view>
@@ -94,11 +94,13 @@
     const itemNameClass = ref('itemName')
 
     let xiangFang = props.xiangFang
-    let xiangFangName = ref(xiangFang.name.trim())
+    let xiangFangName = ref("")
+    if (xiangFang.name !== undefined) {
+        xiangFangName.value = xiangFang.name.trim()
+    }
+
     let xiangFangNameLength = ref(xiangFangName.value.length)
-
     let xiangFangUseFor = xiangFang.useFor
-
     let xiangFangCompose = xiangFang.compose
 
     let waitAddXiangFenName = ref("")
@@ -111,11 +113,12 @@
             if (!xiangFang.compose || xiangFang.compose.length == 0) {
                 return 0
             }
-            return xiangFang.compose.reduce(
+            let tmpTotal = xiangFang.compose.reduce(
                 (prev, curr) => {
                     return prev + Number(curr.weight);
                 }, 0
             )
+            return Math.round(tmpTotal * 100) / 100;
         }
     )
     console.log("totalWeight:", totalWeight.value)
@@ -127,7 +130,8 @@
 
 
     function addItem() {
-        if (waitAddXiangFenName.value.trim() == 0 || waitAddXiangFenWeight.value == null || waitAddXiangFenWeight
+        if (waitAddXiangFenName.value == undefined || waitAddXiangFenName.value.trim() == 0 || waitAddXiangFenWeight
+            .value == null || waitAddXiangFenWeight
             .value ==
             0) {
             return
@@ -226,7 +230,7 @@
             letter-spacing: 3rpx;
         }
 
-        .type {
+        .useFor {
             height: 80rpx;
             width: 100%;
             // border: 1rpx solid blue;
