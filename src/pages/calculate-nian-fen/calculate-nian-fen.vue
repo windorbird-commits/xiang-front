@@ -1,7 +1,6 @@
 <template>
     <view class="container">
-        <xiang-fang-detail ref="xiangFangDetailRef" class="xiangFangDetail"
-            v-bind:xiangFang="xiangFang"></xiang-fang-detail>
+        <xiang-fang-detail ref="xiangFangDetailRef" class="xiangFangDetail"></xiang-fang-detail>
 
         <view class='nianfenGroup'>
             <view class="nianfenInput">
@@ -9,7 +8,7 @@
                     粘粉比例
                 </view>
                 <view class="percent">
-                    <uv-input color="#1e90ff" v-model="nianFenPercent" type="digit" inputAlign="center" border="none"
+                    <uv-input color="#1e90ff" v-model="xiangFangStore.nianFenPercent" type="digit" inputAlign="center" border="none"
                         placeholder="请输入粘粉百分比" maxlength="6" fontSize="40rpx" customStyle="height:100rpx"
                         placeholderStyle="font-size:30rpx" @blur="checkNum"></uv-input>
                     <!-- @input="checkNum" 在安卓机打开页面的时候，触发input事件 -->
@@ -19,7 +18,7 @@
                 </view>
             </view>
             <view>
-                <button class="confirmButton" @click="addNianFen(xiangFang, nianFenPercent)">确&emsp;&emsp;定</button>
+                <button class="confirmButton" @click="addNianFen">确&emsp;&emsp;定</button>
             </view>
         </view>
         <save-xiang-fang></save-xiang-fang>
@@ -35,37 +34,23 @@
         isReactive,
         provide
     } from 'vue';
+    import { useXiangFangStore } from '@/stores/xiangFangStore';
 
-    let xiangFang = reactive({})
-    // let xiangFang = reactive({
-    //     "name": "鹅梨帐中香",
-    //     "useFor": [],
-    //     "compose": []
-    // })
-    // let xiangFang = reactive({
-    //     "name": "鹅梨帐中香",
-    //     "useFor": ["线香", "塔香"],
-    //     "compose": [{
-    //         "name": "檀香",
-    //         "weight": "50"
-    //     }, {
-    //         "name": "沉香",
-    //         "weight": "10"
-    //     }]
-
-    // })
-
-    let nianFenPercent = ref(null)
+    const xiangFangStore = useXiangFangStore();
     const xiangFangDetailRef = ref(null);
 
-    // 修改后的函数，接收参数
-    function addNianFen(xiangFangParam, nianFenPercentParam) {
+    // 修改后的函数，使用 store 中的数据
+    function addNianFen() {
+        console.log("xiangFangStore:"  , xiangFangStore)
+        const xiangFangParam = xiangFangStore.xiangFang;
+        const nianFenPercentParam = xiangFangStore.nianFenPercent;
 
         // 检查输入是否有效
         // 去除可能的空格
         const trimmedValue = nianFenPercentParam ? nianFenPercentParam.toString().trim() :
             ""; //nianFenPercentParam 已经自动解包了，不需要再使用.value
         if (!trimmedValue || trimmedValue === "" || isNaN(trimmedValue)) {
+            console.log("粘粉比例不能为空或不是数字")
             return
         }
 
@@ -78,6 +63,7 @@
         }
 
         if (!xiangFangParam.compose || xiangFangParam.compose.length <= 0 || xiangFangParam.compose.length > 30) {
+            console.log("材料不能为空或超过30个材料")
             return
         }
 
@@ -95,17 +81,13 @@
             "weight": nianFenWeight.toFixed(2).toString() // 保留两位小数
         }
 
-        // 修改参数对象，这会反映到原始变量上
+        // 修改 store 中的数据
         xiangFangParam.compose.push(z)
-        nianFenPercent.value = null
-        // 验证是否是同一个对象
-        // console.log("xiangFangParam === xiangFang:", xiangFangParam === xiangFang) //true
-        // console.log("nianFenPercentParam === nianFenPercent:", nianFenPercentParam === nianFenPercent) //false
+        xiangFangStore.nianFenPercent = null
     }
 
 
     function checkNum(value) {
-
         // 确保值是数字类型
         const numValue = Number(value)
 

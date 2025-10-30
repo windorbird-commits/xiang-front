@@ -2,7 +2,7 @@
     <view>
         <view class="actions">
             <view v-if="true">
-                <button class="reset" @click="open">清&emsp;空</button>
+                <button class="reset" @click="clear">清&emsp;空</button>
             </view>
             <view v-else>
                 <button class="reset">收&emsp;藏</button>
@@ -49,8 +49,10 @@
         ref,
         inject
     } from 'vue';
+    import { useXiangFangStore } from '@/stores/xiangFangStore';
 
     let popup = ref(null);
+    const xiangFangStore = useXiangFangStore();
 
     function open() {
         popup.value.open();
@@ -58,6 +60,10 @@
 
     function change(e) {
         console.log('弹窗状态改变：', e);
+    }
+
+    function clear() {
+        xiangFangStore.clearAll();
     }
 </script>
 

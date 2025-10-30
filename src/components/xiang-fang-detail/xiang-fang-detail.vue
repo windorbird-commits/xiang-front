@@ -64,12 +64,12 @@
         <view class="addXiangFen" v-if="true">
             <view class="input">
                 <view class="left">
-                    <uv-input color="#1e90ff " border="none" v-model="waitAddXiangFenName"
+                    <uv-input color="#1e90ff " border="none" v-model="xiangFangStore.waitAddXiangFenName"
                         placeholderStyle="font-size:30rpx" fontSize="40rpx" placeholder="请输入材料名"
                         customStyle="height:100rpx;padding-left:30rpx" inputAlign="center" maxlength="10"></uv-input>
                 </view>
                 <view class="right">
-                    <uv-input color="#1e90ff" border="none" v-model="waitAddXiangFenWeight" inputAlign="center"
+                    <uv-input color="#1e90ff" border="none" v-model="xiangFangStore.waitAddXiangFenWeight" inputAlign="center"
                         placeholderStyle="font-size:30rpx" fontSize="40rpx" placeholder="请输入材料重量" type="digit"
                         customStyle="height:100rpx" maxlength="6"></uv-input>
                 </view>
@@ -95,14 +95,18 @@
         toRef,
         inject,
     } from 'vue'
+    import { useXiangFangStore } from '@/stores/xiangFangStore';
 
-    const props = defineProps(["xiangFang"])
     const itemNameLongClass = ref('itemNameLong') //
     const itemNameClass = ref('itemName')
     // const itemDarkBackClass = ref('itemDarkBack')
 
-    let xiangFang = props.xiangFang
+    const xiangFangStore = useXiangFangStore();
+    
+    // 统一使用 store 中的香方数据
+    let xiangFang = xiangFangStore.xiangFang;
     console.log("xiangFang:", xiangFang)
+    
     let xiangFangName = ref("")
     if (xiangFang?.name) {
         xiangFangName.value = xiangFang.name.trim()
@@ -110,12 +114,9 @@
 
     let xiangFangNameLength = ref(xiangFangName.value.length)
 
-    let xiangFangUseFor = toRef(props.xiangFang, "useFor")
-
-    let xiangFangCompose = toRef(props.xiangFang, "compose")
-    let waitAddXiangFenName = ref("")
-    let waitAddXiangFenWeight = ref(null)
-
+    // 统一使用 store 中的数据
+    let xiangFangUseFor = toRef(xiangFangStore.xiangFang, "useFor")
+    let xiangFangCompose = toRef(xiangFangStore.xiangFang, "compose")
 
     // 香方当前总重量
     const totalWeight = computed(
@@ -136,31 +137,33 @@
         xiangFang.compose.splice(index, 1)
     }
 
-
-
     function addItem() {
-        if (waitAddXiangFenName.value == undefined || waitAddXiangFenName.value.trim() == 0 || waitAddXiangFenWeight
-            .value == null) {
-            openToast("材料名或材料重量不能为空")
+        console.log("xiangFangStore:",xiangFangStore)
+                   console.log("xiangFangStore.waitAddXiangFenName:",xiangFangStore.waitAddXiangFenName);
+                console.log("xiangFangStore.waitAddXiangFenName:",xiangFangStore.waitAddXiangFenName);
+                console.log("xiangFangStore.waitAddXiangFenWeight:",xiangFangStore.waitAddXiangFenWeight);
+        if (xiangFangStore.waitAddXiangFenName == undefined || xiangFangStore.waitAddXiangFenName.trim().length == 0 || xiangFangStore.waitAddXiangFenWeight == null) {
+                openToast("材料名或材料重量不能为空")
             return
         }
-
-        if (waitAddXiangFenWeight.value <= 0) {
+        let weight = Number(xiangFangStore.waitAddXiangFenWeight)
+        if (isNaN(weight) || weight <= 0) {
             openToast("材料重量不能小于或等于0")
             return
         }
 
-
         let com = {
-            "name": waitAddXiangFenName.value,
-            "weight": waitAddXiangFenWeight.value
+            "name": xiangFangStore.waitAddXiangFenName,
+            "weight": weight
         }
         if (!xiangFang.compose) {
             xiangFang.compose = []
         }
         xiangFang.compose.push(com)
-        waitAddXiangFenName.value = ""
-        waitAddXiangFenWeight.value = null
+        
+        // 清空输入框
+        xiangFangStore.waitAddXiangFenName = ""
+        xiangFangStore.waitAddXiangFenWeight = null
         return
     }
 
@@ -181,8 +184,6 @@
         } else {
             denominator = denominatorStr
         }
-
-
 
         // 参数验证
         if (denominator === 0) {
