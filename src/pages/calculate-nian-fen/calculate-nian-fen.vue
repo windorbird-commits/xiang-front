@@ -17,7 +17,7 @@
                 </view>
             </view>
             <view>
-                <button class="confirmButton" @click="addNianFen">确&emsp;&emsp;定</button>
+                <button class="confirmButton" @click="addNianFen(xiangFang, nianFenPercent)">确&emsp;&emsp;定</button>
             </view>
         </view>
         <save-xiang-fang></save-xiang-fang>
@@ -32,7 +32,9 @@
     } from 'process';
     import {
         reactive,
-        ref
+        ref,
+        isRef,
+        isReactive
     } from 'vue';
 
     let xiangFang = reactive({
@@ -64,38 +66,65 @@
     let nianFenPercent = ref(null)
     console.log("nianFenPercent out:", nianFenPercent)
 
-    function addNianFen() {
-        console.log("nianFenPercent:", nianFenPercent)
-        if (nianFenPercent.value >= 100) {
+    // 修改后的函数，接收参数
+function addNianFen(xiangFangParam, nianFenPercentParam) {
+        console.log("xiangFangParam isReactive:",isReactive( xiangFangParam))
+        
+        // 检查输入是否有效
+        // 去除可能的空格
+        const trimmedValue = nianFenPercentParam?nianFenPercentParam.toString().trim() : ""; //nianFenPercentParam 已经自动解包了，不需要再使用.value
+        if (!trimmedValue || trimmedValue === "" || isNaN(trimmedValue)) {
+            console.log("nian fen percent is invalid - value:", trimmedValue)
+            return
+        }
+        
+        // 转换为数字
+        const percent = Number(nianFenPercentParam)
+        
+        if (percent >= 100) {
             console.log("nian fen percent >= 100")
             return
         }
-        if (!xiangFang.compose || xiangFang.compose.length == 0) {
+        
+        if (!xiangFangParam.compose || xiangFangParam.compose.length == 0) {
             return 0
         }
-        let tmpTotal = xiangFang.compose.reduce(
+        
+        let tmpTotal = xiangFangParam.compose.reduce(
             (prev, curr) => {
                 return prev + Number(curr.weight);
             }, 0
         )
-        let allTotal = tmpTotal / (1 - nianFenPercent / 100)
+        
+        let allTotal = tmpTotal / (1 - percent / 100)
         let nianFenWeight = allTotal - tmpTotal
+        
         let z = {
             "name": "粘粉",
-            "weight": nianFenWeight.toString()
+            "weight": nianFenWeight.toFixed(2).toString() // 保留两位小数
         }
+        
         console.log("z:", z)
-        xiangFang.compose.push(z)
+        // 修改参数对象，这会反映到原始变量上
+        xiangFangParam.compose.push(z)
+        
+        // 验证是否是同一个对象
+        console.log("xiangFangParam === xiangFang:", xiangFangParam === xiangFang)//true
+        console.log("nianFenPercentParam === nianFenPercent:", nianFenPercentParam === nianFenPercent) //false
     }
 
 
     function checkNum(value) {
-        if (value > 100) {
+        console.log("checkNumInput:", value, "Type:", typeof value)
+        
+        // 确保值是数字类型
+        const numValue = Number(value)
+        
+        if (!isNaN(numValue) && numValue > 100) {
             openToast()
         } else {
             toastRef.value.hide()
         }
-        console.log("checkNumInput:", value)
     }
     // // 2. 脚本中：声明与模板 ref 同名的变量（初始值为 null）
     const toastRef = ref(null);
