@@ -65,11 +65,18 @@
     const clearInputs = inject('clearInputs', null);
 
     function clear() {
+        console.log("clear clear clear")
+        console.log("clearXiangFang:", clearXiangFang)
+        console.log("typeof clearXiangFang:", typeof clearXiangFang)
+        console.log("clearInputs:", clearInputs)
+        console.log("typeof clearInputs:", typeof clearXiangFang)
         // 调用父组件提供的clear方法
         if (clearXiangFang && typeof clearXiangFang === 'function') {
+            console.log("clearXiangFang clearXiangFang clearXiangFang")
             clearXiangFang();
         }
         if (clearInputs && typeof clearInputs === 'function') {
+            console.log("clearInputs clearInputs clearInputs")
             clearInputs();
         }
     }

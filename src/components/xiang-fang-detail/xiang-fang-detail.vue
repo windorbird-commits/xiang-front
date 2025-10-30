@@ -2,7 +2,7 @@
     <view>
         <view class="xiangFangName" v-if="xiangFangNameLength>0">
             <text class="name">{{xiangFangName}}</text>
-            <view class="useFor" v-if="xiangFangUseFor !== undefined">
+            <view class="useFor" v-if="xiangFangUseFor.length>0">
                 <template v-for="(item) in xiangFangUseFor">
                     <text> {{item}}&emsp; </text>
                 </template>
@@ -25,18 +25,20 @@
                 </view>
             </view>
             <view class="items">
-                <view class="item" v-for="(item, index) in xiangFangCompose" :key="`${item.name}-${item.weight}`">
+                <view class="item" v-for="(item, index) in xiangFangCompose" :key="`${item.name}-${item.weight}`"
+                    :class="{itemDarkBack:index%2===1}">
 
-                    <view :class="item.name.length<=3?itemNameClass:itemNameLongClass">
+                    <view :class="item.name.length<=3?itemNameClass:itemNameLongClass"
+                        v-if="xiangFangCompose.length > 0">
                         {{item.name}}
                     </view>
-                    <view class="itemWeight">
+                    <view class="itemWeight" v-if="xiangFangCompose.length > 0">
                         {{item.weight}}
                     </view>
-                    <view class="itemPercent">
+                    <view class="itemPercent" v-if="xiangFangCompose.length > 0">
                         {{toPercentage(item.weight, totalWeight)}}
                     </view>
-                    <view class="removeAction">
+                    <view class="removeAction" v-if="xiangFangCompose.length > 0">
                         <uv-icon name="close" color="#f48e4b" size="30" @click="removeItem(index)"></uv-icon>
                     </view>
                 </view>
@@ -74,6 +76,7 @@
                 点&emsp;击&emsp;添&emsp;加
             </button>
         </view>
+        <uv-toast ref="toastRef"></uv-toast>
     </view>
 
 </template>
@@ -88,24 +91,26 @@
         watch,
         toRefs,
         toRef,
-        defineExpose
+        defineExpose,
+        inject,
     } from 'vue'
+
     const props = defineProps(["xiangFang"])
     const itemNameLongClass = ref('itemNameLong') //
     const itemNameClass = ref('itemName')
+    // const itemDarkBackClass = ref('itemDarkBack')
 
     let xiangFang = props.xiangFang
     let xiangFangName = ref("")
-    if (xiangFang.name !== undefined) {
+    if (xiangFang?.name) {
         xiangFangName.value = xiangFang.name.trim()
     }
-    console.log("detail compose:", xiangFang.compose)
+
     let xiangFangNameLength = ref(xiangFangName.value.length)
     // let xiangFangUseFor = xiangFang.useFor //非响应式的
     let xiangFangUseFor = toRef(props.xiangFang, "useFor")
     // let xiangFangCompose = xiangFang.compose
     let xiangFangCompose = toRef(props.xiangFang, "compose")
-
     let waitAddXiangFenName = ref("")
     let waitAddXiangFenWeight = ref(null)
 
@@ -113,7 +118,7 @@
     // 香方当前总重量
     const totalWeight = computed(
         () => {
-            if (!xiangFang.compose || xiangFang.compose.length == 0) {
+            if (!xiangFang || !xiangFang.compose || xiangFang.compose.length == 0) {
                 return 0
             }
             let tmpTotal = xiangFang.compose.reduce(
@@ -124,7 +129,6 @@
             return Math.round(tmpTotal * 100) / 100;
         }
     )
-    console.log("totalWeight:", totalWeight.value)
 
     function removeItem(index) {
         xiangFang.compose.splice(index, 1)
@@ -134,17 +138,24 @@
 
     function addItem() {
         if (waitAddXiangFenName.value == undefined || waitAddXiangFenName.value.trim() == 0 || waitAddXiangFenWeight
-            .value == null || waitAddXiangFenWeight
-            .value ==
-            0) {
+            .value == null) {
+            openToast("材料名或材料重量不能为空")
             return
         }
+
+        if (waitAddXiangFenWeight.value <= 0) {
+            openToast("材料重量不能小于或等于0")
+            return
+        }
+
 
         let com = {
             "name": waitAddXiangFenName.value,
             "weight": waitAddXiangFenWeight.value
         }
-
+        if (!xiangFang.compose) {
+            xiangFang.compose = []
+        }
         xiangFang.compose.push(com)
         waitAddXiangFenName.value = ""
         waitAddXiangFenWeight.value = null
@@ -152,9 +163,13 @@
     }
 
     function toPercentage(numeratorStr, denominatorStr, decimalPlaces = 1) {
+        if (numeratorStr === undefined || denominatorStr === undefined) {
+            return
+        }
+
         let numerator;
         let denominator;
-        if (typeof denominatorStr !== 'number') {
+        if (typeof numeratorStr !== 'number') {
             numerator = Number(numeratorStr)
         } else {
             numerator = numeratorStr
@@ -169,12 +184,8 @@
 
         // 参数验证
         if (denominator === 0) {
-            return 
+            return
         }
-
-        // if (typeof numerator !== 'number' || typeof denominator !== 'number') {
-        //     throw new Error("分子和分母必须是数字");
-        // }
 
         // 计算百分比
         const percentage = (numerator / denominator) * 100;
@@ -187,18 +198,29 @@
 
     // 清空input的方法
     function clearInputs() {
-        console.log("xiang-fang-detail: xiangFang:", xiangFang)
-        console.log("xiang-fang-detail, xiangFangCompose:",xiangFangCompose)
         waitAddXiangFenName.value = "";
         waitAddXiangFenWeight.value = null;
-        console.log("waitAddXiangFenName:", waitAddXiangFenName)
-        console.log("waitAddXiangFenWeight:", waitAddXiangFenWeight)
     }
 
     // 向父组件暴露clearInputs方法
     defineExpose({
         clearInputs
     });
+    // // 2. 脚本中：声明与模板 ref 同名的变量（初始值为 null）
+    const toastRef = ref(null);
+
+    // 3. 调用 show 方法
+    function openToast(message) {
+        // 先判断组件已挂载（避免未初始化时调用报错）
+        if (toastRef.value) {
+            toastRef.value.show({
+                type: 'default',
+                icon: false,
+                overlay: false,
+                message: message
+            }); // 等价于 Vue2 的 this.$refs.toast.show()
+        }
+    }
 </script>
 
 <style lang="scss" scoped>
@@ -297,6 +319,11 @@
         }
     }
 
+    .itemDarkBack {
+        background-color: rgba($qianHeSeBeiJing, 0.3);
+
+    }
+
     .item {
         padding: 10rpx 0;
 
@@ -305,8 +332,10 @@
 
         // 添加hover效果
         &:hover {
-            background-color: rgba($qianHeSeBeiJing, 0.3);
+            background-color: #FFE8A1;
         }
+
+
 
         .itemName,
         .itemWeight {

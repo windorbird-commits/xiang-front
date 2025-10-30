@@ -1,6 +1,7 @@
 <template>
     <view class="container">
-        <xiang-fang-detail ref="xiangFangDetailRef" class="xiangFangDetail" v-bind:xiangFang="xiangFang"></xiang-fang-detail>
+        <xiang-fang-detail ref="xiangFangDetailRef" class="xiangFangDetail"
+            v-bind:xiangFang="xiangFang"></xiang-fang-detail>
 
         <view class='nianfenGroup'>
             <view class="nianfenInput">
@@ -22,7 +23,6 @@
         </view>
         <save-xiang-fang></save-xiang-fang>
         <uv-toast ref="toastRef"></uv-toast>
-
     </view>
 </template>
 
@@ -38,31 +38,24 @@
         provide
     } from 'vue';
 
+    // let xiangFang = reactive({})
     let xiangFang = reactive({
         "name": "鹅梨帐中香",
-        "useFor": ['线香', '塔香', '合香珠'],
-        "compose": [{
-                "name": "檀香",
-                "weight": "10"
-            },
-            {
-                "name": "花蕊石",
-                "weight": "20"
-            },
-            {
-                "name": "沉香",
-                "weight": "30"
-            },
-            {
-                "name": "埃塞俄比亚乳粉",
-                "weight": "50"
-            },
-            {
-                "name": "松塔",
-                "weight": "50"
-            }
-        ]
+        "useFor": [],
+        "compose": []
     })
+    // let xiangFang = reactive({
+    //     "name": "鹅梨帐中香",
+    //     "useFor": ["线香", "塔香"],
+    //     "compose": [{
+    //         "name": "檀香",
+    //         "weight": "50"
+    //     }, {
+    //         "name": "沉香",
+    //         "weight": "10"
+    //     }]
+
+    // })
 
     let nianFenPercent = ref(null)
     const xiangFangDetailRef = ref(null);
@@ -73,16 +66,12 @@
         xiangFang.name = "";
         xiangFang.useFor = [];
         xiangFang.compose = [];
-        
+
         // 清空nianFenPercent
         nianFenPercent.value = null;
-        console.log("nianFen.name:", xiangFang.name)
-        console.log("nianFen.useFor:", xiangFang.useFor)
-        console.log("nianFen.compose:", xiangFang.compose)
-        console.log("nianFenPercent:", nianFenPercent.value)
     }
 
-        // 提供给子组件的clearInputs方法
+    // 提供给子组件的clearInputs方法
     function clearAllInputs() {
         // 清空xiang-fang-detail组件中的input
         if (xiangFangDetailRef.value && xiangFangDetailRef.value.clearInputs) {
@@ -93,63 +82,59 @@
     // 向子组件提供clear方法
     provide('clearXiangFang', clearXiangFangData);
     provide('clearInputs', clearAllInputs);
-
     // 修改后的函数，接收参数
-function addNianFen(xiangFangParam, nianFenPercentParam) {
-        console.log("xiangFangParam isReactive:",isReactive( xiangFangParam))
-        
+    function addNianFen(xiangFangParam, nianFenPercentParam) {
+
         // 检查输入是否有效
         // 去除可能的空格
-        const trimmedValue = nianFenPercentParam?nianFenPercentParam.toString().trim() : ""; //nianFenPercentParam 已经自动解包了，不需要再使用.value
+        const trimmedValue = nianFenPercentParam ? nianFenPercentParam.toString().trim() :
+            ""; //nianFenPercentParam 已经自动解包了，不需要再使用.value
         if (!trimmedValue || trimmedValue === "" || isNaN(trimmedValue)) {
-            console.log("nian fen percent is invalid - value:", trimmedValue)
             return
         }
-        
+
         // 转换为数字
         const percent = Number(nianFenPercentParam)
-        
-        if (percent >= 100) {
-            console.log("nian fen percent >= 100")
+
+        if (percent >= 100 || percent <= 0) {
+            openToast("粘粉所占比例应在1~99之间")
             return
         }
-        
-        if (!xiangFangParam.compose || xiangFangParam.compose.length == 0) {
-            return 0
+
+        if (!xiangFangParam.compose || xiangFangParam.compose.length <= 0 || xiangFangParam.compose.length > 30) {
+            return
         }
-        
+
         let tmpTotal = xiangFangParam.compose.reduce(
             (prev, curr) => {
                 return prev + Number(curr.weight);
             }, 0
         )
-        
+
         let allTotal = tmpTotal / (1 - percent / 100)
         let nianFenWeight = allTotal - tmpTotal
-        
+
         let z = {
             "name": "粘粉",
             "weight": nianFenWeight.toFixed(2).toString() // 保留两位小数
         }
-        
-        console.log("z:", z)
+
         // 修改参数对象，这会反映到原始变量上
         xiangFangParam.compose.push(z)
-        
+        nianFenPercent.value = null
         // 验证是否是同一个对象
-        console.log("xiangFangParam === xiangFang:", xiangFangParam === xiangFang)//true
-        console.log("nianFenPercentParam === nianFenPercent:", nianFenPercentParam === nianFenPercent) //false
+        // console.log("xiangFangParam === xiangFang:", xiangFangParam === xiangFang) //true
+        // console.log("nianFenPercentParam === nianFenPercent:", nianFenPercentParam === nianFenPercent) //false
     }
 
 
     function checkNum(value) {
-        console.log("checkNumInput:", value, "Type:", typeof value)
-        
+
         // 确保值是数字类型
         const numValue = Number(value)
-        
-        if (!isNaN(numValue) && numValue > 100) {
-            openToast()
+
+        if (!isNaN(numValue) && (numValue >= 100) || numValue <= 0) {
+            openToast("粘粉所占比例应在1~99之间")
         } else {
             toastRef.value.hide()
         }
@@ -158,14 +143,14 @@ function addNianFen(xiangFangParam, nianFenPercentParam) {
     const toastRef = ref(null);
 
     // 3. 调用 show 方法
-    function openToast() {
+    function openToast(message) {
         // 先判断组件已挂载（避免未初始化时调用报错）
         if (toastRef.value) {
             toastRef.value.show({
                 type: 'default',
                 icon: false,
                 overlay: false,
-                message: "粘粉所占比例不能超过100%"
+                message: message
             }); // 等价于 Vue2 的 this.$refs.toast.show()
         }
     }
