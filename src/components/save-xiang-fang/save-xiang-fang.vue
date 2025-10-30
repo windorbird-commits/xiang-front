@@ -2,7 +2,7 @@
     <view>
         <view class="actions">
             <view v-if="true">
-                <button class="reset" @click="clear">清&emsp;空</button>
+                <button class="reset" @click="open">清&emsp;空</button>
             </view>
             <view v-else>
                 <button class="reset">收&emsp;藏</button>
@@ -58,27 +58,6 @@
 
     function change(e) {
         console.log('弹窗状态改变：', e);
-    }
-
-    // 注入父组件提供的clear方法
-    const clearXiangFang = inject('clearXiangFang', null);
-    const clearInputs = inject('clearInputs', null);
-
-    function clear() {
-        console.log("clear clear clear")
-        console.log("clearXiangFang:", clearXiangFang)
-        console.log("typeof clearXiangFang:", typeof clearXiangFang)
-        console.log("clearInputs:", clearInputs)
-        console.log("typeof clearInputs:", typeof clearXiangFang)
-        // 调用父组件提供的clear方法
-        if (clearXiangFang && typeof clearXiangFang === 'function') {
-            console.log("clearXiangFang clearXiangFang clearXiangFang")
-            clearXiangFang();
-        }
-        if (clearInputs && typeof clearInputs === 'function') {
-            console.log("clearInputs clearInputs clearInputs")
-            clearInputs();
-        }
     }
 </script>
 

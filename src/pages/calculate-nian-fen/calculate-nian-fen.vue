@@ -12,6 +12,7 @@
                     <uv-input color="#1e90ff" v-model="nianFenPercent" type="digit" inputAlign="center" border="none"
                         placeholder="请输入粘粉百分比" maxlength="6" fontSize="40rpx" customStyle="height:100rpx"
                         placeholderStyle="font-size:30rpx" @blur="checkNum"></uv-input>
+                    <!-- @input="checkNum" 在安卓机打开页面的时候，触发input事件 -->
                 </view>
                 <view class="iconPercent">
                     <text>%</text>
@@ -27,9 +28,6 @@
 </template>
 
 <script setup>
-    import {
-        nextTick
-    } from 'process';
     import {
         reactive,
         ref,
@@ -60,28 +58,6 @@
     let nianFenPercent = ref(null)
     const xiangFangDetailRef = ref(null);
 
-    // 提供给子组件的clear方法
-    function clearXiangFangData() {
-        // 清空xiangFang对象
-        xiangFang.name = "";
-        xiangFang.useFor = [];
-        xiangFang.compose = [];
-
-        // 清空nianFenPercent
-        nianFenPercent.value = null;
-    }
-
-    // 提供给子组件的clearInputs方法
-    function clearAllInputs() {
-        // 清空xiang-fang-detail组件中的input
-        if (xiangFangDetailRef.value && xiangFangDetailRef.value.clearInputs) {
-            xiangFangDetailRef.value.clearInputs();
-        }
-    }
-
-    // 向子组件提供clear方法
-    provide('clearXiangFang', clearXiangFangData);
-    provide('clearInputs', clearAllInputs);
     // 修改后的函数，接收参数
     function addNianFen(xiangFangParam, nianFenPercentParam) {
 

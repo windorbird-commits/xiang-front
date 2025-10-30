@@ -93,7 +93,6 @@
         watch,
         toRefs,
         toRef,
-        defineExpose,
         inject,
     } from 'vue'
 
@@ -199,16 +198,6 @@
         return `${formattedPercentage}%`;
     }
 
-    // 清空input的方法
-    function clearInputs() {
-        waitAddXiangFenName.value = "";
-        waitAddXiangFenWeight.value = null;
-    }
-
-    // 向父组件暴露clearInputs方法
-    defineExpose({
-        clearInputs
-    });
     // // 2. 脚本中：声明与模板 ref 同名的变量（初始值为 null）
     const toastRef = ref(null);
 
