@@ -28,17 +28,19 @@
                 <view class="item" v-for="(item, index) in xiangFangCompose" :key="`${item.name}-${item.weight}`"
                     :class="{itemDarkBack:index%2===1}">
 
-                    <view :class="item.name.length<=3?itemNameClass:itemNameLongClass"
-                        v-if="xiangFangCompose.length > 0">
+                    <view :class="item.name.length<=3?itemNameClass:itemNameLongClass">
                         {{item.name}}
                     </view>
-                    <view class="itemWeight" v-if="xiangFangCompose.length > 0">
+
+                    <view class="itemWeight">
                         {{item.weight}}
                     </view>
-                    <view class="itemPercent" v-if="xiangFangCompose.length > 0">
+
+                    <view class="itemPercent">
                         {{toPercentage(item.weight, totalWeight)}}
                     </view>
-                    <view class="removeAction" v-if="xiangFangCompose.length > 0">
+
+                    <view class="removeAction">
                         <uv-icon name="close" color="#f48e4b" size="30" @click="removeItem(index)"></uv-icon>
                     </view>
                 </view>
@@ -101,15 +103,16 @@
     // const itemDarkBackClass = ref('itemDarkBack')
 
     let xiangFang = props.xiangFang
+    console.log("xiangFang:", xiangFang)
     let xiangFangName = ref("")
     if (xiangFang?.name) {
         xiangFangName.value = xiangFang.name.trim()
     }
 
     let xiangFangNameLength = ref(xiangFangName.value.length)
-    // let xiangFangUseFor = xiangFang.useFor //非响应式的
+
     let xiangFangUseFor = toRef(props.xiangFang, "useFor")
-    // let xiangFangCompose = xiangFang.compose
+
     let xiangFangCompose = toRef(props.xiangFang, "compose")
     let waitAddXiangFenName = ref("")
     let waitAddXiangFenWeight = ref(null)

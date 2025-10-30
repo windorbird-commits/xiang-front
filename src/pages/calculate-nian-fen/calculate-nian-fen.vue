@@ -11,7 +11,7 @@
                 <view class="percent">
                     <uv-input color="#1e90ff" v-model="nianFenPercent" type="digit" inputAlign="center" border="none"
                         placeholder="请输入粘粉百分比" maxlength="6" fontSize="40rpx" customStyle="height:100rpx"
-                        placeholderStyle="font-size:30rpx" @input="checkNum" @blur="checkNum"></uv-input>
+                        placeholderStyle="font-size:30rpx" @blur="checkNum"></uv-input>
                 </view>
                 <view class="iconPercent">
                     <text>%</text>
@@ -38,12 +38,12 @@
         provide
     } from 'vue';
 
-    // let xiangFang = reactive({})
-    let xiangFang = reactive({
-        "name": "鹅梨帐中香",
-        "useFor": [],
-        "compose": []
-    })
+    let xiangFang = reactive({})
+    // let xiangFang = reactive({
+    //     "name": "鹅梨帐中香",
+    //     "useFor": [],
+    //     "compose": []
+    // })
     // let xiangFang = reactive({
     //     "name": "鹅梨帐中香",
     //     "useFor": ["线香", "塔香"],
