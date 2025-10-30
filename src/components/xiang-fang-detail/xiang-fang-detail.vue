@@ -86,7 +86,9 @@
         computed,
         ref,
         watch,
-        toRefs
+        toRefs,
+        toRef,
+        defineExpose
     } from 'vue'
     const props = defineProps(["xiangFang"])
     const itemNameLongClass = ref('itemNameLong') //
@@ -99,8 +101,10 @@
     }
     console.log("detail compose:", xiangFang.compose)
     let xiangFangNameLength = ref(xiangFangName.value.length)
-    let xiangFangUseFor = xiangFang.useFor
-    let xiangFangCompose = xiangFang.compose
+    // let xiangFangUseFor = xiangFang.useFor //非响应式的
+    let xiangFangUseFor = toRef(props.xiangFang, "useFor")
+    // let xiangFangCompose = xiangFang.compose
+    let xiangFangCompose = toRef(props.xiangFang, "compose")
 
     let waitAddXiangFenName = ref("")
     let waitAddXiangFenWeight = ref(null)
@@ -123,7 +127,7 @@
     console.log("totalWeight:", totalWeight.value)
 
     function removeItem(index) {
-        xiangFangCompose.splice(index, 1)
+        xiangFang.compose.splice(index, 1)
     }
 
 
@@ -141,7 +145,7 @@
             "weight": waitAddXiangFenWeight.value
         }
 
-        xiangFangCompose.push(com)
+        xiangFang.compose.push(com)
         waitAddXiangFenName.value = ""
         waitAddXiangFenWeight.value = null
         return
@@ -165,7 +169,7 @@
 
         // 参数验证
         if (denominator === 0) {
-            throw new Error("分母不能为零");
+            return 
         }
 
         // if (typeof numerator !== 'number' || typeof denominator !== 'number') {
@@ -180,6 +184,21 @@
 
         return `${formattedPercentage}%`;
     }
+
+    // 清空input的方法
+    function clearInputs() {
+        console.log("xiang-fang-detail: xiangFang:", xiangFang)
+        console.log("xiang-fang-detail, xiangFangCompose:",xiangFangCompose)
+        waitAddXiangFenName.value = "";
+        waitAddXiangFenWeight.value = null;
+        console.log("waitAddXiangFenName:", waitAddXiangFenName)
+        console.log("waitAddXiangFenWeight:", waitAddXiangFenWeight)
+    }
+
+    // 向父组件暴露clearInputs方法
+    defineExpose({
+        clearInputs
+    });
 </script>
 
 <style lang="scss" scoped>

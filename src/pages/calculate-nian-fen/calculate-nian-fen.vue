@@ -1,6 +1,6 @@
 <template>
     <view class="container">
-        <xiang-fang-detail class="xiangFangDetail" v-bind:xiangFang="xiangFang"></xiang-fang-detail>
+        <xiang-fang-detail ref="xiangFangDetailRef" class="xiangFangDetail" v-bind:xiangFang="xiangFang"></xiang-fang-detail>
 
         <view class='nianfenGroup'>
             <view class="nianfenInput">
@@ -34,7 +34,8 @@
         reactive,
         ref,
         isRef,
-        isReactive
+        isReactive,
+        provide
     } from 'vue';
 
     let xiangFang = reactive({
@@ -64,7 +65,34 @@
     })
 
     let nianFenPercent = ref(null)
-    console.log("nianFenPercent out:", nianFenPercent)
+    const xiangFangDetailRef = ref(null);
+
+    // 提供给子组件的clear方法
+    function clearXiangFangData() {
+        // 清空xiangFang对象
+        xiangFang.name = "";
+        xiangFang.useFor = [];
+        xiangFang.compose = [];
+        
+        // 清空nianFenPercent
+        nianFenPercent.value = null;
+        console.log("nianFen.name:", xiangFang.name)
+        console.log("nianFen.useFor:", xiangFang.useFor)
+        console.log("nianFen.compose:", xiangFang.compose)
+        console.log("nianFenPercent:", nianFenPercent.value)
+    }
+
+        // 提供给子组件的clearInputs方法
+    function clearAllInputs() {
+        // 清空xiang-fang-detail组件中的input
+        if (xiangFangDetailRef.value && xiangFangDetailRef.value.clearInputs) {
+            xiangFangDetailRef.value.clearInputs();
+        }
+    }
+
+    // 向子组件提供clear方法
+    provide('clearXiangFang', clearXiangFangData);
+    provide('clearInputs', clearAllInputs);
 
     // 修改后的函数，接收参数
 function addNianFen(xiangFangParam, nianFenPercentParam) {
