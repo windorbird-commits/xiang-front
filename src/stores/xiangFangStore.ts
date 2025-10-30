@@ -4,8 +4,8 @@ import { ref, reactive } from 'vue';
 export const useXiangFangStore = defineStore('xiangFang', () => {
     // 香方数据
     const xiangFang = reactive({
-        name: '',
-        useFor: [],
+        name: '雪中春信',
+        useFor: ["线香", "香珠"],
         compose: []
     });
 

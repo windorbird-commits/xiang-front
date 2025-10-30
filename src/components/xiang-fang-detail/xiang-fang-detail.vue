@@ -69,9 +69,9 @@
                         customStyle="height:100rpx;padding-left:30rpx" inputAlign="center" maxlength="10"></uv-input>
                 </view>
                 <view class="right">
-                    <uv-input color="#1e90ff" border="none" v-model="xiangFangStore.waitAddXiangFenWeight" inputAlign="center"
-                        placeholderStyle="font-size:30rpx" fontSize="40rpx" placeholder="请输入材料重量" type="digit"
-                        customStyle="height:100rpx" maxlength="6"></uv-input>
+                    <uv-input color="#1e90ff" border="none" v-model="xiangFangStore.waitAddXiangFenWeight"
+                        inputAlign="center" placeholderStyle="font-size:30rpx" fontSize="40rpx" placeholder="请输入材料重量"
+                        type="digit" customStyle="height:100rpx" maxlength="6"></uv-input>
                 </view>
             </view>
             <button class="addButton" @click="addItem">
@@ -95,18 +95,22 @@
         toRef,
         inject,
     } from 'vue'
-    import { useXiangFangStore } from '@/stores/xiangFangStore';
+    import {
+        useXiangFangStore
+    } from '@/stores/xiangFangStore';
+    import {
+        storeToRefs
+    } from 'pinia';
 
     const itemNameLongClass = ref('itemNameLong') //
     const itemNameClass = ref('itemName')
-    // const itemDarkBackClass = ref('itemDarkBack')
 
     const xiangFangStore = useXiangFangStore();
-    
+
     // 统一使用 store 中的香方数据
     let xiangFang = xiangFangStore.xiangFang;
     console.log("xiangFang:", xiangFang)
-    
+
     let xiangFangName = ref("")
     if (xiangFang?.name) {
         xiangFangName.value = xiangFang.name.trim()
@@ -114,9 +118,9 @@
 
     let xiangFangNameLength = ref(xiangFangName.value.length)
 
-    // 统一使用 store 中的数据
-    let xiangFangUseFor = toRef(xiangFangStore.xiangFang, "useFor")
-    let xiangFangCompose = toRef(xiangFangStore.xiangFang, "compose")
+    let xiangFangUseFor = toRef(xiangFang, "useFor")
+    let xiangFangCompose = toRef(xiangFang, "compose")
+
 
     // 香方当前总重量
     const totalWeight = computed(
@@ -138,12 +142,9 @@
     }
 
     function addItem() {
-        console.log("xiangFangStore:",xiangFangStore)
-                   console.log("xiangFangStore.waitAddXiangFenName:",xiangFangStore.waitAddXiangFenName);
-                console.log("xiangFangStore.waitAddXiangFenName:",xiangFangStore.waitAddXiangFenName);
-                console.log("xiangFangStore.waitAddXiangFenWeight:",xiangFangStore.waitAddXiangFenWeight);
-        if (xiangFangStore.waitAddXiangFenName == undefined || xiangFangStore.waitAddXiangFenName.trim().length == 0 || xiangFangStore.waitAddXiangFenWeight == null) {
-                openToast("材料名或材料重量不能为空")
+        if (xiangFangStore.waitAddXiangFenName == undefined || xiangFangStore.waitAddXiangFenName.trim().length == 0 ||
+            xiangFangStore.waitAddXiangFenWeight == null) {
+            openToast("材料名或材料重量不能为空")
             return
         }
         let weight = Number(xiangFangStore.waitAddXiangFenWeight)
@@ -160,7 +161,7 @@
             xiangFang.compose = []
         }
         xiangFang.compose.push(com)
-        
+
         // 清空输入框
         xiangFangStore.waitAddXiangFenName = ""
         xiangFangStore.waitAddXiangFenWeight = null
