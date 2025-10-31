@@ -33,7 +33,7 @@
                     </view>
 
                     <view class="itemWeight">
-                        {{item.weight}}
+                        {{Number2Digit(item.weight)}}
                     </view>
 
                     <view class="itemPercent">
@@ -49,7 +49,7 @@
                         合计
                     </view>
                     <view class="itemWeight">
-                        {{totalWeight}}
+                        {{Number2Digit(totalWeight)}}
                     </view>
                     <view class="itemPercent">
                         100%
@@ -83,7 +83,7 @@
 
 </template>
 
-<script setup>
+<script lang="ts" setup>
     import {
         isRef,
         isReactive,
@@ -96,6 +96,9 @@
         inject,
     } from 'vue'
 
+    import {
+        Number2Digit
+    } from "@/utils/number-extend"
     import {
         storeToRefs
     } from 'pinia';
@@ -127,16 +130,15 @@
             if (!xiangFang || !xiangFang.compose || xiangFang.compose.length == 0) {
                 return 0
             }
-            let tmpTotal = xiangFang.compose.reduce(
-                (prev, curr) => {
-                    return prev + Number(curr.weight);
-                }, 0
+
+            const tmpTotal = xiangFang.compose.reduce(
+                (sum, item) => sum + Number(item.weight), 0
             )
-            return Math.round(tmpTotal * 100) / 100;
+            return tmpTotal
         }
     )
 
-    function removeItem(index) {
+    function removeItem(index : number) {
         xiangFang.compose.splice(index, 1)
     }
 
@@ -168,27 +170,10 @@
         return
     }
 
-    function toPercentage(numeratorStr, denominatorStr, decimalPlaces = 1) {
-        if (numeratorStr === undefined || denominatorStr === undefined) {
-            return
-        }
-
-        let numerator;
-        let denominator;
-        if (typeof numeratorStr !== 'number') {
-            numerator = Number(numeratorStr)
-        } else {
-            numerator = numeratorStr
-        }
-        if (typeof denominatorStr !== 'number') {
-            denominator = Number(denominatorStr)
-        } else {
-            denominator = denominatorStr
-        }
-
+    function toPercentage(numerator : number, denominator : number, decimalPlaces : number = 1) : string {
         // 参数验证
         if (denominator === 0) {
-            return
+            return ""
         }
 
         // 计算百分比

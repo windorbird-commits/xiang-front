@@ -23,7 +23,7 @@
             </view>
         </view>
         <save-xiang-fang v-bind:xiangFangStore="calculateNianFenStore"></save-xiang-fang>
-        <uv-toast ref="toastRef"></uv-toast>
+        <uv-toast ref="toastRef" duration="2000"></uv-toast>
     </view>
 </template>
 
@@ -34,7 +34,7 @@
     } from 'vue';
     import {
         useCalculateNianFenStore
-    } from '@/stores/calculateNianFenStore';
+    } from '@/stores/calculate-nian-fen-store';
     import {
         storeToRefs
     } from 'pinia';
@@ -93,7 +93,7 @@
         // 添加粘粉到材料列表
         calculateNianFenStore.xiangFang.compose.push({
             name: "粘粉",
-            weight: Math.round(nianFenWeight * 100) / 100, // 保留两位小数
+            weight: nianFenWeight, // 保留两位小数
             isAdminAddedNianFen: true,
         })
 

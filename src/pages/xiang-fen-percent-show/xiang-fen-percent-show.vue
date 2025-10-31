@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts" setup>
-    import { useXiangFenPercentShowStore } from "@/stores/xiangFenPercentShow"
+    import { useXiangFenPercentShowStore } from "@/stores/xiang-fen-percent-show"
     const XiangFenPercentShowStore = useXiangFenPercentShowStore()
 </script>
 

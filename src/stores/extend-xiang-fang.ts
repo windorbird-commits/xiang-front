@@ -14,7 +14,7 @@ export const useExtendXiangFangStore = defineStore('extendXiangFang', () => {
         const value = toRaw(r);
         return JSON.parse(JSON.stringify(value));
     }
-    let xiangFangCopy = ref(null);
+    let xiangFangCopy = null;
 
     let firstClick = false; // 第一次点击
 
@@ -35,6 +35,7 @@ export const useExtendXiangFangStore = defineStore('extendXiangFang', () => {
         waitAddXiangFenName.value = '';
         waitAddXiangFenWeight.value = null;
         extendNum.value = null;
+        xiangFangCopy = null;
     }
 
     function extend() {
@@ -54,7 +55,6 @@ export const useExtendXiangFangStore = defineStore('extendXiangFang', () => {
         extendNum.value = null
         firstClick = false
         Object.assign(xiangFang, xiangFangCopy)
-
     }
 
     return {

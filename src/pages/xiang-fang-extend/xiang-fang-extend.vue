@@ -35,7 +35,7 @@
 <script setup lang="ts">
     import {
         useExtendXiangFangStore
-    } from '@/stores/extendXiangFang';
+    } from '@/stores/extend-xiang-fang';
 
     const extendXiangFangStore = useExtendXiangFangStore()
 
