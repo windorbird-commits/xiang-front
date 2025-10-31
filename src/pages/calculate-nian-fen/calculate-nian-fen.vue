@@ -29,11 +29,7 @@
 
 <script setup>
     import {
-        reactive,
-        ref,
-        isRef,
-        isReactive,
-        provide
+        ref
     } from 'vue';
     import {
         useCalculateNianFenStore
@@ -44,64 +40,65 @@
 
     const calculateNianFenStore = useCalculateNianFenStore();
     const xiangFangDetailRef = ref(null);
-    const xiangFang = calculateNianFenStore.xiangFang; // 读取整体是响应式的
+    
+    // 使用计算属性获取响应式数据
+    const { xiangFang } = storeToRefs(calculateNianFenStore);
+    
+    // 计算属性：验证材料列表
+    const isValidCompose = computed(() => {
+        return xiangFang.compose && xiangFang.compose.length > 0 && xiangFang.compose.length <= 30
+    })
+
+    // 计算属性：检查是否已添加粘粉
+    const hasAdminAddedNianFen = computed(() => {
+        return xiangFang.compose?.some(item => item.isAdminAddedNianFen) || false
+    })
 
     // 修改后的函数，使用 store 中的数据
     function addNianFen() {
-
-        if (!xiangFang.compose || xiangFang.compose.length <= 0 || xiangFang.compose.length > 30) {
+        // 验证材料列表
+        if (!isValidCompose.value) {
             console.log("材料不能为空或超过30个材料")
             return
         }
 
-        // 仅允许添加一个带管理员标识的粘粉
-        let adminAddedNianFen = xiangFang.compose.filter((item) => {
-            return item.isAdminAddedNianFen
-        })
-        if (adminAddedNianFen.length > 0) {
+        // 检查是否已添加粘粉
+        if (hasAdminAddedNianFen.value) {
             openToast("已经添加了粘粉了")
             return
         }
 
-
-
-
+        // 验证并获取粘粉比例
         const nianFenPercent = calculateNianFenStore.nianFenPercent;
-
-        // 检查输入是否有效
-        // 去除可能的空格
-        const trimmedNianFenPercent = nianFenPercent ? nianFenPercent.toString().trim() : "";
-        if (!trimmedNianFenPercent || trimmedNianFenPercent === "" || isNaN(trimmedNianFenPercent)) {
-            console.log("粘粉比例不能为空或不是数字")
+        const trimmedNianFenPercent = nianFenPercent?.toString().trim() || "";
+        
+        if (!trimmedNianFenPercent || isNaN(trimmedNianFenPercent)) {
+            openToast("粘粉比例不能为空或不是数字")
             return
         }
 
-        // 转换为数字
         const percent = Number(trimmedNianFenPercent)
-
+        
         if (!checkNum(percent)) {
             return
         }
 
-
-        let tmpTotal = xiangFang.compose.reduce(
-            (prev, curr) => {
-                return prev + Number(curr.weight);
-            }, 0
+        // 计算总重量和粘粉重量
+        const totalWeight = xiangFang.compose.reduce(
+            (sum, item) => sum + Number(item.weight), 0
         )
+        
+        const allTotal = totalWeight / (1 - percent / 100)
+        const nianFenWeight = allTotal - totalWeight
 
-        let allTotal = tmpTotal / (1 - percent / 100)
-        let nianFenWeight = allTotal - tmpTotal
+        // 添加粘粉到材料列表
+        xiangFang.compose.push({
+            name: "粘粉",
+            weight: Math.round(nianFenWeight * 100) / 100, // 保留两位小数
+            isAdminAddedNianFen: true,
+        })
 
-
-        let tmp = {
-            "name": "粘粉",
-            "weight": Math.round(nianFenWeight * 100) / 100, // 保留两位小数
-            "isAdminAddedNianFen": true,
-        }
-
-        // 修改 store 中的数据
-        xiangFang.compose.push(tmp)
+        // 重置粘粉比例
         calculateNianFenStore.nianFenPercent = null
     }
 
@@ -110,33 +107,35 @@
         // 确保值是数字类型
         const numValue = Number(value)
 
-        if (!isNaN(numValue) && (numValue >= 100) || numValue <= 0) {
+        if (isNaN(numValue) || numValue >= 100 || numValue <= 0) {
             openToast("粘粉所占比例应在1~99之间")
             return false
         } else {
-            toastRef.value.hide()
+            toastRef.value?.hide()
         }
         return true
     }
 
-    // // 2. 脚本中：声明与模板 ref 同名的变量（初始值为 null）
-    const toastRef = ref(null);
 
-    // 3. 调用 show 方法
+
+    // 调用 show 方法
     function openToast(message) {
-        // 先判断组件已挂载（避免未初始化时调用报错）
-        if (toastRef.value) {
-            toastRef.value.show({
-                type: 'default',
-                icon: false,
-                overlay: false,
-                message: message
-            }); // 等价于 Vue2 的 this.$refs.toast.show()
-        }
+        // 使用可选链操作符简化判断
+        toastRef.value?.show({
+            type: 'default',
+            icon: false,
+            overlay: false,
+            message: message
+        });
     }
 </script>
 
 <style lang="scss" scoped>
+    // 通用变量
+    $card-width: 700rpx;
+    $border-radius: 20rpx;
+    $button-height: 80rpx;
+    
     .container {
         width: 100%;
         display: flex;
@@ -146,43 +145,42 @@
     }
 
     .xiangFangDetail {
-        width: 700rpx
+        width: $card-width;
     }
 
     .addXiangFen {
-        width: 700rpx;
+        width: $card-width;
     }
 
     .nianfenGroup {
-        /* margin: 70rpx 0; */
         box-shadow: 2px 3px 5px 5px $biaoZhunYinYing;
-        border-radius: 20rpx;
-        margin: 0 0 70rpx 0;
-
+        border-radius: $border-radius;
+        margin-bottom: 70rpx;
 
         .confirmButton {
             display: flex;
             align-items: center;
             justify-content: center;
-            /* border: 1rpx solid red; */
             width: 100%;
-            height: 80rpx;
+            height: $button-height;
             background-color: $qianHeSeBeiJing;
-            border-radius: 0 0 20rpx 20rpx;
+            border-radius: 0 0 $border-radius $border-radius;
+            transition: background-color 0.3s;
+            
+            &:active {
+                background-color: darken($qianHeSeBeiJing, 10%);
+            }
         }
     }
 
-
     .nianfenInput {
-        width: 700rpx;
+        width: $card-width;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        /* border: 1rpx solid red; */
 
         .nianfenDesc {
-            /* border: 1rpx solid black; */
-            height: 80rpx;
+            height: $button-height;
             width: 300rpx;
             display: flex;
             align-items: center;
@@ -191,7 +189,6 @@
         }
 
         .percent {
-            /* border: 1rpx solid blue; */
             width: 300rpx;
             display: flex;
             align-items: center;
