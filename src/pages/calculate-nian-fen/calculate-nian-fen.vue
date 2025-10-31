@@ -59,7 +59,6 @@
     function addNianFen() {
         // 验证材料列表
         if (!isValidCompose.value) {
-            console.log("材料不能为空或超过30个材料")
             return
         }
 
@@ -107,8 +106,6 @@
     function checkNum(value) {
         // 确保值是数字类型
         const numValue = Number(value)
-        console.log("value:", value, "numValue:", numValue, "typeof value:", typeof value, "typeof numValue:",
-            typeof numValue)
         if (isNaN(numValue) || numValue >= 100 || numValue <= 0) {
             openToast("粘粉所占比例应在1~99之间")
             return false

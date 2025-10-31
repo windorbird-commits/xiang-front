@@ -48,7 +48,7 @@ export const useExtendXiangFangStore = defineStore('extendXiangFang', () => {
             this.firstClick = true
             this.xiangFangCopy = deepCopyRef(xiangFang)
         }
-        xiangFang.compose.map((item) => { console.log("item.weight:", item.weight); item.weight *= num });
+        xiangFang.compose.map((item) => { item.weight *= num });
     }
 
     function reset() {

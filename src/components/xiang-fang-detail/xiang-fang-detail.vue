@@ -158,7 +158,6 @@
             "weight": weight,
             "isAdminAddedNianFen": false, //是否是管理员角色添加的'粘粉'
         }
-        console.log("com:", com)
         if (!xiangFang.compose) {
             xiangFang.compose = []
         }
