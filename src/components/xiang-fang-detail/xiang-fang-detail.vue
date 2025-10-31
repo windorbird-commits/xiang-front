@@ -41,7 +41,7 @@
                     </view>
 
                     <view class="removeAction">
-                        <uv-icon name="close" color="#f48e4b" size="30" @click="removeItem(index)"></uv-icon>
+                        <uv-icon name="trash" color="#ff3333" size="30" @click="removeItem(index)"></uv-icon>
                     </view>
                 </view>
                 <view class="item" v-if="totalWeight > 0">
@@ -329,7 +329,6 @@
 
         .itemPercent {
             @extend %item-cell;
-            color: $chengSeAnNiu;
         }
 
         .removeAction {

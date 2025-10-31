@@ -2,11 +2,15 @@
     <view class="userLayout">
         <view class="userInfo">
             <image class="avatar" src="../../static/avatar-default.png" mode="aspectFill"></image>
-            <view class="nickName">
-                Tom
+            <!--       <view class="nickName">
+                
+            </view> -->
+            <view class="welcome">
+                <text>欢迎使用本小程序</text>
+                <text>更多功能逐步上线中</text>
             </view>
         </view>
-        <view class="section">
+        <view class="section" v-show="false">
             <view class="list">
                 <navigator url="/pages/my-created-xiang-fang/my-created-xiang-fang" hover-class="navigator-hover">
                     <view class="row">
@@ -123,6 +127,21 @@
                     }
                 }
             }
+        }
+    }
+
+
+    .welcome {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin: 50rpx;
+        font-size: 50rpx;
+        color: #d0cfcf;
+
+        .text {
+            margin: 30rpx;
         }
     }
 </style>

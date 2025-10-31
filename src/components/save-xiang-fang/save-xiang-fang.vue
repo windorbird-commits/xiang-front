@@ -8,7 +8,7 @@
                 <button class="reset">收&emsp;藏</button>
             </view>
             <view>
-                <button class="save" @click="open">保存为我的香方</button>
+                <button v-show="false" class="save" @click="open">保存为我的香方</button>
             </view>
         </view>
 

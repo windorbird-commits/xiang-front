@@ -5,13 +5,14 @@
             "^uv-(.*)": "@climblee/uv-ui/components/uv-$1/uv-$1.vue"
         }
     },
-    "pages": [{
-            "path": "pages/xiang-fang-index/xiang-fang-index",
-            "style": {
-                "navigationBarTitleText": "香方",
-                "enablePullDownRefresh": true
-            }
-        },
+    "pages": [
+        // {
+        //     "path": "pages/xiang-fang-index/xiang-fang-index",
+        //     "style": {
+        //         "navigationBarTitleText": "香方",
+        //         "enablePullDownRefresh": true
+        //     }
+        // },
         {
             "path": "pages/tools-list/tools-list",
             "style": {
@@ -73,12 +74,13 @@
         "borderStyle": "black",
         "backgroundColor": "#ffffff",
         "height": "50px",
-        "list": [{
-                "pagePath": "pages/xiang-fang-index/xiang-fang-index",
-                "iconPath": "static/icons/list.png",
-                "selectedIconPath": "static/icons/list-s.png",
-                "text": "香方"
-            },
+        "list": [
+            // {
+            //     "pagePath": "pages/xiang-fang-index/xiang-fang-index",
+            //     "iconPath": "static/icons/list.png",
+            //     "selectedIconPath": "static/icons/list-s.png",
+            //     "text": "香方"
+            // },
             {
                 "pagePath": "pages/tools-list/tools-list",
                 "iconPath": "static/icons/tools.png",
