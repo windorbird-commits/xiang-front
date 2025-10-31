@@ -49,10 +49,13 @@
         ref,
         inject
     } from 'vue';
-    import { useXiangFangStore } from '@/stores/xiangFangStore';
+
 
     let popup = ref(null);
-    const xiangFangStore = useXiangFangStore();
+
+    const {
+        xiangFangStore
+    } = defineProps(["xiangFangStore"])
 
     function open() {
         popup.value.open();

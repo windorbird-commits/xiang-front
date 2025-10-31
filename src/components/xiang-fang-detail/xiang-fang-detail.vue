@@ -1,6 +1,6 @@
 <template>
     <view>
-        <view class="xiangFangName" v-if="xiangFangNameLength>0">
+        <view class="xiangFangName" v-if="xiangFangName.length>0">
             <text class="name">{{xiangFangName}}</text>
             <view class="useFor" v-if="xiangFangUseFor.length>0">
                 <template v-for="(item) in xiangFangUseFor">
@@ -95,32 +95,36 @@
         toRef,
         inject,
     } from 'vue'
-    import {
-        useXiangFangStore
-    } from '@/stores/xiangFangStore';
+
     import {
         storeToRefs
     } from 'pinia';
 
+
     const itemNameLongClass = ref('itemNameLong') //
     const itemNameClass = ref('itemName')
 
-    const xiangFangStore = useXiangFangStore();
+    const {
+        xiangFangStore
+    } = defineProps(["xiangFangStore"])
 
     // 统一使用 store 中的香方数据
     let xiangFang = xiangFangStore.xiangFang;
     console.log("xiangFang:", xiangFang)
+    console.log("isReactive(xiangFang):", isReactive(xiangFang))
+    console.log("isRef(xiangFang):", isRef(xiangFang))
 
-    let xiangFangName = ref("")
+    let xiangFangName = toRef(xiangFang, "name")
+
     if (xiangFang?.name) {
-        xiangFangName.value = xiangFang.name.trim()
+        xiangFangName.value = xiangFangName.trim()
     }
 
-    let xiangFangNameLength = ref(xiangFangName.value.length)
 
     let xiangFangUseFor = toRef(xiangFang, "useFor")
     let xiangFangCompose = toRef(xiangFang, "compose")
-
+    let unknown = toRef(xiangFang, "unknown")
+    console.log("ref(unknown):", unknown)
 
     // 香方当前总重量
     const totalWeight = computed(

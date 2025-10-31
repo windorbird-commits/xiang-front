@@ -1,7 +1,7 @@
 <template>
     <view class="container">
         <view>
-            <xiang-fang-detail class="XiangFangDetail"></xiang-fang-detail>
+            <xiang-fang-detail v-bind:xiangFangStore="extendXiangFangStore" class="XiangFangDetail"></xiang-fang-detail>
         </view>
 
         <view class="bottom">
@@ -9,24 +9,36 @@
                 <view class="extend">
                     <text class="fangda">放&emsp;大</text>
                     <view class="input">
-                        <uv-input color="red" type="digit" inputAlign="center" border="bottom" placeholder="请输入倍数"
-                            maxlength="4" fontSize="40rpx" customStyle="height:100rpx"
-                            placeholderStyle="font-size:30rpx"></uv-input>
+                        <uv-input color="red" type="digit" v-model="extendXiangFangStore.extendNum" inputAlign="center"
+                            border="bottom" placeholder="请输入倍数" maxlength="4" fontSize="40rpx"
+                            customStyle="height:100rpx" placeholderStyle="font-size:30rpx"></uv-input>
                     </view>
                     <text class="bei">倍</text>
                 </view>
                 <view>
-                    <button class="confirm">确&emsp;定</button>
+                    <button class="confirm" @click="extend">确&emsp;定</button>
                 </view>
             </view>
             <view>
-                <button class="reset">还&emsp;&emsp;原</button>
+                <button class="reset" @click="reset">还&emsp;&emsp;原</button>
             </view>
         </view>
     </view>
 </template>
 
 <script setup lang="ts">
+    import {
+        useExtendXiangFangStore
+    } from '@/stores/extendXiangFang';
+
+    const extendXiangFangStore = useExtendXiangFangStore()
+
+    function extend() {
+        extendXiangFangStore.extend()
+    }
+    function reset() {
+        extendXiangFangStore.reset();
+    }
 </script>
 
 <style lang="scss" scoped>

@@ -1,6 +1,7 @@
 <template>
     <view class="container">
-        <xiang-fang-detail ref="xiangFangDetailRef" class="xiangFangDetail"></xiang-fang-detail>
+        <xiang-fang-detail v-bind:xiangFangStore="calculateNianFenStore" ref="xiangFangDetailRef"
+            class="xiangFangDetail"></xiang-fang-detail>
 
         <view class='nianfenGroup'>
             <view class="nianfenInput">
@@ -8,9 +9,9 @@
                     粘粉比例
                 </view>
                 <view class="percent">
-                    <uv-input color="#1e90ff" v-model="xiangFangStore.nianFenPercent" type="digit" inputAlign="center"
-                        border="none" placeholder="请输入粘粉百分比" maxlength="6" fontSize="40rpx" customStyle="height:100rpx"
-                        placeholderStyle="font-size:30rpx" @blur="checkNum"></uv-input>
+                    <uv-input color="#1e90ff" v-model="calculateNianFenStore.nianFenPercent" type="digit"
+                        inputAlign="center" border="none" placeholder="请输入粘粉百分比" maxlength="6" fontSize="40rpx"
+                        customStyle="height:100rpx" placeholderStyle="font-size:30rpx" @blur="checkNum"></uv-input>
                     <!-- @input="checkNum" 在安卓机打开页面的时候，触发input事件 -->
                 </view>
                 <view class="iconPercent">
@@ -21,7 +22,7 @@
                 <button class="confirmButton" @click="addNianFen">确&emsp;&emsp;定</button>
             </view>
         </view>
-        <save-xiang-fang></save-xiang-fang>
+        <save-xiang-fang v-bind:xiangFangStore="calculateNianFenStore"></save-xiang-fang>
         <uv-toast ref="toastRef"></uv-toast>
     </view>
 </template>
@@ -35,58 +36,55 @@
         provide
     } from 'vue';
     import {
-        useXiangFangStore
-    } from '@/stores/xiangFangStore';
+        useCalculateNianFenStore
+    } from '@/stores/calculateNianFenStore';
     import {
         storeToRefs
     } from 'pinia';
 
-    const xiangFangStore = useXiangFangStore();
+    const calculateNianFenStore = useCalculateNianFenStore();
     const xiangFangDetailRef = ref(null);
+    const xiangFang = calculateNianFenStore.xiangFang; // 读取整体是响应式的
 
     // 修改后的函数，使用 store 中的数据
     function addNianFen() {
 
-        const xiangFang = xiangFangStore.xiangFang;
+        if (!xiangFang.compose || xiangFang.compose.length <= 0 || xiangFang.compose.length > 30) {
+            console.log("材料不能为空或超过30个材料")
+            return
+        }
+
         // 仅允许添加一个带管理员标识的粘粉
-        if (xiangFang.compose.length > 0) {
-            let targetArr = xiangFang.compose.filter((item) => {
-                return item.isAdminAddedNianFen
-            })
-            if (targetArr.length > 0) {
-                openToast("已经添加了粘粉了")
-                return
-            }
+        let adminAddedNianFen = xiangFang.compose.filter((item) => {
+            return item.isAdminAddedNianFen
+        })
+        if (adminAddedNianFen.length > 0) {
+            openToast("已经添加了粘粉了")
+            return
         }
 
 
 
-        const xiangFangParam = xiangFangStore.xiangFang;
-        const nianFenPercentParam = xiangFangStore.nianFenPercent; // 非响应式的
+
+        const nianFenPercent = calculateNianFenStore.nianFenPercent;
 
         // 检查输入是否有效
         // 去除可能的空格
-        const trimmedValue = nianFenPercentParam ? nianFenPercentParam.toString().trim() :
-            ""; //nianFenPercentParam 已经自动解包了，不需要再使用.value
-        if (!trimmedValue || trimmedValue === "" || isNaN(trimmedValue)) {
+        const trimmedNianFenPercent = nianFenPercent ? nianFenPercent.toString().trim() : "";
+        if (!trimmedNianFenPercent || trimmedNianFenPercent === "" || isNaN(trimmedNianFenPercent)) {
             console.log("粘粉比例不能为空或不是数字")
             return
         }
 
         // 转换为数字
-        const percent = Number(nianFenPercentParam)
+        const percent = Number(trimmedNianFenPercent)
 
-        if (percent >= 100 || percent <= 0) {
-            openToast("粘粉所占比例应在1~99之间")
+        if (!checkNum(percent)) {
             return
         }
 
-        if (!xiangFangParam.compose || xiangFangParam.compose.length <= 0 || xiangFangParam.compose.length > 30) {
-            console.log("材料不能为空或超过30个材料")
-            return
-        }
 
-        let tmpTotal = xiangFangParam.compose.reduce(
+        let tmpTotal = xiangFang.compose.reduce(
             (prev, curr) => {
                 return prev + Number(curr.weight);
             }, 0
@@ -95,16 +93,16 @@
         let allTotal = tmpTotal / (1 - percent / 100)
         let nianFenWeight = allTotal - tmpTotal
 
+
         let tmp = {
             "name": "粘粉",
             "weight": Math.round(nianFenWeight * 100) / 100, // 保留两位小数
             "isAdminAddedNianFen": true,
         }
 
-        console.log("tmp:", tmp)
         // 修改 store 中的数据
-        xiangFangParam.compose.push(tmp)
-        xiangFangStore.nianFenPercent = null
+        xiangFang.compose.push(tmp)
+        calculateNianFenStore.nianFenPercent = null
     }
 
 
@@ -114,10 +112,13 @@
 
         if (!isNaN(numValue) && (numValue >= 100) || numValue <= 0) {
             openToast("粘粉所占比例应在1~99之间")
+            return false
         } else {
             toastRef.value.hide()
         }
+        return true
     }
+
     // // 2. 脚本中：声明与模板 ref 同名的变量（初始值为 null）
     const toastRef = ref(null);
 
