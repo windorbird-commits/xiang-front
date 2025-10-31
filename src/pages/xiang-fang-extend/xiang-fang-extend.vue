@@ -19,9 +19,15 @@
                     <button class="confirm" @click="extend">确&emsp;定</button>
                 </view>
             </view>
-            <view>
-                <button class="reset" @click="reset">还&emsp;&emsp;原</button>
+            <view class="buttonGrop">
+                <view>
+                    <button class="clear" @click="clear">清&emsp;空</button>
+                </view>
+                <view>
+                    <button class="reset" @click="reset">还&emsp;&emsp;原</button>
+                </view>
             </view>
+
         </view>
     </view>
 </template>
@@ -38,6 +44,9 @@
     }
     function reset() {
         extendXiangFangStore.reset();
+    }
+    function clear() {
+        extendXiangFangStore.clearAll()
     }
 </script>
 
@@ -99,12 +108,12 @@
             .confirm {
                 width: 200rpx;
                 height: 100rpx;
-                background-color: $lvSeAnNiu;
+                background-color: $qianHeSeBeiJing;
                 font-size: 40rpx;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                color: white;
+                color: $shenZongSeWenBen;
                 box-shadow: 2px 3px 5px 5px $biaoZhunYinYing;
 
                 // 添加按钮交互效果
@@ -114,25 +123,33 @@
             }
         }
 
-        .reset {
-            margin: 70rpx 0;
-            height: 100rpx;
-            width: 700rpx;
-            // border: 1rpx solid green;
+        .buttonGrop {
             display: flex;
             align-items: center;
-            justify-content: center;
-            background-color: $danYaSeBeiJing;
-            box-shadow: 2px 3px 5px 5px $biaoZhunYinYing;
-            border-radius: 20rpx;
-            font-size: 40rpx;
-            color: $shenZongSeWenBen;
+            justify-content: space-between;
+            width: 700rpx;
+            margin-top: 70rpx;
 
-            // 添加按钮交互效果
-            &:active {
-                background-color: darken($qianHeSeBeiJing, 10%);
+            .clear,
+            .reset {
+                width: 300rpx;
+                /* border: 1rpx solid red; */
+                height: 100rpx;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: $chengSeAnNiu;
+                border-radius: 20rpx;
+                box-shadow: 2px 3px 5px 5px $biaoZhunYinYing;
+                color: $baiSeWenBen;
+                font-size: 40rpx;
             }
 
+            .reset {
+                background-color: $lvSeAnNiu;
+            }
         }
+
+
     }
 </style>

@@ -3,8 +3,6 @@ import { ref, reactive, isRef, toRaw } from 'vue';
 
 export const useExtendXiangFangStore = defineStore('extendXiangFang', () => {
     // 香方数据
-
-
     let xiangFang = reactive({
         name: '',
         useFor: [],
@@ -27,34 +25,35 @@ export const useExtendXiangFangStore = defineStore('extendXiangFang', () => {
     const waitAddXiangFenWeight = ref(null);
 
     // 清空所有数据 暂时留着吧
-    // function clearAll() {
-    //     // 清空香方数据
-    //     xiangFang.name = '';
-    //     xiangFang.useFor = [];
-    //     xiangFang.compose = [];
+    function clearAll() {
+        // 清空香方数据
+        xiangFang.name = '';
+        xiangFang.useFor = [];
+        xiangFang.compose = [];
 
-    //     // 清空待添加的香份数据
-    //     waitAddXiangFenName.value = '';
-    //     waitAddXiangFenWeight.value = null;
-    // }
+        // 清空待添加的香份数据
+        waitAddXiangFenName.value = '';
+        waitAddXiangFenWeight.value = null;
+        extendNum.value = null;
+    }
 
     function extend() {
-        if (!this.extendNum || this.extendNum.trim().length === 0 || isNaN(Number(this.extendNum))) {
+        if (!extendNum || extendNum.value.trim().length === 0 || isNaN(Number(extendNum.value))) {
             return
         }
 
-        const num = Number(this.extendNum)
-        if (!this.firstClick) {
-            this.firstClick = true
-            this.xiangFangCopy = deepCopyRef(xiangFang)
+        const num = Number(extendNum.value)
+        if (!firstClick) {
+            firstClick = true
+            xiangFangCopy = deepCopyRef(xiangFang)
         }
         xiangFang.compose.map((item) => { item.weight *= num });
     }
 
     function reset() {
-        this.extendNum = ref(null)
-        this.firstClick = false
-        Object.assign(this.xiangFang, this.xiangFangCopy)
+        extendNum.value = null
+        firstClick = false
+        Object.assign(xiangFang, xiangFangCopy)
 
     }
 
@@ -65,5 +64,6 @@ export const useExtendXiangFangStore = defineStore('extendXiangFang', () => {
         waitAddXiangFenWeight,
         extend,
         reset,
+        clearAll,
     };
 });
