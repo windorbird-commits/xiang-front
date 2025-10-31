@@ -29,7 +29,8 @@
 
 <script setup>
     import {
-        ref
+        ref,
+        computed
     } from 'vue';
     import {
         useCalculateNianFenStore
@@ -40,18 +41,18 @@
 
     const calculateNianFenStore = useCalculateNianFenStore();
     const xiangFangDetailRef = ref(null);
-    
-    // 使用计算属性获取响应式数据
-    const { xiangFang } = storeToRefs(calculateNianFenStore);
-    
+
+
     // 计算属性：验证材料列表
     const isValidCompose = computed(() => {
-        return xiangFang.compose && xiangFang.compose.length > 0 && xiangFang.compose.length <= 30
+
+        return calculateNianFenStore.xiangFang.compose && calculateNianFenStore.xiangFang.compose.length > 0 &&
+            calculateNianFenStore.xiangFang.compose.length <= 30
     })
 
     // 计算属性：检查是否已添加粘粉
     const hasAdminAddedNianFen = computed(() => {
-        return xiangFang.compose?.some(item => item.isAdminAddedNianFen) || false
+        return calculateNianFenStore.xiangFang.compose?.some(item => item.isAdminAddedNianFen) || false
     })
 
     // 修改后的函数，使用 store 中的数据
@@ -71,28 +72,28 @@
         // 验证并获取粘粉比例
         const nianFenPercent = calculateNianFenStore.nianFenPercent;
         const trimmedNianFenPercent = nianFenPercent?.toString().trim() || "";
-        
+
         if (!trimmedNianFenPercent || isNaN(trimmedNianFenPercent)) {
             openToast("粘粉比例不能为空或不是数字")
             return
         }
 
         const percent = Number(trimmedNianFenPercent)
-        
+
         if (!checkNum(percent)) {
             return
         }
 
         // 计算总重量和粘粉重量
-        const totalWeight = xiangFang.compose.reduce(
+        const totalWeight = calculateNianFenStore.xiangFang.compose.reduce(
             (sum, item) => sum + Number(item.weight), 0
         )
-        
+
         const allTotal = totalWeight / (1 - percent / 100)
         const nianFenWeight = allTotal - totalWeight
 
         // 添加粘粉到材料列表
-        xiangFang.compose.push({
+        calculateNianFenStore.xiangFang.compose.push({
             name: "粘粉",
             weight: Math.round(nianFenWeight * 100) / 100, // 保留两位小数
             isAdminAddedNianFen: true,
@@ -106,18 +107,18 @@
     function checkNum(value) {
         // 确保值是数字类型
         const numValue = Number(value)
-
+        console.log("value:", value, "numValue:", numValue, "typeof value:", typeof value, "typeof numValue:",
+            typeof numValue)
         if (isNaN(numValue) || numValue >= 100 || numValue <= 0) {
             openToast("粘粉所占比例应在1~99之间")
             return false
-        } else {
-            toastRef.value?.hide()
         }
+        toastRef.value?.hide()
         return true
     }
 
 
-
+    let toastRef = ref(null)
     // 调用 show 方法
     function openToast(message) {
         // 使用可选链操作符简化判断
@@ -135,7 +136,7 @@
     $card-width: 700rpx;
     $border-radius: 20rpx;
     $button-height: 80rpx;
-    
+
     .container {
         width: 100%;
         display: flex;
@@ -166,7 +167,7 @@
             background-color: $qianHeSeBeiJing;
             border-radius: 0 0 $border-radius $border-radius;
             transition: background-color 0.3s;
-            
+
             &:active {
                 background-color: darken($qianHeSeBeiJing, 10%);
             }

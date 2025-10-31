@@ -110,9 +110,6 @@
 
     // 统一使用 store 中的香方数据
     let xiangFang = xiangFangStore.xiangFang;
-    console.log("xiangFang:", xiangFang)
-    console.log("isReactive(xiangFang):", isReactive(xiangFang))
-    console.log("isRef(xiangFang):", isRef(xiangFang))
 
     let xiangFangName = toRef(xiangFang, "name")
 
@@ -124,7 +121,6 @@
     let xiangFangUseFor = toRef(xiangFang, "useFor")
     let xiangFangCompose = toRef(xiangFang, "compose")
     let unknown = toRef(xiangFang, "unknown")
-    console.log("ref(unknown):", unknown)
 
     // 香方当前总重量
     const totalWeight = computed(
