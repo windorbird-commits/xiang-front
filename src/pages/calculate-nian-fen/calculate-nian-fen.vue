@@ -45,7 +45,6 @@
 
     // 计算属性：验证材料列表
     const isValidCompose = computed(() => {
-
         return calculateNianFenStore.xiangFang.compose && calculateNianFenStore.xiangFang.compose.length > 0 &&
             calculateNianFenStore.xiangFang.compose.length <= 30
     })
