@@ -1,6 +1,6 @@
 <template>
     <view>
-        <view class="xiangFangName" v-if="xiangFangNameLength>0">
+        <view class="xiangFangName" v-if="xiangFangName.length>0">
             <text class="name">{{xiangFangName}}</text>
             <view class="useFor" v-if="xiangFangUseFor.length>0">
                 <template v-for="(item) in xiangFangUseFor">
@@ -33,7 +33,7 @@
                     </view>
 
                     <view class="itemWeight">
-                        {{item.weight}}
+                        {{Number2Digit(item.weight)}}
                     </view>
 
                     <view class="itemPercent">
@@ -49,7 +49,7 @@
                         合计
                     </view>
                     <view class="itemWeight">
-                        {{totalWeight}}
+                        {{Number2Digit(totalWeight)}}
                     </view>
                     <view class="itemPercent">
                         100%
@@ -83,7 +83,7 @@
 
 </template>
 
-<script setup>
+<script lang="ts" setup>
     import {
         isRef,
         isReactive,
@@ -95,32 +95,34 @@
         toRef,
         inject,
     } from 'vue'
+
     import {
-        useXiangFangStore
-    } from '@/stores/xiangFangStore';
+        Number2Digit
+    } from "@/utils/number-extend"
     import {
         storeToRefs
     } from 'pinia';
 
+
     const itemNameLongClass = ref('itemNameLong') //
     const itemNameClass = ref('itemName')
 
-    const xiangFangStore = useXiangFangStore();
+    const {
+        xiangFangStore
+    } = defineProps(["xiangFangStore"])
 
     // 统一使用 store 中的香方数据
     let xiangFang = xiangFangStore.xiangFang;
-    console.log("xiangFang:", xiangFang)
 
-    let xiangFangName = ref("")
+    let xiangFangName = toRef(xiangFang, "name")
+
     if (xiangFang?.name) {
-        xiangFangName.value = xiangFang.name.trim()
+        xiangFangName.value = xiangFangName.trim()
     }
 
-    let xiangFangNameLength = ref(xiangFangName.value.length)
 
     let xiangFangUseFor = toRef(xiangFang, "useFor")
     let xiangFangCompose = toRef(xiangFang, "compose")
-
 
     // 香方当前总重量
     const totalWeight = computed(
@@ -128,16 +130,15 @@
             if (!xiangFang || !xiangFang.compose || xiangFang.compose.length == 0) {
                 return 0
             }
-            let tmpTotal = xiangFang.compose.reduce(
-                (prev, curr) => {
-                    return prev + Number(curr.weight);
-                }, 0
+
+            const tmpTotal = xiangFang.compose.reduce(
+                (sum, item) => sum + Number(item.weight), 0
             )
-            return Math.round(tmpTotal * 100) / 100;
+            return tmpTotal
         }
     )
 
-    function removeItem(index) {
+    function removeItem(index : number) {
         xiangFang.compose.splice(index, 1)
     }
 
@@ -155,7 +156,8 @@
 
         let com = {
             "name": xiangFangStore.waitAddXiangFenName,
-            "weight": weight
+            "weight": weight,
+            "isAdminAddedNianFen": false, //是否是管理员角色添加的'粘粉'
         }
         if (!xiangFang.compose) {
             xiangFang.compose = []
@@ -168,27 +170,10 @@
         return
     }
 
-    function toPercentage(numeratorStr, denominatorStr, decimalPlaces = 1) {
-        if (numeratorStr === undefined || denominatorStr === undefined) {
-            return
-        }
-
-        let numerator;
-        let denominator;
-        if (typeof numeratorStr !== 'number') {
-            numerator = Number(numeratorStr)
-        } else {
-            numerator = numeratorStr
-        }
-        if (typeof denominatorStr !== 'number') {
-            denominator = Number(denominatorStr)
-        } else {
-            denominator = denominatorStr
-        }
-
+    function toPercentage(numerator : number, denominator : number, decimalPlaces : number = 1) : string {
         // 参数验证
         if (denominator === 0) {
-            return
+            return ""
         }
 
         // 计算百分比

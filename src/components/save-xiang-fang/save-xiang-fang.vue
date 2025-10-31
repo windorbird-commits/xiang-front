@@ -2,7 +2,7 @@
     <view>
         <view class="actions">
             <view v-if="true">
-                <button class="reset" @click="clear">清&emsp;空</button>
+                <button class="clear" @click="clear">清&emsp;空</button>
             </view>
             <view v-else>
                 <button class="reset">收&emsp;藏</button>
@@ -49,10 +49,13 @@
         ref,
         inject
     } from 'vue';
-    import { useXiangFangStore } from '@/stores/xiangFangStore';
+
 
     let popup = ref(null);
-    const xiangFangStore = useXiangFangStore();
+
+    const {
+        xiangFangStore
+    } = defineProps(["xiangFangStore"])
 
     function open() {
         popup.value.open();
@@ -74,6 +77,7 @@
         justify-content: space-between;
         width: 700rpx;
 
+        .clear,
         .reset {
             width: 300rpx;
             /* border: 1rpx solid red; */
@@ -96,10 +100,11 @@
             align-items: center;
             justify-content: center;
             background-color: $lvSeAnNiu;
+            color: $baiSeWenBen;
             letter-spacing: 3rpx;
             border-radius: 20rpx;
             box-shadow: 2px 3px 5px 5px $biaoZhunYinYing;
-            color: $baiSeWenBen;
+
             font-size: 30rpx;
         }
     }

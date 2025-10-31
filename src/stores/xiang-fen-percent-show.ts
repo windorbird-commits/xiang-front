@@ -1,30 +1,26 @@
 import { defineStore } from 'pinia';
-import { ref, reactive } from 'vue';
+import { ref, reactive, isRef, toRaw } from 'vue';
 
-export const useXiangFangStore = defineStore('xiangFang', () => {
+export const useXiangFenPercentShowStore = defineStore('xiangFenPercentShow', () => {
     // 香方数据
-    const xiangFang = reactive({
+
+
+    let xiangFang = reactive({
         name: '',
         useFor: [],
         compose: []
     });
 
-    // 粘粉比例
-    const nianFenPercent = ref(null);
-
     // 待添加的香份数据
     const waitAddXiangFenName = ref('');
     const waitAddXiangFenWeight = ref(null);
 
-    // 清空所有数据
+    // 清空所有数据 暂时留着吧
     function clearAll() {
         // 清空香方数据
         xiangFang.name = '';
         xiangFang.useFor = [];
         xiangFang.compose = [];
-
-        // 清空粘粉比例
-        nianFenPercent.value = null;
 
         // 清空待添加的香份数据
         waitAddXiangFenName.value = '';
@@ -33,7 +29,6 @@ export const useXiangFangStore = defineStore('xiangFang', () => {
 
     return {
         xiangFang,
-        nianFenPercent,
         waitAddXiangFenName,
         waitAddXiangFenWeight,
         clearAll
