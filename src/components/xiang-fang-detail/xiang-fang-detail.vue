@@ -120,7 +120,6 @@
 
     let xiangFangUseFor = toRef(xiangFang, "useFor")
     let xiangFangCompose = toRef(xiangFang, "compose")
-    let unknown = toRef(xiangFang, "unknown")
 
     // 香方当前总重量
     const totalWeight = computed(
